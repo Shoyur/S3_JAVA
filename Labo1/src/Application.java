@@ -31,7 +31,7 @@ public class Application {
         }
     }
 
-    public static void convertirTxtVersBinaire() {
+    public static void convertirTxtEnBinaire() {
         String elems[] = new String[6];
         // numLivre + titre + 2 + numAuteur + annee + nbPages + categLivre + 2
         // TAILLE_ENREG = 3+45+2+2+4+4+20+2;
@@ -39,7 +39,7 @@ public class Application {
         String titre="", categLivre="";
         try{
             tmpReadTexte = new BufferedReader(new FileReader(fichier_txt));
-            tmpWriteBin = new RandomAccessFile("src/livres.bin", "rw");
+            tmpWriteBin = new RandomAccessFile("src/donnees/livres.bin", "rw");
             String ligne = tmpReadTexte.readLine();
             while(ligne != null ){
                 elems = ligne.split(";");
@@ -76,10 +76,9 @@ public class Application {
         JMenuBar menubar = new JMenuBar();
         framePrincipal.setJMenuBar(menubar);
 
-        // chargerFichierTexte(framePrincipal);
-        // convertirTxtVersBinaire();
-        String test = "abcjehfjkhewjh";
-        System.out.println(String.format("%1$-5.5s", test));
+        chargerFichierTexte(framePrincipal);
+        convertirTxtEnBinaire();
+        System.out.println("yes sir !");
 
         // framePrincipal.show();
     }
