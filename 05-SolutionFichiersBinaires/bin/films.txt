@@ -1,0 +1,6 @@
+100;Titanic;Drame;180
+200;Rambo 4;Action;120
+300;Reine des neiges;Tous;170
+400;Inception;Action;165
+500;Le petit canard;Tous;90
+600;Superman;Action;140
