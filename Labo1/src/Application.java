@@ -1,7 +1,8 @@
 import javax.swing.*;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.*;   
+import java.io.*;  
+import java.awt.*;
 
 public class Application {
 
@@ -14,7 +15,7 @@ public class Application {
 
     public static void chargerFichierTexte(JFrame framePrincipal) {
         JFileChooser choix = new JFileChooser();
-        // choix.setBackground(new java.awt.Color(204, 166, 166));
+        // choix.setoolbarackground(new java.awt.Color(204, 166, 166));
         choix.setFileFilter(new FileNameExtensionFilter("*.txt", "txt"));
         choix.setAcceptAllFileFilterUsed(false);
         choix.setCurrentDirectory(new File(System.getProperty("user.dir")));
@@ -68,18 +69,44 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        JFrame framePrincipal = new JFrame();
-        ImageIcon frameIcon = new ImageIcon("src/frameIcon.png");
-        framePrincipal.setIconImage(frameIcon.getImage());
-        //  ??????????? Couleur fonctionne ????????????????????????????????????????????????????????????
-        framePrincipal.setBackground(new java.awt.Color(204, 166, 166));
+
+        JFrame framePrincipal = new JFrame("[ La bibliothèque ]");
+        framePrincipal.setLayout(new BorderLayout());
+        JToolBar toolbar = new JToolBar();
+
         JMenuBar menubar = new JMenuBar();
         framePrincipal.setJMenuBar(menubar);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JComboBox comboBox = new JComboBox(new String[] { "item 1", "item 2", "item 3" });
+
+        JButton bouton1 = new JButton("Lister tous les livres");
+        JButton bouton2 = new JButton("bouton 2");
+        panel.add(bouton1);
+        panel.add(comboBox);
+        panel.add(bouton2);
+        
+        toolbar.add(panel);
+        toolbar.setFloatable(false);
+        toolbar.setOrientation(SwingConstants.VERTICAL);
+        framePrincipal.add(toolbar, BorderLayout.WEST);
+
+        JTable table = new JTable();
+        framePrincipal.add(table);
+
+        ImageIcon frameIcon = new ImageIcon("src/frameIcon.png");
+        framePrincipal.setBackground(new java.awt.Color(204, 166, 166));
+        framePrincipal.setIconImage(frameIcon.getImage());
+        framePrincipal.setSize(800, 500);
+        framePrincipal.setVisible(true);
+        framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
 
         chargerFichierTexte(framePrincipal);
         convertirTxtEnBinaire();
         System.out.println("yes sir !");
 
-        // framePrincipal.show();
+
     }
 }
