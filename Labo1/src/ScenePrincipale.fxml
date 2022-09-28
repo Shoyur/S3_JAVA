@@ -3,10 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenePrincipaleController">
    <children>
@@ -38,19 +37,6 @@
             <Font name="Calibri" size="12.0" />
          </font>
       </Button>
-      <TableView fx:id="listeTable" layoutX="180.0" layoutY="12.0" prefHeight="236.0" prefWidth="605.0" style="-fx-background-color: darkgrey; -fx-border-color: black;">
-                  <placeholder>
-               <Label text="" />
-            </placeholder>
-        <columns>
-            <!-- numLivre + titre + 2 + numAuteur + annee + nbPages + categLivre + 2 -->
-            <TableColumn editable="false" maxWidth="50.0" minWidth="0.0" prefWidth="50.0" resizable="false" text="#" fx:id="numLivre" />
-            <TableColumn editable="false" maxWidth="300.0" minWidth="0.0" prefWidth="300.0" resizable="false" text="Titre" fx:id="titre" />
-            <TableColumn editable="false" maxWidth="50.0" minWidth="0.0" prefWidth="50.0" resizable="false" text="Auteur" fx:id="numAuteur" />
-            <TableColumn editable="false" maxWidth="50.0" minWidth="0.0" prefWidth="50.0" resizable="false" text="Année" fx:id="annee" />
-            <TableColumn editable="false" maxWidth="50.0" minWidth="0.0" prefWidth="50.0" resizable="false" text="Pages" fx:id="nbPages" />
-            <TableColumn editable="false" maxWidth="105.0" minWidth="0.0" prefWidth="105.0" resizable="false" text="Catégorie" fx:id="categLivre" />
-        </columns>
-      </TableView>
+      <TextFlow fx:id="liste" layoutX="180.0" layoutY="12.0" prefHeight="236.0" prefWidth="605.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" />
    </children>
 </AnchorPane>

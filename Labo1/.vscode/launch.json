@@ -9,14 +9,16 @@
             "name": "Launch App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "Labo1_bf8fbf9",
-            "vmArgs": "--module-path C:/Users/MikeMore/Desktop/AEC/S3_JAVA/Labo1/lib/JavaFx/lib --add-modules javafx.controls,javafx.fxml"
+            "projectName": "Labo1_50d48acc",
+            "vmArgs": "--module-path ${workspaceFolder}/lib/JavaFx/lib --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
-            "name": "Launch Current File",
+            "name": "Launch App",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "App",
+            "projectName": "Labo1-bup_6ad037fc",
+            "vmArgs": "--module-path ${workspaceFolder}/lib/JavaFx/lib --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
