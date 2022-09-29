@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenePrincipaleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenePrincipaleController">
    <children>
       <Button layoutX="25.0" layoutY="24.0" mnemonicParsing="false" onAction="#boutonListerTous" prefWidth="130.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" text="Lister tous les livres">
          <font>
@@ -19,24 +19,28 @@
             <Font name="Calibri" size="13.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="15.0" layoutY="73.0" prefWidth="150.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" />
       <Label alignment="BOTTOM_CENTER" layoutX="21.0" layoutY="107.0" text="Lister par numéro de livre">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="15.0" layoutY="124.0" prefWidth="150.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" />
       <Label alignment="BOTTOM_CENTER" layoutX="18.0" layoutY="158.0" text="Lister par numéro d'auteur">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="15.0" layoutY="175.0" prefWidth="150.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" />
-      <Button layoutX="25.0" layoutY="214.0" mnemonicParsing="false" prefWidth="130.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" text="Ajouter un livre">
+      <Button layoutX="25.0" layoutY="214.0" mnemonicParsing="false" onAction="#boutonAjouterLivre" prefWidth="130.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" text="Ajouter un livre">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
       </Button>
-      <TextFlow fx:id="liste" layoutX="180.0" layoutY="12.0" prefHeight="236.0" prefWidth="605.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" />
+      <TextArea fx:id="liste" editable="false" layoutX="180.0" layoutY="12.0" prefHeight="436.0" prefWidth="805.0" style="-fx-border-color: black; -fx-font-family: monospaced;" visible="false">
+         <font>
+            <Font name="Calibri" size="11.0" />
+         </font>
+      </TextArea>
+      <ComboBox fx:id="comboCateg" layoutX="15.0" layoutY="73.0" onAction="#comboClicCateg" prefWidth="150.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" />
+      <ComboBox fx:id="comboNumLivre" layoutX="15.0" layoutY="124.0" onAction="#comboClicNumLivre" prefWidth="150.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" />
+      <ComboBox fx:id="comboNumAuteur" layoutX="15.0" layoutY="175.0" onAction="#comboClicNumAuteur" prefWidth="150.0" style="-fx-background-color: darkgrey; -fx-border-color: black;" />
    </children>
 </AnchorPane>

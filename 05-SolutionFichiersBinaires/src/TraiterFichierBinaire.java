@@ -149,7 +149,7 @@ public class TraiterFichierBinaire {
         // une exception que sera prise dans le catch et y ont ferme 
         // le fichier.
         System.out.println("\n********** LISTE DES FILMS **********\n");
-        while (true) {// Boucle infinie
+        while (true) { // Boucle infinie
                 num = tmpWriteBin.readInt();
                 titre = tmpWriteBin.readUTF();
                 categ = tmpWriteBin.readUTF();

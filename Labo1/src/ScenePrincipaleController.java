@@ -1,52 +1,116 @@
-
 import java.io.File;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
-import javax.swing.JOptionPane;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class ScenePrincipaleController implements Initializable {
-
-    App app = new App();
+public class ScenePrincipaleController {
+    
+    @FXML
+    public ComboBox<String> comboCateg;
 
     @FXML
-    private TextFlow liste;
+    private ComboBox<Integer> comboNumLivre;
 
     @FXML
-    void boutonListerTous(ActionEvent event) {
-        Text texte = new Text(app.toutLister());
-        texte.setFont(Font.font("Calibri", FontPosture.REGULAR, 13));
-        liste.getChildren().clear();
-        liste.getChildren().addAll(texte);
+    private ComboBox<Integer> comboNumAuteur;
+
+    @FXML
+    private TextArea liste;
+
+    @FXML
+    void boutonListerTous(ActionEvent event) throws IOException {
+        liste.clear();
+        liste.setText(App.lister("tout", null));
+        liste.setVisible(true);
+        comboCateg.getSelectionModel().clearSelection();
+        comboCateg.setValue(null);
+        comboNumLivre.getSelectionModel().clearSelection();
+        comboNumLivre.setValue(null);
+        comboNumAuteur.getSelectionModel().clearSelection();
+        comboNumAuteur.setValue(null);
+    }
+    
+    // ----------------------------------------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------------------------------------
+    @FXML
+    void comboClicCateg(ActionEvent event) throws IOException {
+        System.out.println("comboCateg.getValue() = " + comboCateg.getValue());
+
+        liste.setText(App.lister("cat", comboCateg.getValue()));
+        liste.setVisible(true);
+        comboNumLivre.getSelectionModel().clearSelection();
+        comboNumLivre.setValue(null);
+        comboNumAuteur.getSelectionModel().clearSelection();
+        comboNumAuteur.setValue(null);
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    void comboClicNumLivre(ActionEvent event) throws IOException {
+        System.out.println("comboNumLivre.getValue() = " + comboNumLivre.getValue());
+
+        liste.setText(App.lister("livre", comboNumLivre.getValue()));
+        liste.setVisible(true);
+        comboCateg.getSelectionModel().clearSelection();
+        comboCateg.setValue(null);
+        comboNumAuteur.getSelectionModel().clearSelection();
+        comboNumAuteur.setValue(null);
+    }
+    
+    @FXML
+    void comboClicNumAuteur(ActionEvent event) throws IOException {
+        System.out.println("comboNumAuteur.getValue() = " + comboNumAuteur.getValue());
+
+        liste.setText(App.lister("auteur", comboNumAuteur.getValue()));
+        liste.setVisible(true);
+        // comboCateg.setValue(null);
+        comboCateg.getSelectionModel().clearSelection();
+        comboCateg.setValue(null);
+        comboNumLivre.getSelectionModel().clearSelection();
+        comboNumLivre.setValue(null);
+    }
+    // ----------------------------------------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    @FXML
+    void boutonAjouterLivre(ActionEvent event) throws IOException {
+        // liste.setVisible(false);
+        // combosPop();
+    }
+
+    public void combosPop() throws IOException {
+        List troisListes[] = App.listesCombos();
+        comboCateg.getItems().clear();
+        comboCateg.getItems().addAll(troisListes[0]);
+        comboNumLivre.getItems().clear();
+        comboNumLivre.getItems().addAll(troisListes[1]);
+        comboNumAuteur.getItems().clear();
+        comboNumAuteur.getItems().addAll(troisListes[2]);
+    }
+
+    public File choixFichier(String extension) {
         FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().add(new ExtensionFilter("*.txt", "*.txt"));
+        fc.getExtensionFilters().add(new ExtensionFilter(extension, extension));
         fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         File f = fc.showOpenDialog(null);
-        if (f != null) {
-            App.fichier_txt = f.getAbsolutePath();
-        }
-        else {
-            String titre = "Erreur";
-            String message = "\nVous deviez absolument sélectionner un fichier texte compatible.\n";
-            message += "Ce programme va s'arrêter.\n";
-            JOptionPane.showMessageDialog(null, message, titre, JOptionPane.PLAIN_MESSAGE);
-            System.exit(0);
-        }
-        
+        return f;
+    }
+
+
+    @FXML // This method is called by the FXMLLoader when initialization is complete
+    void initialize() throws IOException {
+        // assert comboNumAuteur != null : "fx:id=\"comboNumAuteur\" was not injected: check your FXML file 'ScenePrincipale.fxml'.";
+        // assert comboNumLivre != null : "fx:id=\"comboNumLivre\" was not injected: check your FXML file 'ScenePrincipale.fxml'.";
+        // assert liste != null : "fx:id=\"liste\" was not injected: check your FXML file 'ScenePrincipale.fxml'.";
+        combosPop();
     }
 
 }
