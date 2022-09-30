@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -43,14 +44,19 @@ public class ScenePrincipaleController {
     // ----------------------------------------------------------------------------------------------------------------------------
     @FXML
     void comboClicCateg(ActionEvent event) throws IOException {
-        System.out.println("comboCateg.getValue() = " + comboCateg.getValue());
-        System.out.println("event.getE...........() = " + event);
-        
+
+        EventHandler<ActionEvent> handlerL = comboNumLivre.getOnAction();
+        comboNumLivre.setOnAction(null);
         comboNumLivre.getSelectionModel().clearSelection();
         comboNumLivre.setValue(null);
-        
+        comboNumLivre.setOnAction(handlerL);
+
+        EventHandler<ActionEvent> handlerA = comboNumAuteur.getOnAction();
+        comboNumAuteur.setOnAction(null);
         comboNumAuteur.getSelectionModel().clearSelection();
         comboNumAuteur.setValue(null);
+        comboNumAuteur.setOnAction(handlerA);
+
         if (comboCateg.getValue() != null) {
             liste.setText(App.lister("cat", comboCateg.getValue()));
             liste.setVisible(true);
@@ -59,13 +65,19 @@ public class ScenePrincipaleController {
 
     @FXML
     void comboClicNumLivre(ActionEvent event) throws IOException {
-        System.out.println("comboNumLivre.getValue() = " + comboNumLivre.getValue());
         
+        EventHandler<ActionEvent> handlerC = comboCateg.getOnAction();
+        comboCateg.setOnAction(null);
         comboCateg.getSelectionModel().clearSelection();
         comboCateg.setValue(null);
-        
+        comboCateg.setOnAction(handlerC);
+
+        EventHandler<ActionEvent> handlerA = comboNumAuteur.getOnAction();
+        comboNumAuteur.setOnAction(null);
         comboNumAuteur.getSelectionModel().clearSelection();
         comboNumAuteur.setValue(null);
+        comboNumAuteur.setOnAction(handlerA);
+
         if (comboNumLivre.getValue() != null) {
             liste.setText(App.lister("livre", comboNumLivre.getValue()));
             liste.setVisible(true);
@@ -75,13 +87,19 @@ public class ScenePrincipaleController {
     
     @FXML
     void comboClicNumAuteur(ActionEvent event) throws IOException {
-        System.out.println("comboNumAuteur.getValue() = " + comboNumAuteur.getValue());
-        
+
+        EventHandler<ActionEvent> handlerC = comboCateg.getOnAction();
+        comboCateg.setOnAction(null);
         comboCateg.getSelectionModel().clearSelection();
         comboCateg.setValue(null);
-        
+        comboCateg.setOnAction(handlerC);
+
+        EventHandler<ActionEvent> handlerL = comboNumLivre.getOnAction();
+        comboNumLivre.setOnAction(null);
         comboNumLivre.getSelectionModel().clearSelection();
         comboNumLivre.setValue(null);
+        comboNumLivre.setOnAction(handlerL);
+
         if (comboNumAuteur.getValue() != null) {
             liste.setText(App.lister("auteur", comboNumAuteur.getValue()));
             liste.setVisible(true);
@@ -93,8 +111,14 @@ public class ScenePrincipaleController {
 
     @FXML
     void boutonAjouterLivre(ActionEvent event) throws IOException {
-        // liste.setVisible(false);
-        // combosPop();
+        liste.setVisible(false);
+        comboCateg.getSelectionModel().clearSelection();
+        comboCateg.setValue(null);
+        comboNumLivre.getSelectionModel().clearSelection();
+        comboNumLivre.setValue(null);
+        comboNumAuteur.getSelectionModel().clearSelection();
+        comboNumAuteur.setValue(null);
+        
     }
 
     public void combosPop() throws IOException {
