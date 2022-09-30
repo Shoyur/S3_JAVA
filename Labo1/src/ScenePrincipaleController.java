@@ -35,6 +35,7 @@ public class ScenePrincipaleController {
         comboNumLivre.setValue(null);
         comboNumAuteur.getSelectionModel().clearSelection();
         comboNumAuteur.setValue(null);
+        
     }
     
     // ----------------------------------------------------------------------------------------------------------------------------
@@ -43,38 +44,48 @@ public class ScenePrincipaleController {
     @FXML
     void comboClicCateg(ActionEvent event) throws IOException {
         System.out.println("comboCateg.getValue() = " + comboCateg.getValue());
-
-        liste.setText(App.lister("cat", comboCateg.getValue()));
-        liste.setVisible(true);
+        System.out.println("event.getE...........() = " + event);
+        
         comboNumLivre.getSelectionModel().clearSelection();
         comboNumLivre.setValue(null);
+        
         comboNumAuteur.getSelectionModel().clearSelection();
         comboNumAuteur.setValue(null);
+        if (comboCateg.getValue() != null) {
+            liste.setText(App.lister("cat", comboCateg.getValue()));
+            liste.setVisible(true);
+        }
     }
 
     @FXML
     void comboClicNumLivre(ActionEvent event) throws IOException {
         System.out.println("comboNumLivre.getValue() = " + comboNumLivre.getValue());
-
-        liste.setText(App.lister("livre", comboNumLivre.getValue()));
-        liste.setVisible(true);
+        
         comboCateg.getSelectionModel().clearSelection();
         comboCateg.setValue(null);
+        
         comboNumAuteur.getSelectionModel().clearSelection();
         comboNumAuteur.setValue(null);
+        if (comboNumLivre.getValue() != null) {
+            liste.setText(App.lister("livre", comboNumLivre.getValue()));
+            liste.setVisible(true);
+        }
+        
     }
     
     @FXML
     void comboClicNumAuteur(ActionEvent event) throws IOException {
         System.out.println("comboNumAuteur.getValue() = " + comboNumAuteur.getValue());
-
-        liste.setText(App.lister("auteur", comboNumAuteur.getValue()));
-        liste.setVisible(true);
-        // comboCateg.setValue(null);
+        
         comboCateg.getSelectionModel().clearSelection();
         comboCateg.setValue(null);
+        
         comboNumLivre.getSelectionModel().clearSelection();
         comboNumLivre.setValue(null);
+        if (comboNumAuteur.getValue() != null) {
+            liste.setText(App.lister("auteur", comboNumAuteur.getValue()));
+            liste.setVisible(true);
+        }
     }
     // ----------------------------------------------------------------------------------------------------------------------------
     // ----------------------------------------------------------------------------------------------------------------------------
@@ -111,6 +122,7 @@ public class ScenePrincipaleController {
         // assert comboNumLivre != null : "fx:id=\"comboNumLivre\" was not injected: check your FXML file 'ScenePrincipale.fxml'.";
         // assert liste != null : "fx:id=\"liste\" was not injected: check your FXML file 'ScenePrincipale.fxml'.";
         combosPop();
+
     }
 
 }
