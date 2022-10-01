@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -13,7 +12,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.scene.image.Image;
 
 
@@ -22,19 +23,18 @@ public class App extends Application {
     static BufferedReader tmpReadTexte;   
     static RandomAccessFile tmpWriteBin;
     public static File fichierBin;
-    static final int TAILLE_ENREG = 4+45+2+2+4+4+20+2; // numLivre + titre + 2 + numAuteur + annee + nbPages + categLivre + 2
 
 
     // ---------------------------------------------------------------------------------------------------------------
-    // POPUP DU JavaFX FileChooser DANS LA CLASSE CONTROLLER, POUR SÉLECTIONNER LE livres.txt.
+    // POPUP DU JavaFX FileChooser, POUR SÉLECTIONNER LE livres.txt.
     // ---------------------------------------------------------------------------------------------------------------
-    private static String choixFichierTexte() {
-        ScenePrincipaleController choixFichier = new ScenePrincipaleController();
-        File f = choixFichier.choixFichier("*.txt");
+    private static String choixFichierTexte(Stage stage) {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new ExtensionFilter("*.txt", "*.txt"));
+        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
+        File f = fc.showOpenDialog(stage);
         String fichier_txt = "";
-        if (f != null) {
-            fichier_txt = f.getAbsolutePath();
-        }
+        if (f != null) { fichier_txt = f.getAbsolutePath(); }
         else {
             String titre = "Erreur";
             String message = "\nVous deviez absolument sélectionner un fichier texte compatible.\n";
@@ -48,7 +48,7 @@ public class App extends Application {
     // ---------------------------------------------------------------------------------------------------------------
     // FICHIER TEXTE VERS DATA BINAIRE EN MÉMOIRE.
     // ---------------------------------------------------------------------------------------------------------------
-    private static void convertirTxtEnBinaire(String fichier_txt) {
+    private static void convertirTxtEnBinaire(String fichier_txt) throws IOException {
         String elems[] = new String[6];
         // numLivre + titre + 2 + numAuteur + annee + nbPages + categLivre + 2
         // TAILLE_ENREG = 3+45+2+2+4+4+20+2;
@@ -82,15 +82,12 @@ public class App extends Application {
             }
             tmpReadTexte.close();
             tmpWriteBin.close();
-        } catch (Exception e) { System.out.println("Erreur à la génération du fichier binaire : " + e.getMessage()); }
-    }
-
-    // ---------------------------------------------------------------------------------------------------------------
-    // POUR RETOURNER L'ADRESSE EN MÉMOIRE AVEC POSITION CLÉ VS TAILLE_ENREG.
-    // ---------------------------------------------------------------------------------------------------------------
-    public static long obtenirAdresse(int cle) {
-        long adr = (cle / 100 - 1) * TAILLE_ENREG;
-        return adr;
+        } catch (Exception e) { 
+            System.out.println("Erreur à la génération du fichier binaire : " + e.getMessage());
+            tmpReadTexte.close();
+            tmpWriteBin.close();
+            System.exit(0);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------------------------
@@ -131,17 +128,19 @@ public class App extends Application {
     // POUR INITIALISER LE FXML ET CHARGER LA FENÊTRE ETC.
     // ---------------------------------------------------------------------------------------------------------------
     // @Override
-    public void start(Stage scenePrincipale) {
+    public void start(Stage stagePrincipal) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("ScenePrincipale.fxml"));
+            root = FXMLLoader.load(getClass().getResource("scenePrincipale.fxml"));
             Scene scene = new Scene(root);
-            scenePrincipale.setScene(scene);
+            stagePrincipal.setScene(scene);
         } catch (Exception e) {}
-        scenePrincipale.getIcons().add(new Image("medias/frameIcon.png"));
-        scenePrincipale.setTitle("[Gestionnaire de bibliothèque]");
-        scenePrincipale.show();
-        // convertirTxtEnBinaire(choixFichierTexte()); ///////////////////////////////////////////////////////////////////////////////////////////
+        stagePrincipal.getIcons().add(new Image("medias/frameIcon.png"));
+        stagePrincipal.setTitle("[Gestionnaire de bibliothèque]");
+        stagePrincipal.setResizable(false);
+        stagePrincipal.show();
+        
+        convertirTxtEnBinaire(choixFichierTexte(stagePrincipal));
 
     }
 
@@ -180,10 +179,73 @@ public class App extends Application {
                     
                 }
             }
-        } catch (Exception e) {
-            tmpWriteBin.close();
-        } 
+        } catch (Exception e) { tmpWriteBin.close(); } 
+        tmpWriteBin.close();
         return lignes;
+    }
+
+    // ---------------------------------------------------------------------------------------------------------------
+    // Retourner tout d'un seul livre pour la page modif (après avoir sélectionné un livre dans comboNumLivre).
+    // ---------------------------------------------------------------------------------------------------------------
+    public static Object[] infosModifs(int leLivre) throws IOException {
+        int numLivre, numAuteur, annee, nbPages;
+        String titre, categ;
+        tmpWriteBin = new RandomAccessFile("src/donnees/livres.bin", "rw");
+        try {
+            while (true) { // Boucle infinie
+                numLivre = tmpWriteBin.readInt();
+                titre = String.format("%1$-56.56s", tmpWriteBin.readUTF());
+                numAuteur = tmpWriteBin.readInt();
+                annee = tmpWriteBin.readInt();
+                nbPages = tmpWriteBin.readInt();
+                categ = tmpWriteBin.readUTF();
+                // -1 indique que le livre a été supprimé mais il a fallut lire
+                // les autres données pour se positionner au prochain enregistrement.
+                if ((numLivre != -1) && ((Integer)leLivre).equals(numLivre)) {
+                    Object[] infosModifs = {numLivre, titre, numAuteur, annee, nbPages, categ};
+                    tmpWriteBin.close();
+                    return infosModifs;
+                }
+            }
+        } catch (Exception e) { tmpWriteBin.close(); }
+        Object[] infosModifs = {"Erreur", "Erreur", "Erreur", "Erreur", "Erreur", "Erreur"};
+        tmpWriteBin.close();
+        return infosModifs;
+    }
+
+    // ---------------------------------------------------------------------------------------------------------------
+    // SUPPRIMER UN LIVRE.
+    // ---------------------------------------------------------------------------------------------------------------
+    public static void supprimerLivre(int leLivre) throws IOException {
+        int numLivre;
+        // long position; // sans recul de 4 ou 5
+        tmpWriteBin = new RandomAccessFile("src/donnees/livres.bin", "rw");
+        try {
+            while (true) { // Boucle infinie
+                // position = tmpWriteBin.getFilePointer()-1; // sans recul de 4 ou 5
+                numLivre = tmpWriteBin.readInt();
+                if (numLivre == leLivre) {
+                    
+                    tmpWriteBin.seek(tmpWriteBin.getFilePointer()-4); ////////////////////// 1ere version
+                    // tmpWriteBin.seek(position); // sans recul de 4 ou 5
+                    tmpWriteBin.writeUTF("");
+                    tmpWriteBin.writeInt(-1);
+                    tmpWriteBin.writeInt(-1);
+                    tmpWriteBin.writeInt(-1);
+                    tmpWriteBin.writeInt(-1);
+                    tmpWriteBin.writeUTF("");
+                    tmpWriteBin.close();
+                    return;
+                }
+                tmpWriteBin.readUTF();
+                tmpWriteBin.readInt();
+                tmpWriteBin.readInt();
+                tmpWriteBin.readInt();
+                tmpWriteBin.readUTF();
+            }
+        } catch (Exception e) { tmpWriteBin.close(); }
+        tmpWriteBin.close();
+
     }
  
     // ---------------------------------------------------------------------------------------------------------------

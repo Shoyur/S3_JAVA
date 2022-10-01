@@ -174,17 +174,21 @@ public static void main(String args[]) throws IOException{
     if(!fichierBin.exists()){
         ecrireDansFichierBinaire();
     }
-    System.out.println("\nRecherche d'un film.\n");
-    rechercherUnFilm();
-    System.out.println("\nLister tous les films.\n");
+    // System.out.println("\nRecherche d'un film.\n");
+    // rechercherUnFilm();
+    // System.out.println("\nLister tous les films.\n");
+    // listerFilms();
+    // System.out.println("\nChanger le titre d'un film.\n"); 
+    // remplacerTitre(); 
+    // System.out.println("\nListe des films après changement du titre.\n");
+    // listerFilms();
+    // System.out.println("\nSupprimer un film.\n"); 
+    // supprimerUnFilm();
+    // System.out.println("\nListe des films après suppression d'un film.\n");
+    // listerFilms();
     listerFilms();
-    System.out.println("\nChanger le titre d'un film.\n"); 
     remplacerTitre(); 
-    System.out.println("\nListe des films après changement du titre.\n");
     listerFilms();
-    System.out.println("\nSupprimer un film.\n"); 
-    supprimerUnFilm();
-    System.out.println("\nListe des films après suppression d'un film.\n");
-    listerFilms();
+
 }
 }
