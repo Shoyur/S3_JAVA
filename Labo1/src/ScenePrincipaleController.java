@@ -1,137 +1,115 @@
-import java.io.IOException;
-
 import java.util.List;
-import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
-
-import javafx.scene.control.Alert;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class ScenePrincipaleController {
 
+    public String modifOuAjout = "";
+    double mouseX = 0;
+    double mouseY = 0;
+
     @FXML
-    public ComboBox<String> comboCateg;
+    private AnchorPane anchor;
+
+    @FXML
+    private ComboBox<String> comboCateg;
     @FXML
     private ComboBox<Integer> comboNumLivre, comboNumAuteur;
     @FXML
     private TextArea liste;
     @FXML
-    private Button boutonListerTous, boutonAjouterLivre, boutonSupprimer, boutonSauvegarder, boutonAnnuler;
+    private Button boutonListerTous, boutonAjouterLivre, boutonSupprimer, boutonSauvegarder, boutonAnnuler, boutonOui, boutonNon;
     @FXML
     private Label labelNoLivre, labelTitre, labelNoAuteur, labelAnnee, labelPages, labelCateg,
-        valeurAnnee, valeurCateg, valeurNoAuteur, valeurNoLivre, valeurPages;
+        valeurAnnee, valeurCateg, valeurNoAuteur, valeurNoLivre, valeurPages,
+        titreCombo1, titreCombo2, titreCombo3,
+        erreur1, erreur2, erreur3, erreur4, erreur5, erreur6, 
+        ouinon;
     @FXML
     private TextField texteFieldNoLivre, texteFieldTitre, texteFieldNoAuteur, texteFieldAnnee, texteFieldPages, texteFieldCateg;
-    
+    @FXML
+    private Hyperlink lienMini, lienQuitter;
+
+
     // ----------------------------------------------------------------------------------------------------------------------------
     // MÉTHODES FXML
     // ----------------------------------------------------------------------------------------------------------------------------
     @FXML
-    void boutonListerTous(MouseEvent event) throws IOException {
-        System.out.println("début méthode boutonlistertous");
-
-        visibilite("L");
-
+    void boutonListerTous() throws Exception {
         liste.clear();
         liste.setText(App.lister("tout", null));
         comboCateg.getSelectionModel().clearSelection();
-        comboCateg.setValue(null);
         comboNumLivre.getSelectionModel().clearSelection();
-        comboNumLivre.setValue(null);
-        comboNumAuteur.getSelectionModel().clearSelection();
-        comboNumAuteur.setValue(null);
-        
+        comboNumAuteur.getSelectionModel().clearSelection();        
+        visibilite("L");
     }
 
     @FXML
-    void comboClicCateg(ActionEvent event) throws IOException {
-
+    void comboClicCateg(ActionEvent event) throws Exception {
         visibilite("L");
-
         EventHandler<ActionEvent> handlerL = comboNumLivre.getOnAction();
         comboNumLivre.setOnAction(null);
         comboNumLivre.getSelectionModel().clearSelection();
-        comboNumLivre.setValue(null);
         comboNumLivre.setOnAction(handlerL);
-
         EventHandler<ActionEvent> handlerA = comboNumAuteur.getOnAction();
         comboNumAuteur.setOnAction(null);
         comboNumAuteur.getSelectionModel().clearSelection();
-        comboNumAuteur.setValue(null);
         comboNumAuteur.setOnAction(handlerA);
-
-        if (comboCateg.getValue() != null) {
-            liste.setText(App.lister("cat", comboCateg.getValue()));
-        }
+        if (comboCateg.getValue() != null) { liste.setText(App.lister("cat", comboCateg.getValue())); }
     }
 
     @FXML
-    void comboClicNumLivre(ActionEvent event) throws IOException {
-        
+    void comboClicNumLivre(ActionEvent event) throws Exception {
         visibilite("M");
-
         EventHandler<ActionEvent> handlerC = comboCateg.getOnAction();
         comboCateg.setOnAction(null);
         comboCateg.getSelectionModel().clearSelection();
-        comboCateg.setValue(null);
         comboCateg.setOnAction(handlerC);
-
         EventHandler<ActionEvent> handlerA = comboNumAuteur.getOnAction();
         comboNumAuteur.setOnAction(null);
         comboNumAuteur.getSelectionModel().clearSelection();
-        comboNumAuteur.setValue(null);
         comboNumAuteur.setOnAction(handlerA);
-
         if (comboNumLivre.getValue() == null) { return; }
         else {
             Object[] les6valeurs = App.infosModifs(comboNumLivre.getValue());
-            // System.out.println("OUAIS : " + Integer.toString((Integer)les6valeurs[0]));
             valeurNoLivre.setText(Integer.toString((Integer)les6valeurs[0]));
             texteFieldTitre.setText((String)les6valeurs[1]);
             valeurNoAuteur.setText(Integer.toString((Integer)les6valeurs[2]));
             valeurAnnee.setText(Integer.toString((Integer)les6valeurs[3]));
             valeurPages.setText(Integer.toString((Integer)les6valeurs[4]));
             valeurCateg.setText((String)les6valeurs[5]);
-        }
-        texteFieldTitre.textProperty().addListener((e, b, a) -> { if (b != a) { boutonSauvegarder.setDisable(false); boutonAnnuler.setDisable(false); }});
-        
+        }        
     }
     
     @FXML
-    void comboClicNumAuteur(ActionEvent event) throws IOException {
-
+    void comboClicNumAuteur(ActionEvent event) throws Exception {
         visibilite("L");
-
         EventHandler<ActionEvent> handlerC = comboCateg.getOnAction();
         comboCateg.setOnAction(null);
         comboCateg.getSelectionModel().clearSelection();
-        comboCateg.setValue(null);
         comboCateg.setOnAction(handlerC);
-
         EventHandler<ActionEvent> handlerL = comboNumLivre.getOnAction();
         comboNumLivre.setOnAction(null);
         comboNumLivre.getSelectionModel().clearSelection();
-        comboNumLivre.setValue(null);
         comboNumLivre.setOnAction(handlerL);
-
-        if (comboNumAuteur.getValue() != null) {
-            liste.setText(App.lister("auteur", comboNumAuteur.getValue()));
-        }
+        if (comboNumAuteur.getValue() != null) { liste.setText(App.lister("auteur", comboNumAuteur.getValue())); }
     }
 
     @FXML
-    void boutonAjouterLivre(MouseEvent event) throws IOException {
+    void boutonAjouterLivre(MouseEvent event) throws Exception {
         comboCateg.getSelectionModel().clearSelection();
         comboCateg.setValue(null);
         comboNumLivre.getSelectionModel().clearSelection();
@@ -139,47 +117,131 @@ public class ScenePrincipaleController {
         comboNumAuteur.getSelectionModel().clearSelection();
         comboNumAuteur.setValue(null);
         visibilite("A");
-
     }
 
     @FXML
-    void boutonSupprimer(MouseEvent event) throws IOException {
-		Alert alerte = new Alert(AlertType.WARNING);
-		alerte.setTitle("Confirmation");
-		alerte.setHeaderText(null);
-		alerte.setContentText("Êtes vous certain de vouloir effacer le livre no. " + comboNumLivre.getValue() + " ?");
-        alerte.getButtonTypes().clear();
-        ButtonType oui = new ButtonType("OUI");
-		ButtonType non = new ButtonType("NON");
-        alerte.getButtonTypes().addAll(oui, non);
-        Optional<ButtonType> reponse = alerte.showAndWait();
-        if (reponse.get() == oui) {
-            App.supprimerLivre(comboNumLivre.getValue());
-            combosRemplir();
-            boutonListerTous(event);
-        }
-
-
+    void boutonSupprimer(MouseEvent event) throws Exception {
+        boutonOui.setVisible(true);
+        boutonNon.setVisible(true);
+        ouinon.setVisible(true);
+        // if (reponse.get() == oui) {
+        //     App.supprimerLivre(comboNumLivre.getValue());
+        //     combosRemplir();
+        //     boutonListerTous();
+        // }
     }
 
     @FXML
-    void boutonSauvegarder(MouseEvent event) throws IOException {
-        boutonListerTous(event);
-    }
-
-    @FXML
-    void boutonAnnuler(MouseEvent event) throws IOException {
-        System.out.println("J'ai clic annuler et ensuite je call boutonTous");
-        boutonListerTous(event);
-    }
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() throws IOException {
-        // assert comboNumAuteur != null : "fx:id=\"comboNumAuteur\" was not injected: check your FXML file 'ScenePrincipale.fxml'.";
-        // assert comboNumLivre != null : "fx:id=\"comboNumLivre\" was not injected: check your FXML file 'ScenePrincipale.fxml'.";
-        // assert liste != null : "fx:id=\"liste\" was not injected: check your FXML file 'ScenePrincipale.fxml'.";
+    void boutonOui(MouseEvent event) throws Exception {
+        boutonOui.setVisible(true);
+        boutonNon.setVisible(true);
+        ouinon.setVisible(true);
+        App.supprimerLivre(comboNumLivre.getValue());
         combosRemplir();
+        boutonListerTous();
     }
+
+    @FXML
+    void boutonNon(MouseEvent event) throws Exception {
+        boutonOui.setVisible(false);
+        boutonNon.setVisible(false);
+        ouinon.setVisible(false);
+        
+    }
+
+    @FXML
+    void boutonSauvegarder(MouseEvent event) throws Exception {
+        if (modifOuAjout == "M") {
+            if (texteFieldTitre.getText() == null || texteFieldTitre.getText().length() < 1) { 
+                // System.out.println("Vous devez entrer un titre!");
+                erreur2.setVisible(true); 
+            }
+            else {
+                App.modifierTitre(comboNumLivre.getValue(), texteFieldTitre.getText());
+                combosRemplir();
+                boutonListerTous();
+            }
+        }
+        else {
+            if (estUnNombreEntre(texteFieldNoLivre.getText(), 100, 999) == false) { 
+                // System.out.println("Le numéro du livre doit être entre 100 et 999!"); 
+                erreur1.setVisible(true);
+            }
+            else if (texteFieldTitre.getText() == null || texteFieldTitre.getText().length() < 1) { 
+                // System.out.println("Vous devez entrer un titre!");
+                erreur2.setVisible(true); 
+            }
+            else if (estUnNombreEntre(texteFieldNoAuteur.getText(), 1, 999) == false) { 
+                // System.out.println("Le numéro de l'auteur doit être entre 1 et 999!"); 
+                erreur3.setVisible(true);
+            }
+            else if (estUnNombreEntre(texteFieldAnnee.getText(), 1000, 3000) == false) { 
+                // System.out.println("L'année doit être entre l'an 1000 et l'an 3000!"); 
+                erreur4.setVisible(true);
+            }
+            else if (estUnNombreEntre(texteFieldPages.getText(), 0, 99999) == false) { 
+                // System.out.println("Le nombre de pages doit être entre 0 et 99999!"); 
+                erreur5.setVisible(true);
+            }
+            else if (texteFieldCateg.getText() == null || texteFieldTitre.getText().length() < 1) { 
+                // System.out.println("Vous devez entrer une catégorie!"); 
+                erreur6.setVisible(true);
+            }
+            else { 
+                App.ajouterTout(
+                    Integer.parseInt(texteFieldNoLivre.getText()), 
+                    texteFieldTitre.getText(),
+                    Integer.parseInt(texteFieldNoAuteur.getText()), 
+                    Integer.parseInt(texteFieldAnnee.getText()), 
+                    Integer.parseInt(texteFieldPages.getText()), 
+                    texteFieldCateg.getText()
+                );
+                combosRemplir();
+                boutonListerTous();
+            }
+        }
+    }
+
+    @FXML
+    void boutonAnnuler(MouseEvent event) throws Exception {
+        boutonListerTous();
+    }
+
+    @FXML
+    void dragged(MouseEvent event) {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+        stage.setX(event.getScreenX() - mouseX);
+        stage.setY(event.getScreenY() - mouseY);
+    }
+
+    @FXML
+    void pressed(MouseEvent event) {
+        mouseX = event.getSceneX();
+        mouseY = event.getSceneY();
+    }
+
+    @FXML
+    void mini(ActionEvent event) {
+        Stage stage = (Stage)anchor.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    void quitter(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    void initialize() throws Exception {
+        combosRemplir();
+        boutonListerTous();
+        boutonListerTous.setOnMouseClicked((event) -> { try { boutonListerTous(); } catch (Exception e) {}});
+        comboCateg.setStyle("-fx-background-color: #505050; -fx-control-inner-background: #505050");
+        comboNumAuteur.setStyle("-fx-background-color: #505050; -fx-control-inner-background: #505050");
+        comboNumLivre.setStyle("-fx-background-color: #505050; -fx-control-inner-background: #505050");
+    }
+
 
     // ----------------------------------------------------------------------------------------------------------------------------
     // AUTRES MÉTHODES NON-FXML
@@ -187,6 +249,16 @@ public class ScenePrincipaleController {
 
     // "L"=Liste, "M"=ModifierUnLivre, "A"=AjouterUnLivre
     public void visibilite(String mode) {
+
+        modifOuAjout = (mode == "M") ? mode : (mode == "A") ? mode : "";
+
+        texteFieldNoLivre.setText(null);
+        texteFieldTitre.setText(null);
+        texteFieldNoAuteur.setText(null);
+        texteFieldAnnee.setText(null);
+        texteFieldPages.setText(null);
+        texteFieldCateg.setText(null);
+
         liste.setVisible((mode == "L") ? true : false);
         texteFieldNoLivre.setVisible((mode == "A") ? true : false);
         texteFieldTitre.setVisible((mode == "M" || mode == "A") ? true : false);
@@ -208,15 +280,28 @@ public class ScenePrincipaleController {
         valeurNoAuteur.setVisible((mode == "M") ? true : false);
         valeurNoLivre.setVisible((mode == "M") ? true : false);
         valeurPages.setVisible((mode == "M") ? true : false);
-        texteFieldNoLivre.setText(null);
-        texteFieldTitre.setText(null);
-        texteFieldNoAuteur.setText(null);
-        texteFieldAnnee.setText(null);
-        texteFieldPages.setText(null);
-        texteFieldCateg.setText(null);
+        comboCateg.setVisible(true);
+        comboNumAuteur.setVisible(true);
+        comboNumLivre.setVisible(true);
+        boutonAjouterLivre.setVisible(true);
+        titreCombo1.setVisible(true);
+        titreCombo2.setVisible(true);
+        titreCombo3.setVisible(true);
+
+        erreur1.setVisible(false);
+        erreur2.setVisible(false);
+        erreur3.setVisible(false);
+        erreur4.setVisible(false);
+        erreur5.setVisible(false);
+        erreur6.setVisible(false);
+
+        boutonOui.setVisible(false);
+        boutonNon.setVisible(false);
+        ouinon.setVisible(false);
+
     }
 
-    public void combosRemplir() throws IOException {
+    void combosRemplir() throws Exception {
         List troisListes[] = App.listesCombos();
         comboCateg.getItems().clear();
         comboCateg.getItems().addAll(troisListes[0]);
@@ -224,6 +309,15 @@ public class ScenePrincipaleController {
         comboNumLivre.getItems().addAll(troisListes[1]);
         comboNumAuteur.getItems().clear();
         comboNumAuteur.getItems().addAll(troisListes[2]);
+    }
+
+    boolean estUnNombreEntre(String texte, int debutInclus, int finInclus) {
+        if (texte == null) { return false; }
+        int i;
+        try { i = Integer.parseInt(texte); } 
+        catch (NumberFormatException e) { return false; }
+        if (i < debutInclus || i > finInclus) { return false; }
+        return true;
     }
 
 }

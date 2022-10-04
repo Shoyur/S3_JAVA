@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 //import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -49,11 +50,11 @@ public class ListeDeroulante extends JFrame {
     public static void main(String[] args) {
         ListeDeroulante lst = new ListeDeroulante();
         lst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // SwingUtilities.invokeLater(new Runnable() {
-        //     @Override
-        //     public void run() {
-        //         new ListeDeroulante();
-        //     }
-        // });
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new ListeDeroulante();
+            }
+        });
     }
 }
