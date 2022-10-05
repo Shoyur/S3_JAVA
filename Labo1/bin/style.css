@@ -1,6 +1,6 @@
 .root {
-	-fx-background-color: #333333;
-	-fx-effect: dropshadow(gaussian, #333333, 10, 0, 0, 0);
+	-fx-background-color: #222222;
+	-fx-effect: dropshadow(gaussian, #222222, 10, 0, 0, 0);
 	-fx-background-insets: 10;
 	-fx-background-radius: 10;
 
@@ -8,7 +8,7 @@
 
 .hyperlink {
 	-fx-border-color: transparent;
-	-fx-text-fill: #66BBEE;
+	-fx-text-fill: #77CCFF;
 	-fx-underline: false;
 	-fx-background-radius: 10;
 }
@@ -17,31 +17,31 @@
 	-fx-text-fill: white;
 	-fx-underline: false;
 	-fx-border-color: transparent;
-	-fx-background-color: #505050;
+	-fx-background-color: #404040;
 }
 #lienQuitter:hover {
 	-fx-background-color: #ff0000c0;
 }
 
 .combo-box .list-view .list-cell {
-	/* -fx-background-color: #505050;
-	-fx-control-inner-background: #505050; */
-	-fx-text-fill: #66BBEE;
+	/* -fx-background-color: #404040;
+	-fx-control-inner-background: #404040; */
+	-fx-text-fill: #77CCFF;
 	-fx-font-family: "Calibri";
 	-fx-font-size: 13px;
-	-fx-border: #505050;
+	-fx-border: #404040;
 }
 .combo-box .list-cell {
-	/* -fx-background-color: #505050;
-	-fx-control-inner-background: #505050; */
-	-fx-text-fill: #66BBEE;
+	/* -fx-background-color: #404040;
+	-fx-control-inner-background: #404040; */
+	-fx-text-fill: #77CCFF;
 	-fx-font-family: "Calibri";
 	-fx-font-size: 13px;
-	-fx-border: #505050;
+	-fx-border: #404040;
 }
 
 .button {
-	-fx-background-color: #505050;
+	-fx-background-color: #404040;
 	-fx-background-radius: 8;
 	
 }
@@ -56,20 +56,20 @@
 }
 
 .text-area {
-	-fx-text-fill: #66BBEE;
-	-fx-control-inner-background: #505050;
+	-fx-text-fill: #77CCFF;
+	-fx-control-inner-background: #404040;
 	-fx-font-family: "Consolas";
 	-fx-font-size: 12px;
-	-fx-text-box-border: #66BBEE;
+	-fx-text-box-border: #77CCFF;
 
 }
 .text-field {
-	-fx-text-fill: #66BBEE;
-	-fx-control-inner-background: #505050;
-	-fx-text-box-border: #505050;
+	-fx-text-fill: #77CCFF;
+	-fx-control-inner-background: #404040;
+	-fx-text-box-border: #404040;
 }
 .text-field:focused {
-    -fx-text-box-border: #66BBEE;
+    -fx-text-box-border: #77CCFF;
 }
 .text-field:hover {
 	-fx-background-color: #707070;
@@ -95,14 +95,12 @@
  .scroll-bar .decrement-arrow{
     -fx-shape : " ";    
     -fx-padding :0.15em 0.0;
-	-fx-control-inner-background: red;
 }
 
  .scroll-bar:vertical .increment-arrow,
  .scroll-bar:vertical .decrement-arrow{
     -fx-shape : " ";    
     -fx-padding :0.0 0.15em;
-	-fx-control-inner-background: red;
 }
 
 
