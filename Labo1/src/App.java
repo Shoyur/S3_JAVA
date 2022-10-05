@@ -98,7 +98,7 @@ public class App extends Application {
                 tmpWriteBin.readInt();
                 categLivre = tmpWriteBin.readUTF();
                 if (numLivre != 0) {
-                    if (!listeCateg.contains(categLivre)) { listeCateg.add(categLivre); }
+                    if (!listeCateg.contains(categLivre)) { listeCateg.add(categLivre); } // !!!!!!!!!!!!!!!!!!! J'aurais pu sauver des lignes avec Hashset
                     if (!listeNumLivre.contains(numLivre)) { listeNumLivre.add(numLivre); }
                     if (!listeNumAuteur.contains(numAuteur)) { listeNumAuteur.add(numAuteur); }
                 }
