@@ -104,6 +104,7 @@ public class App extends Application {
                 }
             }
         } catch (Exception e) {
+            // System.out.println("::: Erreur @ listesCombos() :::");
             tmpWriteBin.close();
         }
         listeCateg.sort(null);
@@ -160,7 +161,10 @@ public class App extends Application {
                     
                 }
             }
-        } catch (Exception e) { tmpWriteBin.close(); } 
+        } catch (Exception e) { 
+            // System.out.println("::: Erreur @ lister() :::");
+            tmpWriteBin.close(); 
+        } 
         tmpWriteBin.close();
         return lignes;
     }
@@ -187,7 +191,10 @@ public class App extends Application {
                     return infosModifs;
                 }
             }
-        } catch (Exception e) { tmpWriteBin.close(); }
+        } catch (Exception e) { 
+            // System.out.println("::: Erreur @ infosModifs() :::");
+            tmpWriteBin.close(); 
+        }
         Object[] infosModifs = {"Erreur", "Erreur", "Erreur", "Erreur", "Erreur", "Erreur"};
         tmpWriteBin.close();
         return infosModifs;
@@ -216,7 +223,10 @@ public class App extends Application {
                 tmpWriteBin.readInt();
                 tmpWriteBin.readUTF();
             }
-        } catch (Exception e) { tmpWriteBin.close(); }
+        } catch (Exception e) { 
+            // System.out.println("::: Erreur @ supprimerLivre() :::");
+            tmpWriteBin.close(); 
+        }
         tmpWriteBin.close();
 
     }
@@ -226,14 +236,12 @@ public class App extends Application {
     // ---------------------------------------------------------------------------------------------------------------
     public static void modifierTitre(int leLivre, String nouveauTitre) throws Exception {
         int numLivre;
-        String temp;
         tmpWriteBin = new RandomAccessFile("src/donnees/livres.bin", "rw");
         try {
             while (true) {
                 numLivre = tmpWriteBin.readInt();
                 if (numLivre == leLivre) {
-                    temp = String.format("%1$-55.55s", nouveauTitre);
-                    tmpWriteBin.writeUTF(temp);
+                    tmpWriteBin.writeUTF(String.format("%1$-55.55s", nouveauTitre));
                     tmpWriteBin.close();
                     return;
                 }
@@ -243,7 +251,10 @@ public class App extends Application {
                 tmpWriteBin.readInt();
                 tmpWriteBin.readUTF();
             }
-        } catch (Exception e) { tmpWriteBin.close(); }
+        } catch (Exception e) { 
+            // System.out.println("::: Erreur @ modifierTitre() :::");
+            tmpWriteBin.close(); 
+        }
         tmpWriteBin.close();
     }
  
@@ -262,7 +273,10 @@ public class App extends Application {
             tmpWriteBin.writeUTF(String.format("%1$-20.20s", categ));
             tmpWriteBin.close();
             return;
-        } catch (Exception e) { tmpWriteBin.close(); }
+        } catch (Exception e) { 
+            // System.out.println("::: Erreur @ ajouterTout() :::");
+            tmpWriteBin.close(); 
+        }
         tmpWriteBin.close();
     }
 
