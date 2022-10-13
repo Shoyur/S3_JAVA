@@ -11,16 +11,16 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
-public class App extends Application {
-
+public class App extends Application { 
+// 
     static BufferedReader tmpReadTexte;   
     static RandomAccessFile tmpWriteBin;
     public static File fichierBin;

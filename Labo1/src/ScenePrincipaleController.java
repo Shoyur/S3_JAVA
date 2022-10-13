@@ -15,8 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ScenePrincipaleController {
-
+public class ScenePrincipaleController { 
+// 
     public String modifOuAjout = "";
     double mouseX = 0;
     double mouseY = 0;

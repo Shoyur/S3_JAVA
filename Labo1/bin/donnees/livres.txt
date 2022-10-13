@@ -14,7 +14,7 @@
 354;Star;4;1990;473;roman
 453;Un parfait inconnu;4;1990;361;roman
 789;Zoya;4;1990;470;roman
-987;L'éme soeur;7;1990;380;roman
+987;L'âme soeur;7;1990;380;roman
 765;Dors ma jolie;6;1990;289;suspense
 213;Marie LaFlamme Tome 1;2;1991;398;roman
 678;Cher Daddy;4;1991;370;roman
@@ -24,8 +24,8 @@
 934;Souvenirs du Vietnam;4;1992;372;roman
 222;Nous n'irons plus au bois;6;1992;341;suspense
 333;Recherche jeune femme aimant danser;6;1992;342;suspense
-777;Ces enfants d'ailleurs Tome 1. Méme les oiseaux se sont tus;1;1993;595;roman
-999;Coups de céur;4;1993;320;roman
+777;Ces enfants d'ailleurs Tome 1. Même les oiseaux se sont tus;1;1993;595;roman
+999;Coups de cœur;4;1993;320;roman
 765;Joyaux;4;1993;478;roman
 645;La fin de l'été;4;1993;378;roman
 901;Un si grand amour;4;1993;372;roman
@@ -45,8 +45,8 @@
 835;Accident;4;1995;344;roman
 836;Le cadeau;4;1995;212;roman
 837;Plein ciel;4;1995;420;roman
-624;Un monde de réve;4;1995;384;roman
-625;Cinq jours é Paris;4;1996;245;roman
+624;Un monde de rêve;4;1995;384;roman
+625;Cinq jours à Paris;4;1996;245;roman
 526;L'anneau de Cassandra;4;1996;397;roman
 738;Maintenant et pour toujours;4;1996;530;roman
 538;Malveillance;4;1996;391;roman
@@ -56,10 +56,10 @@
 389;La foudre;4;1997;410;roman
 489;Une saison de passion;4;1997;565;roman
 589;L'Homme au masque;7;1997;474;roman
-982;Joyeux Noél Merry Christmas;6;1997;230;suspense
+982;Joyeux Noël Merry Christmas;6;1997;230;suspense
 983;La maison du clair de lune, suivi de Vol de routine;6;1997;363;suspense
 984;Tu m'appartiens;6;1997;341;suspense
-985;Le Fantéme;4;1998;416;roman
+985;Le Fantôme;4;1998;416;roman
 555;Le ranch, suivi de Amour;4;1998;502;roman
 557;Ni vue ni connue;6;1998;266;suspense
 556;La petite fille qui aimait trop les allumettes;3;1998;180;roman
@@ -68,4 +68,4 @@
 655;Soins intensifs;2;2001;251;roman
 855;Avant de te dire adieu;6;2001;346;suspense
 114;Prisonniers du temps;10;2001;620;roman
-134;Dans la rue oé vit celle que j'aime;6;2002;348;suspense
+134;Dans la rue où vit celle que j'aime;6;2002;348;suspense

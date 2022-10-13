@@ -11,6 +11,7 @@
             "mainClass": "App",
             "projectName": "Labo1_bf8fbf9",
             "vmArgs": "--module-path ${workspaceFolder}/lib/JavaFx/lib --add-modules javafx.controls,javafx.fxml"
-        }
+        },
+        
     ]
 }
