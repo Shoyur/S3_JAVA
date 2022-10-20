@@ -11,14 +11,6 @@
             "mainClass": "App",
             "projectName": "Examen1_22c2afc6",
             "vmArgs": "--module-path ${workspaceFolder}/lib/JavaFx/lib --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "Launch App",
-            "request": "launch",
-            "mainClass": "App",
-            "projectName": "Labo1_bf8fbf9",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/JavaFx/lib --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
