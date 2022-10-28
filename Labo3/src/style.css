@@ -16,8 +16,12 @@ AnchorPane {
 	-fx-graphic: url("medias/tab-1-Inventaire.png");
 }
 
-.button:hover {
+.button:hover, .button:focused {
 	-fx-background-color: rgb(65,65,65);
 	-fx-text-fill: rgb(60,130,220);
 	-fx-graphic: url("medias/tab-1-Inventaire-hover.png");
 }
+
+/* .button:focused{
+    -fx-background-color: rgb(65,65,65);
+} */

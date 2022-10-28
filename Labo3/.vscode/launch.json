@@ -9,6 +9,14 @@
             "name": "Launch App",
             "request": "launch",
             "mainClass": "App",
+            "projectName": "Labo3_50d48ace",
+            "vmArgs": "--module-path ${workspaceFolder}/lib/JavaFx/lib --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "App",
             "projectName": "Labo3_bf8fbfb",
             "vmArgs": "--module-path ${workspaceFolder}/lib/JavaFx/lib --add-modules javafx.controls,javafx.fxml"
         },
