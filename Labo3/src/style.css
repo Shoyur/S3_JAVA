@@ -1,118 +1,77 @@
-VBox {
-    -fx-background-color: rgb(30,30,30);
-	-fx-padding: 10px 0px 0px 10px;
+.root {
+	-fx-couleur-fonce: rgb(30,30,30);
+	-fx-couleur-pale: rgb(70,70,70);
+	-fx-couleur-plus-pale: rgb(110,110,110);
+	-fx-couleur-bleu: rgb(60,130,220);
+	-fx-background-color: -fx-couleur-pale;
+	-fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+	-fx-font-family: 'Helvetica', Arial, sans-serif;
+	-fx-font-size: 12px;
 }
 
-AnchorPane {
-	-fx-background-color: rgb(65,65,65);
+.tab-header-background {
+    -fx-background-color: -fx-couleur-fonce;
 }
 
-.button {
-	-fx-background-color: rgb(30,30,30);
-	-fx-background-radius: 0em;
-	-fx-alignment: BASELINE_LEFT;
+.tab-pane * {
+	-fx-text-fill: white;
+
 }
 
-.button:hover, .button:focused {
-	-fx-background-color: rgb(65,65,65);
-	-fx-text-fill: rgb(60,130,220); /* équivalent en HEX -> #3c82dc */
+.tab {
+	-fx-background-color: -fx-couleur-fonce;
+	-fx-background-insets: 0 1 0 1,0,0;
 }
-
-#nav_butt_1 {
-	-fx-graphic: url("medias/nav_butt_1.png");
-}
-
-#nav_butt_1:hover, #nav_butt_1:focused {
-	-fx-graphic: url("medias/nav_butt_1_hover.png");
-}
-
-#nav_butt_2 {
-	-fx-graphic: url("medias/nav_butt_2.png");
-}
-
-#nav_butt_2:hover, #nav_butt_2:focused {
-	-fx-graphic: url("medias/nav_butt_2_hover.png");
-}
-#nav_butt_3 {
-	-fx-graphic: url("medias/nav_butt_3.png");
-}
-
-#nav_butt_3:hover, #nav_butt_3:focused {
-	-fx-graphic: url("medias/nav_butt_3_hover.png");
-}
-#nav_butt_4 {
-	-fx-graphic: url("medias/nav_butt_4.png");
-}
-
-#nav_butt_4:hover, #nav_butt_4:focused {
-	-fx-graphic: url("medias/nav_butt_4_hover.png");
-}
-#nav_butt_5 {
-	-fx-graphic: url("medias/nav_butt_5.png");
-}
-
-#nav_butt_5:hover, #nav_butt_5:focused {
-	-fx-graphic: url("medias/nav_butt_5_hover.png");
-}
-#nav_butt_6 {
-	-fx-graphic: url("medias/nav_butt_6.png");
-}
-
-#nav_butt_6:hover, #nav_butt_6:focused {
-	-fx-graphic: url("medias/nav_butt_6_hover.png");
-}
-#nav_butt_7 {
-	-fx-graphic: url("medias/nav_butt_7.png");
-}
-
-#nav_butt_7:hover, #nav_butt_7:focused {
-	-fx-graphic: url("medias/nav_butt_7_hover.png");
-}
-#nav_butt_8 {
-	-fx-graphic: url("medias/nav_butt_8.png");
-}
-
-#nav_butt_8:hover, #nav_butt_8:focused {
-	-fx-graphic: url("medias/nav_butt_8_hover.png");
-}
-#nav_butt_9 {
-	-fx-graphic: url("medias/nav_butt_9.png");
-}
-
-#nav_butt_9:hover, #nav_butt_9:focused {
-	-fx-graphic: url("medias/nav_butt_9_hover.png");
-}
-#nav_butt_10 {
-	-fx-graphic: url("medias/nav_butt_10.png");
-}
-
-#nav_butt_10:hover, #nav_butt_10:focused {
-	-fx-graphic: url("medias/nav_butt_10_hover.png");
-}
-
-
-
-
-
-
 
 .tab-pane {
-	-fx-tab-min-width:300px;
-	-fx-tab-max-width:300px;
-	-fx-tab-min-height:300px;
-	-fx-tab-max-height:300px;
+	-fx-tab-min-width:30px;
+	-fx-tab-max-width:30px;
+	-fx-tab-min-height:140px;
+	-fx-tab-max-height:140px;
 }
-.tab *.tab-label {
+
+.tab-label {
     -fx-rotate: 90;
-	/* -fx-content-display: left; */
-	/* -fx-padding: 0 0 0 -60; */
-	/* -fx-translate-y: -100; */
-	/* -fx-content-display: left; */
-
+	-fx-padding: 0 0 0 -99100;
+	-fx-translate-y: 99035;
+	-fx-alignment: baseline-left;
 }
 
-.tab-pane > .tab-header-area > .headers-region > .tab:hover > .tab-container > .tab-label {
-    -fx-text-fill: red;
-	-fx-graphic: url("face33.png");
+.tab-pane > .tab-header-area > .headers-region > #tab01:hover > .tab-container > .tab-label { -fx-graphic: url("medias/nav01hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab01:selected > .tab-container > .tab-label { -fx-graphic: url("medias/nav01hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab02:hover > .tab-container > .tab-label { -fx-graphic: url("medias/nav02hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab02:selected > .tab-container > .tab-label { -fx-graphic: url("medias/nav02hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab03:hover > .tab-container > .tab-label { -fx-graphic: url("medias/nav03hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab03:selected > .tab-container > .tab-label { -fx-graphic: url("medias/nav03hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab04:hover > .tab-container > .tab-label { -fx-graphic: url("medias/nav04hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab04:selected > .tab-container > .tab-label { -fx-graphic: url("medias/nav04hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab05:hover > .tab-container > .tab-label { -fx-graphic: url("medias/nav05hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab05:selected > .tab-container > .tab-label { -fx-graphic: url("medias/nav05hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab06:hover > .tab-container > .tab-label { -fx-graphic: url("medias/nav06hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab06:selected > .tab-container > .tab-label { -fx-graphic: url("medias/nav06hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab07:hover > .tab-container > .tab-label { -fx-graphic: url("medias/nav07hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab07:selected > .tab-container > .tab-label { -fx-graphic: url("medias/nav07hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab08:hover > .tab-container > .tab-label { -fx-graphic: url("medias/nav08hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab08:selected > .tab-container > .tab-label { -fx-graphic: url("medias/nav08hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab09:hover > .tab-container > .tab-label { -fx-graphic: url("medias/nav09hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab09:selected > .tab-container > .tab-label { -fx-graphic: url("medias/nav09hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab10:hover > .tab-container > .tab-label { -fx-graphic: url("medias/nav10hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+.tab-pane > .tab-header-area > .headers-region > #tab10:selected > .tab-container > .tab-label { -fx-graphic: url("medias/nav10hover.png"); -fx-text-fill: -fx-couleur-bleu; }
+
+.tab-pane > .tab-header-area > .headers-region > .tab:hover, .tab:selected {
+    -fx-text-fill: -fx-couleur-bleu;
 }
 
+.tab-pane > .tab-header-area > .headers-region > .tab:hover, .tab:selected {
+    -fx-background-color: -fx-couleur-pale;
+}
+
+/* .table-view {
+    -fx-background-color: -fx-couleur-plus-pale;
+}
+
+.table-view .column-header {
+    -fx-background-color: -fx-couleur-plus-pale;
+
+} */
