@@ -1,5 +1,3 @@
-
-
 VBox {
     -fx-background-color: rgb(30,30,30);
 	-fx-padding: 10px 0px 0px 10px;
@@ -13,15 +11,108 @@ AnchorPane {
 	-fx-background-color: rgb(30,30,30);
 	-fx-background-radius: 0em;
 	-fx-alignment: BASELINE_LEFT;
-	-fx-graphic: url("medias/tab-1-Inventaire.png");
 }
 
 .button:hover, .button:focused {
 	-fx-background-color: rgb(65,65,65);
-	-fx-text-fill: rgb(60,130,220);
-	-fx-graphic: url("medias/tab-1-Inventaire-hover.png");
+	-fx-text-fill: rgb(60,130,220); /* équivalent en HEX -> #3c82dc */
 }
 
-/* .button:focused{
-    -fx-background-color: rgb(65,65,65);
-} */
+#nav_butt_1 {
+	-fx-graphic: url("medias/nav_butt_1.png");
+}
+
+#nav_butt_1:hover, #nav_butt_1:focused {
+	-fx-graphic: url("medias/nav_butt_1_hover.png");
+}
+
+#nav_butt_2 {
+	-fx-graphic: url("medias/nav_butt_2.png");
+}
+
+#nav_butt_2:hover, #nav_butt_2:focused {
+	-fx-graphic: url("medias/nav_butt_2_hover.png");
+}
+#nav_butt_3 {
+	-fx-graphic: url("medias/nav_butt_3.png");
+}
+
+#nav_butt_3:hover, #nav_butt_3:focused {
+	-fx-graphic: url("medias/nav_butt_3_hover.png");
+}
+#nav_butt_4 {
+	-fx-graphic: url("medias/nav_butt_4.png");
+}
+
+#nav_butt_4:hover, #nav_butt_4:focused {
+	-fx-graphic: url("medias/nav_butt_4_hover.png");
+}
+#nav_butt_5 {
+	-fx-graphic: url("medias/nav_butt_5.png");
+}
+
+#nav_butt_5:hover, #nav_butt_5:focused {
+	-fx-graphic: url("medias/nav_butt_5_hover.png");
+}
+#nav_butt_6 {
+	-fx-graphic: url("medias/nav_butt_6.png");
+}
+
+#nav_butt_6:hover, #nav_butt_6:focused {
+	-fx-graphic: url("medias/nav_butt_6_hover.png");
+}
+#nav_butt_7 {
+	-fx-graphic: url("medias/nav_butt_7.png");
+}
+
+#nav_butt_7:hover, #nav_butt_7:focused {
+	-fx-graphic: url("medias/nav_butt_7_hover.png");
+}
+#nav_butt_8 {
+	-fx-graphic: url("medias/nav_butt_8.png");
+}
+
+#nav_butt_8:hover, #nav_butt_8:focused {
+	-fx-graphic: url("medias/nav_butt_8_hover.png");
+}
+#nav_butt_9 {
+	-fx-graphic: url("medias/nav_butt_9.png");
+}
+
+#nav_butt_9:hover, #nav_butt_9:focused {
+	-fx-graphic: url("medias/nav_butt_9_hover.png");
+}
+#nav_butt_10 {
+	-fx-graphic: url("medias/nav_butt_10.png");
+}
+
+#nav_butt_10:hover, #nav_butt_10:focused {
+	-fx-graphic: url("medias/nav_butt_10_hover.png");
+}
+
+
+
+
+
+
+
+.tab-pane {
+	-fx-tab-min-width:300px;
+	-fx-tab-max-width:300px;
+	-fx-tab-min-height:300px;
+	-fx-tab-max-height:300px;
+}
+.tab *.tab-label {
+    -fx-rotate: 90;
+	/* -fx-content-display: left; */
+	/* -fx-padding: 0 0 0 -60; */
+	/* -fx-translate-y: -100; */
+	/* -fx-content-display: left; */
+
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:hover > .tab-container > .tab-label {
+    -fx-text-fill: red;
+	-fx-graphic: url("face33.png");
+}
+

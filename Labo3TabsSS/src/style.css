@@ -1,0 +1,25 @@
+.root {
+	-fx-couleur-fonce: rgb(30,30,30);
+	-fx-couleur-pale: rgb(70,70,70);
+	-fx-couleur-bleu: rgb(60,130,220);
+}
+
+
+.label {
+    /* -fx-rotate: 90; */
+	-fx-content-display: left;
+	/* -fx-background-color: -fx-couleur-fonce; */
+
+	-fx-graphic: url("medias/nav_butt_1_hover.png");
+}
+
+.tab-pane {
+	-fx-tab-min-width:25px;
+	-fx-tab-max-width:25px;
+	-fx-tab-min-height:150px;
+	-fx-tab-max-height:150px;
+}
+
+.tab-content-area {
+	-fx-background-color: -fx-couleur-pale;
+}
