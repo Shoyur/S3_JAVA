@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="295.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenePrincipaleController">
+   <children>
+      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="17.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@medias/frameIcon.png" />
+         </image>
+      </ImageView>
+      <Hyperlink fx:id="lienMini" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="959.0" layoutY="11.0" onAction="#mini" text="   —   " textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink fx:id="lienQuitter" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="1000.0" layoutY="11.0" onAction="#quitter" text="   ✕   " textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Button fx:id="boutonListerTous" layoutX="31.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#boutonListerTous" prefWidth="130.0" text="Lister tous les livres" textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="titreCombo1" alignment="BOTTOM_CENTER" layoutX="45.0" layoutY="81.0" text="Lister par catégorie" textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="titreCombo2" alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="132.0" text="Lister par numéro de livre" textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="titreCombo3" alignment="BOTTOM_CENTER" layoutX="24.0" layoutY="183.0" text="Lister par numéro d'auteur" textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="boutonAjouterLivre" layoutX="31.0" layoutY="239.0" mnemonicParsing="false" onMouseClicked="#boutonAjouterLivre" prefWidth="130.0" text="Ajouter un livre" textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="liste" editable="false" layoutX="186.0" layoutY="47.0" prefHeight="226.0" prefWidth="840.0" visible="false">
+         <font>
+            <Font name="Calibri" size="11.0" />
+         </font>
+      </TextArea>
+      <ComboBox fx:id="comboCateg" layoutX="21.0" layoutY="98.0" onAction="#comboClicCateg" prefWidth="150.0" />
+      <ComboBox fx:id="comboNumLivre" layoutX="21.0" layoutY="149.0" onAction="#comboClicNumLivre" prefWidth="150.0" />
+      <ComboBox fx:id="comboNumAuteur" layoutX="21.0" layoutY="200.0" onAction="#comboClicNumAuteur" prefWidth="150.0" />
+      <Label fx:id="labelNoLivre" layoutX="264.0" layoutY="54.0" text="No. :" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelTitre" layoutX="264.0" layoutY="92.0" text="Titre :" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelNoAuteur" layoutX="264.0" layoutY="130.0" text="Auteur :" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelAnnee" layoutX="264.0" layoutY="168.0" text="Année :" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelPages" layoutX="264.0" layoutY="206.0" text="Pages :" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelCateg" layoutX="264.0" layoutY="244.0" text="Catégorie :" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="texteFieldNoLivre" layoutX="349.0" layoutY="50.0" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="texteFieldTitre" layoutX="349.0" layoutY="88.0" prefHeight="25.0" prefWidth="320.0" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="texteFieldNoAuteur" layoutX="349.0" layoutY="126.0" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="texteFieldAnnee" layoutX="349.0" layoutY="164.0" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="texteFieldPages" layoutX="349.0" layoutY="202.0" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="texteFieldCateg" layoutX="349.0" layoutY="240.0" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </TextField>
+      <Button fx:id="boutonSupprimer" layoutX="780.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#boutonSupprimer" prefWidth="130.0" text="Supprimer ce livre" textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="boutonSauvegarder" layoutX="780.0" layoutY="196.0" mnemonicParsing="false" onMouseClicked="#boutonSauvegarder" prefWidth="130.0" text="Sauvegarder" textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="boutonAnnuler" layoutX="780.0" layoutY="238.0" mnemonicParsing="false" onMouseClicked="#boutonAnnuler" prefWidth="130.0" text="Annuler" textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="valeurNoLivre" layoutX="353.0" layoutY="54.0" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="valeurNoAuteur" layoutX="353.0" layoutY="130.0" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="valeurAnnee" layoutX="353.0" layoutY="168.0" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="valeurPages" layoutX="353.0" layoutY="206.0" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="valeurCateg" layoutX="353.0" layoutY="244.0" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="erreur1" layoutX="514.0" layoutY="53.0" text="Le numéro du livre doit être entre 100 et 999!" textFill="#ff0000bf" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="erreur2" layoutX="679.0" layoutY="92.0" text="Vous devez entrer un titre!" textFill="#ff0000c0" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="erreur3" layoutX="514.0" layoutY="132.0" text="Le numéro de l'auteur doit être entre 1 et 999!" textFill="#ff0000c0" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="erreur4" layoutX="514.0" layoutY="168.0" text="L'année doit être entre l'an 1000 et l'an 3000!" textFill="#ff0000c0" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="erreur5" layoutX="514.0" layoutY="206.0" text="Le nombre de pages doit être entre 0 et 99999!" textFill="#ff0000c0" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="erreur6" layoutX="514.0" layoutY="244.0" text="Vous devez entrer une catégorie!" textFill="#ff0000c0" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="boutonOui" layoutX="780.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#boutonOui" prefWidth="60.0" text="Oui" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="ouinon" alignment="CENTER" contentDisplay="CENTER" layoutX="791.0" layoutY="79.0" text="Êtes vous certain ?" textFill="#ff0000c4" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="boutonNon" layoutX="850.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#boutonNon" prefWidth="60.0" text="Non" textFill="#66bbee" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="titreCombo11" layoutX="38.0" layoutY="14.0" text="[Gestionnaire de bibliothèque]" textFill="#66bbee">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

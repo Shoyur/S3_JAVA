@@ -1,0 +1,117 @@
+.root {
+	-fx-background-color: #222222;
+	-fx-effect: dropshadow(gaussian, #222222, 10, 0, 0, 0);
+	-fx-background-insets: 10;
+	-fx-background-radius: 10;
+
+}
+
+.hyperlink {
+	-fx-border-color: transparent;
+	-fx-text-fill: #77CCFF;
+	-fx-underline: false;
+	-fx-background-radius: 10;
+}
+
+.hyperlink:hover {
+	-fx-text-fill: white;
+	-fx-underline: false;
+	-fx-border-color: transparent;
+	-fx-background-color: #404040;
+}
+#lienQuitter:hover {
+	-fx-background-color: #ff0000c0;
+}
+
+.combo-box .list-view .list-cell {
+	/* -fx-background-color: #404040;
+	-fx-control-inner-background: #404040; */
+	-fx-text-fill: #77CCFF;
+	-fx-font-family: "Calibri";
+	-fx-font-size: 13px;
+	-fx-border: #404040;
+}
+.combo-box .list-cell {
+	/* -fx-background-color: #404040;
+	-fx-control-inner-background: #404040; */
+	-fx-text-fill: #77CCFF;
+	-fx-font-family: "Calibri";
+	-fx-font-size: 13px;
+	-fx-border: #404040;
+}
+
+.button {
+	-fx-background-color: #404040;
+	-fx-background-radius: 8;
+	
+}
+.button:hover {
+	-fx-background-color: #707070;
+}
+#boutonOui {
+	-fx-background-color: #CC0000;
+}
+#boutonOui:hover {
+	-fx-background-color: #FF0000;
+}
+
+.text-area {
+	-fx-text-fill: #77CCFF;
+	-fx-control-inner-background: #404040;
+	-fx-font-family: "Consolas";
+	-fx-font-size: 12px;
+	-fx-text-box-border: #77CCFF;
+
+}
+.text-field {
+	-fx-text-fill: #77CCFF;
+	-fx-control-inner-background: #404040;
+	-fx-text-box-border: #404040;
+}
+.text-field:focused {
+    -fx-text-box-border: #77CCFF;
+}
+.text-field:hover {
+	-fx-background-color: #707070;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color :transparent;
+    -fx-border-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+	
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape : " ";    
+    -fx-padding :0.15em 0.0;
+}
+
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-shape : " ";    
+    -fx-padding :0.0 0.15em;
+}
+
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color :derive(black,90.0%);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
