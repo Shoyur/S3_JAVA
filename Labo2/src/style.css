@@ -1,9 +1,10 @@
 .root {
 	-fx-background-color: #222222;
-	-fx-effect: dropshadow(gaussian, #222222, 10, 0, 0, 0);
-	-fx-background-insets: 10;
-	-fx-background-radius: 10;
-
+	/* -fx-effect: dropshadow(gaussian, #77CCFF, 10, 0, 0, 0); */
+	/* -fx-background-insets: 10; */
+	/* -fx-background-radius: 10; */
+	/* -fx-border-radius: 10; */
+	-fx-border-color: #77CCFF;
 }
 
 .hyperlink {

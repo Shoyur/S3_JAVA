@@ -20,5 +20,10 @@ public final class App {
         ControleurFilm CtrF = ControleurFilm.getControleurFilm();
         String message = CtrF.CtrF_Enregistrer(film);
         System.out.println(message);
+        message = CtrF.CtrF_Enregistrer(film);
+        System.out.println(message);
+        message = CtrF.CtrF_Enregistrer(film);
+        System.out.println(message);
+
     }
 }

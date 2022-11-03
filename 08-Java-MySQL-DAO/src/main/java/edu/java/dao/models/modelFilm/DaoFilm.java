@@ -130,6 +130,7 @@ public class DaoFilm implements IFilmDao {
         } finally {
             MdlF_Fermer(stmt);
             MdlF_Fermer(conn);
+            System.out.println("oui fait !");
         }
     }
 

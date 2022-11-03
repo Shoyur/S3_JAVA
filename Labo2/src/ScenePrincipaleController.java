@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Objects;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import modeles.Livre;
 
 public class ScenePrincipaleController { 
 // 
@@ -36,7 +38,7 @@ public class ScenePrincipaleController {
     private Label labelNoLivre, labelTitre, labelNoAuteur, labelAnnee, labelPages, labelCateg,
         valeurAnnee, valeurCateg, valeurNoAuteur, valeurNoLivre, valeurPages,
         titreCombo1, titreCombo2, titreCombo3,
-        erreur1, erreur2, erreur3, erreur4, erreur5, erreur6, 
+        erreur1, erreur2, erreur3, erreur4, erreur5, erreur6, erreur7, 
         ouinon;
     @FXML
     private TextField texteFieldNoLivre, texteFieldTitre, texteFieldNoAuteur, texteFieldAnnee, texteFieldPages, texteFieldCateg;
@@ -55,6 +57,7 @@ public class ScenePrincipaleController {
         comboNumLivre.getSelectionModel().clearSelection();
         comboNumAuteur.getSelectionModel().clearSelection();        
         visibilite("L");
+        combosRemplir();
     }
 
     @FXML
@@ -84,13 +87,13 @@ public class ScenePrincipaleController {
         comboNumAuteur.setOnAction(handlerA);
         if (comboNumLivre.getValue() == null) { return; }
         else {
-            Object[] les6valeurs = App.infosModifs(comboNumLivre.getValue());
-            valeurNoLivre.setText(Integer.toString((Integer)les6valeurs[0]));
-            texteFieldTitre.setText((String)les6valeurs[1]);
-            valeurNoAuteur.setText(Integer.toString((Integer)les6valeurs[2]));
-            valeurAnnee.setText(Integer.toString((Integer)les6valeurs[3]));
-            valeurPages.setText(Integer.toString((Integer)les6valeurs[4]));
-            valeurCateg.setText((String)les6valeurs[5]);
+            Livre livre = App.unLivre((Integer)comboNumLivre.getValue());
+            valeurNoLivre.setText(Integer.toString(livre.getNo()));
+            texteFieldTitre.setText(livre.getTitre());
+            valeurNoAuteur.setText(Integer.toString(livre.getAuteur()));
+            valeurAnnee.setText(Integer.toString(livre.getAnnee()));
+            valeurPages.setText(Integer.toString(livre.getPages()));
+            valeurCateg.setText(livre.getCateg());
         }        
     }
     
@@ -159,28 +162,38 @@ public class ScenePrincipaleController {
         }
         else {
             if (estUnNombreEntre(texteFieldNoLivre.getText(), 100, 999) == false) { 
-                // System.out.println("Le numéro du livre doit être entre 100 et 999!"); 
+                // System.out.println("Le numéro du livre doit être entre 100 et 999!");
+                enleverErreurs();
                 erreur1.setVisible(true);
             }
-            else if (texteFieldTitre.getText() == null || texteFieldTitre.getText().length() < 1) { 
+            else if (texteFieldTitre.getText() == null || texteFieldTitre.getText().length() < 1) {
                 // System.out.println("Vous devez entrer un titre!");
+                enleverErreurs();
                 erreur2.setVisible(true); 
             }
             else if (estUnNombreEntre(texteFieldNoAuteur.getText(), 1, 999) == false) { 
                 // System.out.println("Le numéro de l'auteur doit être entre 1 et 999!"); 
+                enleverErreurs();
                 erreur3.setVisible(true);
             }
             else if (estUnNombreEntre(texteFieldAnnee.getText(), 1000, 3000) == false) { 
                 // System.out.println("L'année doit être entre l'an 1000 et l'an 3000!"); 
+                enleverErreurs();
                 erreur4.setVisible(true);
             }
             else if (estUnNombreEntre(texteFieldPages.getText(), 0, 99999) == false) { 
                 // System.out.println("Le nombre de pages doit être entre 0 et 99999!"); 
+                enleverErreurs();
                 erreur5.setVisible(true);
             }
             else if (texteFieldCateg.getText() == null || texteFieldTitre.getText().length() < 1) { 
                 // System.out.println("Vous devez entrer une catégorie!"); 
+                enleverErreurs();
                 erreur6.setVisible(true);
+            }
+            else if (Objects.nonNull(App.unLivre(Integer.parseInt(texteFieldNoLivre.getText())))) {
+                enleverErreurs();
+                erreur7.setVisible(true);
             }
             else { 
                 App.ajouterTout(
@@ -194,6 +207,7 @@ public class ScenePrincipaleController {
                 combosRemplir();
                 boutonListerTous();
             }
+            
         }
     }
 
@@ -229,7 +243,6 @@ public class ScenePrincipaleController {
 
     @FXML
     void initialize() throws Exception {
-        combosRemplir();
         boutonListerTous();
         boutonListerTous.setOnMouseClicked((event) -> { try { boutonListerTous(); } catch (Exception e) {}});
         comboCateg.setStyle("-fx-background-color: #505050; -fx-control-inner-background: #505050");
@@ -283,17 +296,22 @@ public class ScenePrincipaleController {
         titreCombo2.setVisible(true);
         titreCombo3.setVisible(true);
 
+        enleverErreurs();
+
+        boutonOui.setVisible(false);
+        boutonNon.setVisible(false);
+        ouinon.setVisible(false);
+
+    }
+
+    void enleverErreurs() {
         erreur1.setVisible(false);
         erreur2.setVisible(false);
         erreur3.setVisible(false);
         erreur4.setVisible(false);
         erreur5.setVisible(false);
         erreur6.setVisible(false);
-
-        boutonOui.setVisible(false);
-        boutonNon.setVisible(false);
-        ouinon.setVisible(false);
-
+        erreur7.setVisible(false);
     }
 
     void combosRemplir() throws Exception {

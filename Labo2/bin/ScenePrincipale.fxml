@@ -15,17 +15,17 @@
 
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="295.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScenePrincipaleController">
    <children>
-      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="17.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="17.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@medias/frameIcon.png" />
          </image>
       </ImageView>
-      <Hyperlink fx:id="lienMini" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="959.0" layoutY="11.0" onAction="#mini" text="   —   " textFill="#66bbee">
+      <Hyperlink fx:id="lienMini" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="959.0" layoutY="3.0" onAction="#mini" text="   —   " textFill="#66bbee">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
       </Hyperlink>
-      <Hyperlink fx:id="lienQuitter" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="1000.0" layoutY="11.0" onAction="#quitter" text="   ✕   " textFill="#66bbee">
+      <Hyperlink fx:id="lienQuitter" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="1000.0" layoutY="3.0" onAction="#quitter" text="   ✕   " textFill="#66bbee">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
@@ -208,9 +208,14 @@
             <Font name="Calibri Bold" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="titreCombo11" layoutX="38.0" layoutY="14.0" text="[Gestionnaire de bibliothèque]" textFill="#66bbee">
+      <Label fx:id="titreCombo11" layoutX="38.0" layoutY="6.0" text="[Gestionnaire de bibliothèque]" textFill="#66bbee">
          <font>
             <Font name="Calibri" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="erreur7" layoutX="514.0" layoutY="53.0" text="Ce numéro de livre existe déjà!" textFill="#ff0000bf" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
          </font>
       </Label>
    </children>
