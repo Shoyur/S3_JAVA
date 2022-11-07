@@ -71,8 +71,8 @@ public class LivreDao implements ILivreDao {
             throw new RuntimeException(e); 
         } 
         finally {
-            MdlF_Fermer(stmt);
-            MdlF_Fermer(conn);
+            MdlL_Fermer(stmt);
+            MdlL_Fermer(conn);
         }
     }
 
@@ -100,8 +100,8 @@ public class LivreDao implements ILivreDao {
             throw new RuntimeException(e); 
         } 
         finally {
-            MdlF_Fermer(stmt);
-            MdlF_Fermer(conn);
+            MdlL_Fermer(stmt);
+            MdlL_Fermer(conn);
         }
 
         return listeLivres;
@@ -132,8 +132,8 @@ public class LivreDao implements ILivreDao {
             throw new RuntimeException(e); 
         } 
         finally {
-            MdlF_Fermer(stmt);
-            MdlF_Fermer(conn);
+            MdlL_Fermer(stmt);
+            MdlL_Fermer(conn);
         }
         return listeLivres;
     }
@@ -161,8 +161,8 @@ public class LivreDao implements ILivreDao {
             throw new RuntimeException(e); 
         } 
         finally {
-            MdlF_Fermer(stmt);
-            MdlF_Fermer(conn);
+            MdlL_Fermer(stmt);
+            MdlL_Fermer(conn);
         }
         return livre;
     }
@@ -191,8 +191,8 @@ public class LivreDao implements ILivreDao {
             throw new RuntimeException(e); 
         } 
         finally {
-            MdlF_Fermer(stmt);
-            MdlF_Fermer(conn);
+            MdlL_Fermer(stmt);
+            MdlL_Fermer(conn);
         }
         return listeLivres;
     }
@@ -213,8 +213,8 @@ public class LivreDao implements ILivreDao {
             throw new RuntimeException(e); 
         } 
         finally {
-            MdlF_Fermer(stmt);
-            MdlF_Fermer(conn);
+            MdlL_Fermer(stmt);
+            MdlL_Fermer(conn);
         }
         return listeCategs;
     }
@@ -235,8 +235,8 @@ public class LivreDao implements ILivreDao {
             throw new RuntimeException(e); 
         } 
         finally {
-            MdlF_Fermer(stmt);
-            MdlF_Fermer(conn);
+            MdlL_Fermer(stmt);
+            MdlL_Fermer(conn);
         }
         return listeNos;
     }
@@ -257,8 +257,8 @@ public class LivreDao implements ILivreDao {
             throw new RuntimeException(e); 
         } 
         finally {
-            MdlF_Fermer(stmt);
-            MdlF_Fermer(conn);
+            MdlL_Fermer(stmt);
+            MdlL_Fermer(conn);
         }
         return listeAuteurs;
     }
@@ -277,8 +277,8 @@ public class LivreDao implements ILivreDao {
             throw new RuntimeException(e); 
         }  
         finally {
-            MdlF_Fermer(stmt);
-            MdlF_Fermer(conn);
+            MdlL_Fermer(stmt);
+            MdlL_Fermer(conn);
         }
     }
 
@@ -295,28 +295,28 @@ public class LivreDao implements ILivreDao {
             throw new RuntimeException(e); 
         } 
         finally {
-            MdlF_Fermer(stmt);
-            MdlF_Fermer(conn);
+            MdlL_Fermer(stmt);
+            MdlL_Fermer(conn);
         }
     }
    
-    private static void MdlF_Fermer(Connection conn) {
-        // if (conn != null) {
-        //     try { conn.close(); } 
-        //     catch (SQLException e) { 
-        //         System.out.println("================================================================================================ ERREUR, MdlF_Fermer(), e= " + e);
-        //         throw new RuntimeException(e); 
-        //     }
-        // }
+    private static void MdlL_Fermer(Connection conn) {
+        if (conn != null) {
+            try { conn.close(); } 
+            catch (SQLException e) { 
+                System.out.println("================================================================================================ ERREUR, MdlL_Fermer(), e= " + e);
+                throw new RuntimeException(e); 
+            }
+        }
     }
 
-    private static void MdlF_Fermer(Statement stmt) {
-        // if (stmt != null) {
-        //     try { stmt.close(); }
-        //     catch (SQLException e) { 
-        //         System.out.println("================================================================================================ ERREUR, MdlF_Fermer(), e= " + e);
-        //         throw new RuntimeException(e); 
-        //     }
-        // }
+    private static void MdlL_Fermer(Statement stmt) {
+        if (stmt != null) {
+            try { stmt.close(); }
+            catch (SQLException e) { 
+                System.out.println("================================================================================================ ERREUR, MdlL_Fermer(), e= " + e);
+                throw new RuntimeException(e); 
+            }
+        }
     }
 }

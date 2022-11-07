@@ -18,10 +18,10 @@ public class ControleurLivre implements IActionsLivre {
 
     public static synchronized ControleurLivre getControleurLivre() {
         try {
-            if (CtrL_Instance == null) {
+            // if (CtrL_Instance == null) {
                 CtrL_Instance = new ControleurLivre();
                 Dao_Instance = LivreDao.getLivreDao();
-            }
+            // }
             return CtrL_Instance;
         }
         catch (Exception e) { 
