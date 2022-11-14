@@ -48,10 +48,10 @@ public class LivreDao implements ILivreDao {
     
     public static synchronized LivreDao getLivreDao() {
         try {
-            // if (instanceDao == null) {
+            if (instanceDao == null) {
                 instanceDao = new LivreDao();
                 conn = DriverManager.getConnection(URL_BD, USAGER, PASS);
-            // }
+            }
             return instanceDao;
         } 
         catch (Exception e) { 
@@ -309,7 +309,11 @@ public class LivreDao implements ILivreDao {
    
     private static void MdlL_Fermer(Connection conn) {
         if (conn != null) {
-            try { conn.close(); } 
+            try { 
+                
+                conn.close();
+                instanceDao = null;
+            } 
             catch (SQLException e) { 
                 System.out.println("================================================================================================ ERREUR, MdlL_Fermer(), e= " + e);
                 throw new RuntimeException(e); 

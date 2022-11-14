@@ -9,7 +9,7 @@ import modeles.LivreDao;
 public class ControleurLivre implements IActionsLivre {
 
     private static ControleurLivre CtrL_Instance = null;
-    private static LivreDao Dao_Instance = null;
+    private static LivreDao instanceDao = null;
     // Singleton du contrôleur
     // getControleurFilm() est devenu une zonne critique.
     // Pour ne pas avoir deux processus légers (threads) qui
@@ -18,10 +18,10 @@ public class ControleurLivre implements IActionsLivre {
 
     public static synchronized ControleurLivre getControleurLivre() {
         try {
-            // if (CtrL_Instance == null) {
+            if (CtrL_Instance == null) {
                 CtrL_Instance = new ControleurLivre();
-                Dao_Instance = LivreDao.getLivreDao();
-            // }
+                instanceDao = LivreDao.getLivreDao();
+            }
             return CtrL_Instance;
         }
         catch (Exception e) { 
@@ -32,52 +32,61 @@ public class ControleurLivre implements IActionsLivre {
 
     @Override
     public void CtrL_create(Livre livre) {
-        Dao_Instance.MdlL_create(livre);
-        
+        CtrL_Instance = null;
+        instanceDao.MdlL_create(livre);
     }
 
     @Override
     public List<Livre> CtrL_readAll() {
-        return Dao_Instance.MdlL_readAll();
+        CtrL_Instance = null;
+        return instanceDao.MdlL_readAll();
     }
 
     @Override
     public List<Livre> CtrL_readByCateg(String categ) {
-        return Dao_Instance.MdlL_readByCateg(categ);
+        CtrL_Instance = null;
+        return instanceDao.MdlL_readByCateg(categ);
     }
 
     @Override
     public Livre CtrL_readByNo(int no) {
-        return Dao_Instance.MdlL_readByNo(no);
+        CtrL_Instance = null;
+        return instanceDao.MdlL_readByNo(no);
     }
 
     @Override
     public List<Livre> CtrL_readByAuteur(int auteur) {
-        return Dao_Instance.MdlL_readByAuteur(auteur);
+        CtrL_Instance = null;
+        return instanceDao.MdlL_readByAuteur(auteur);
     }
 
     @Override
     public List<String> CtrL_readAllCategs() {
-        return Dao_Instance.MdlL_readAllCategs();
+        CtrL_Instance = null;
+        return instanceDao.MdlL_readAllCategs();
     }
 
     @Override
     public List<Integer> CtrL_readAllNos() {
-        return Dao_Instance.MdlL_readAllNos();
+        CtrL_Instance = null;
+        return instanceDao.MdlL_readAllNos();
     }
 
     @Override
     public List<Integer> CtrL_readAllAuteurs() {
-        return Dao_Instance.MdlL_readAllAuteurs();
+        CtrL_Instance = null;
+        return instanceDao.MdlL_readAllAuteurs();
     }
 
     @Override
     public int CtrL_updateTitre(String titre, int no) {
-        return Dao_Instance.MdlL_updateTitre(titre, no);
+        CtrL_Instance = null;
+        return instanceDao.MdlL_updateTitre(titre, no);
     }
 
     @Override
     public int CtrL_delete(int no) {
-        return Dao_Instance.MdlL_delete(no);
+        CtrL_Instance = null;
+        return instanceDao.MdlL_delete(no);
     }
 }
