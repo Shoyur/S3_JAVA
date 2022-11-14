@@ -18,6 +18,13 @@ public class LivreDao implements ILivreDao {
     private static final String PASS = "";
 
 
+    
+    // private static final String URL_BD = "jdbc:mysql://sql9.freesqldatabase.com/sql9558434";
+    // private static final String USAGER = "sql9558434";
+    // private static final String PASS = "bQV64kWUMF";
+
+
+
     private static final String CREATE = "INSERT INTO livres VALUES(?, ?, ?, ?, ?, ?)";
 
     private static final String READ_ALL = "SELECT * FROM livres";
