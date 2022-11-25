@@ -48,7 +48,7 @@
       <Label layoutX="23.0" layoutY="69.0" text="Filtrer :" />
       <ImageView fx:id="ImgVLoading03" fitHeight="28.0" fitWidth="28.0" layoutX="106.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../medias/loading01.gif" />
+            <Image url="@../medias/loading.gif" />
          </image>
       </ImageView>
       <Button fx:id="btnAjouterUsagerCancel" layoutX="811.0" layoutY="635.0" mnemonicParsing="false" onAction="#btnAjouterUsagerCancel" prefWidth="80.0" text="Cancel" />

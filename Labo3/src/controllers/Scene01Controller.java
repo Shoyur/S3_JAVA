@@ -64,15 +64,17 @@ public class Scene01Controller implements Initializable {
     }
 
     void refreshTblView01() {
-        ImgVLoading01.setVisible(true);
         tblViewFilterAlbum.setText(null);
         tblViewFilterArtiste.setText(null);
         tblViewFilterAnnee.setText(null);
         Thread async_refreshTblView01 = new Thread(() -> {
-            try { Thread.sleep(500); } 
+            try { 
+                ImgVLoading01.setVisible(true);
+                exemplaires = (ExemplaireController.getControleurE()).CtrE_readAll();
+                tableView01.setItems(exemplaires); 
+                Thread.sleep(500);
+            }  
             catch (InterruptedException e) { e.printStackTrace(); } 
-            exemplaires = (ExemplaireController.getControleurE()).CtrE_readAll();
-            tableView01.setItems(exemplaires);
             ImgVLoading01.setVisible(false);
         });
         async_refreshTblView01.start();

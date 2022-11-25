@@ -40,6 +40,7 @@ public class Scene00Controller implements Initializable {
 
         System.out.println("00-CTRL-test() = oui");
         scene00.getSelectionModel().select(tab07);
+        scene00.getSelectionModel().select(6);
         
 
     }

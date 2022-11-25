@@ -123,11 +123,12 @@ public class Scene03Controller implements Initializable {
         tblViewFilterNom.setText(null);
         tblViewFilterPrenom.setText(null);
         Thread async_refreshTblView03 = new Thread(() -> {
-            try { Thread.sleep(500); } 
+            try { Thread.sleep(4000); } 
             catch (InterruptedException e) { e.printStackTrace(); } 
             usagers = (UsagerController.getControleurU()).CtrU_readAll();
             tableView03.setItems(usagers);
             ImgVLoading03.setVisible(false);
+            System.out.println("YESSSSSSSS");
         });
         async_refreshTblView03.start();
         labelUserSelId.setText(null);
@@ -236,7 +237,7 @@ public class Scene03Controller implements Initializable {
 
     @FXML void buttonUserSelEmprunts(ActionEvent event) {
 
-        // (new Scene00Controller()).test();
+        (new Scene00Controller()).test();
         // controllers.Scene00Controller.scene00.getSelectionModel().select(0);
     }
 
