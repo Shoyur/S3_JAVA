@@ -222,6 +222,20 @@
 
 
 
+/* ************************************************** */
+/* ****************** ImageView ********************* */
+/* ************************************************** */
+
+.image-view {
+	-fx-border-color:-fx-couleur-bleu;
+    -fx-border-insets: 3;
+    -fx-border-radius: 7;
+    -fx-border-width: 1;
+	
+}
+
+
+
 /* **************************************************** */
 /* ********************** CUSTOM ********************** */
 /* **************************************************** */
@@ -231,5 +245,14 @@
 #labelAjoutUserErreur3,
 #labelAjoutUserErreur4,
 #labelAjoutUserErreur5 {
+	-fx-text-fill: red;
+}
+
+#labelAjoutExNewErreur1,
+#labelAjoutExNewErreur2,
+#labelAjoutExNewErreur3,
+#labelAjoutExNewErreur4,
+#labelAjoutExNewErreur5,
+#labelAjoutExNewErreur6 {
 	-fx-text-fill: red;
 }

@@ -26,6 +26,10 @@ public class ExemplaireController {
         }
     }
 
+    public void CtrEx_create(Exemplaire exemplaire) {
+        Dao_Instance.MdlEx_create(exemplaire);
+    }
+
     public ObservableList<Exemplaire> CtrEx_readAll(int option) {
         return Dao_Instance.MdlEx_readAll(option);
     }

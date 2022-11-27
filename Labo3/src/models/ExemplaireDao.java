@@ -18,8 +18,8 @@ public class ExemplaireDao {
     private static final String USAGER = "sql9558434";
     private static final String PASS = "bQV64kWUMF";
 
+    private static final String CREATE = "INSERT INTO exemplaire VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String READ_ALL_NON_VENDUS = "SELECT * FROM exemplaire WHERE estVendu = FALSE";
-    // private static final String READ_ALL_POSS = "SELECT * FROM exemplaire";
 
     public ExemplaireDao() {  }
     
@@ -34,6 +34,35 @@ public class ExemplaireDao {
         catch (Exception e) { 
             System.out.println("================================================================================================ ERREUR, getexemplaireDao(), e= " + e);
             throw new RuntimeException(e);
+        }
+    }
+
+    // CREATE
+    // Exemplaire(int idEx, String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx,
+    //         String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu)
+    public void MdlEx_create(Exemplaire exemplaire) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(CREATE);
+            stmt.setInt(1, 0);
+            stmt.setString(2, exemplaire.getTitreEx());
+            stmt.setString(3, exemplaire.getArtisteEx());
+            stmt.setString(4, exemplaire.getCategEx());
+            stmt.setInt(5, exemplaire.getAnneeEx());
+            stmt.setDouble(6, exemplaire.getPrixEx());
+            stmt.setString(7, exemplaire.getPistesEx());
+            stmt.setInt(8, exemplaire.getNbEmpruntsEx());
+            stmt.setBoolean(9, exemplaire.isEstEmprunte());
+            stmt.setBoolean(10, exemplaire.isEstVendu());
+            stmt.executeUpdate();
+        } 
+        catch (SQLException e) { 
+            System.out.println("================================================================================================ ERREUR, MdlEx_create(), e= " + e);
+            throw new RuntimeException(e); 
+        } 
+        finally {
+            MdlEx_Fermer(stmt);
+            MdlEx_Fermer(conn);
         }
     }
 

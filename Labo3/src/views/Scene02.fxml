@@ -1,10 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scene02" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene02Controller">
+<AnchorPane fx:id="scene02" prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene02Controller">
    <children>
-      <Label layoutX="149.0" layoutY="153.0" text="Vue no. 22" textFill="WHITE" />
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#454545" height="660.0" layoutX="20.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="555.0" />
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#454545" height="660.0" layoutX="595.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="435.0" />
+      <Label layoutX="606.0" layoutY="31.0" text="Nouvel exemplaire" textFill="WHITE" />
+      <Label layoutX="31.0" layoutY="31.0" text="Exemplaire sélectionné" textFill="WHITE" />
+      <Button fx:id="btnAjouterEx" layoutX="890.0" layoutY="635.0" mnemonicParsing="false" onAction="#btnAjouterEx" prefWidth="80.0" text="Ajouter" />
+      <ImageView fx:id="ImgVLoading02Sel" fitHeight="28.0" fitWidth="28.0" layoutX="530.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../medias/loading.gif" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnAjouterExCancel" layoutX="800.0" layoutY="635.0" mnemonicParsing="false" onAction="#btnAjouterExCancel" prefWidth="80.0" text="Cancel" />
+      <Label fx:id="labelAjoutExNewErreur1" layoutX="981.0" layoutY="77.0" text="⚠" textFill="RED" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelAjoutExNewErreur2" layoutX="981.0" layoutY="112.0" text="⚠" textFill="RED" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelAjoutExNewErreur3" layoutX="981.0" layoutY="147.0" text="⚠" textFill="RED" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelAjoutExNewErreur4" layoutX="791.0" layoutY="182.0" text="⚠" textFill="RED" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelAjoutExNewErreur5" layoutX="981.0" layoutY="182.0" text="⚠" textFill="RED" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelAjoutExNewErreur6" layoutX="981.0" layoutY="252.0" text="⚠" textFill="RED" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldExSelTitre" disable="true" layoutX="120.0" layoutY="80.0" prefHeight="0.0" prefWidth="260.0" />
+      <Label layoutX="55.0" layoutY="119.0" text="Artiste :" textFill="WHITE" />
+      <Label layoutX="55.0" layoutY="84.0" text="Titre :" textFill="WHITE" />
+      <TextField fx:id="textFieldExSelArtiste" disable="true" layoutX="120.0" layoutY="115.0" prefHeight="0.0" prefWidth="260.0" />
+      <TextField fx:id="textFieldExSelGenre" disable="true" layoutX="120.0" layoutY="150.0" prefHeight="0.0" prefWidth="260.0" />
+      <Label layoutX="55.0" layoutY="154.0" text="Genre :" textFill="WHITE" />
+      <TextField fx:id="textFieldExSelAnnee" disable="true" layoutX="120.0" layoutY="185.0" prefHeight="0.0" prefWidth="70.0" />
+      <Label layoutX="55.0" layoutY="189.0" text="Année :" textFill="WHITE" />
+      <TextField fx:id="textFieldExSelPrix" disable="true" layoutX="268.0" layoutY="185.0" prefHeight="25.0" prefWidth="112.0" />
+      <Label layoutX="224.0" layoutY="189.0" text="Prix :" textFill="WHITE" />
+      <TextArea fx:id="textAreaExSelPistes" disable="true" layoutX="120.0" layoutY="255.0" prefHeight="140.0" prefWidth="260.0" />
+      <Label layoutX="55.0" layoutY="259.0" text="Pistes :" textFill="WHITE" />
+      <Label layoutX="125.0" layoutY="52.0" text="Id :" textFill="WHITE" />
+      <Label fx:id="labelExSelId" layoutX="154.0" layoutY="52.0" text="          " textFill="WHITE" />
+      <Button fx:id="buttonExSelCopier" disable="true" layoutX="300.0" layoutY="635.0" mnemonicParsing="false" onAction="#buttonExSelCopier" prefWidth="80.0" text="Copier &gt;" />
+      <Button fx:id="buttonExSelModifier" disable="true" layoutX="210.0" layoutY="635.0" mnemonicParsing="false" onAction="#buttonExSelModifier" prefWidth="80.0" text="Modifier" />
+      <Button fx:id="buttonExSelCancel" disable="true" layoutX="120.0" layoutY="635.0" mnemonicParsing="false" onAction="#buttonExSelCancel" prefWidth="80.0" text="Cancel" />
+      <Button fx:id="buttonExSelAcheter" disable="true" layoutX="459.0" layoutY="635.0" mnemonicParsing="false" onAction="#buttonExSelAcheter" prefWidth="80.0" text="Acheter" />
+      <Button fx:id="buttonExSelEmprunter" disable="true" layoutX="459.0" layoutY="600.0" mnemonicParsing="false" onAction="#buttonExSelEmprunter" prefWidth="80.0" text="Emprunter" />
+      <Label layoutX="437.0" layoutY="577.0" text="Ajout à une transaction" textFill="WHITE" />
+      <TextField disable="true" layoutX="120.0" layoutY="405.0" prefHeight="0.0" prefWidth="260.0" promptText="N/A" />
+      <Label layoutX="55.0" layoutY="409.0" text="Image :" textFill="WHITE" />
+      <Rectangle arcWidth="5.0" fill="#454545" height="186.0" layoutX="120.0" layoutY="440.0" stroke="BLACK" strokeType="INSIDE" width="260.0" />
+      <ImageView fx:id="ImgVExSelPochette" fitHeight="184.0" fitWidth="258.0" layoutX="121.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../medias/pochette-260-185.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="55.0" layoutY="224.0" text="Nb. emprunts :" textFill="WHITE" />
+      <Label layoutX="203.0" layoutY="224.0" text="Prix ajusté :" textFill="WHITE" />
+      <Label fx:id="labelExSelNbEmprunts" layoutX="146.0" layoutY="224.0" text="          " textFill="WHITE" />
+      <Label fx:id="labelExSelPrixAjuste" layoutX="275.0" layoutY="224.0" text="          " textFill="WHITE" />
+      <TextField fx:id="textFieldExNewTitre" layoutX="711.0" layoutY="78.0" prefHeight="0.0" prefWidth="260.0" />
+      <Label layoutX="646.0" layoutY="117.0" text="Artiste :" textFill="WHITE" />
+      <Label layoutX="646.0" layoutY="82.0" text="Titre :" textFill="WHITE" />
+      <TextField fx:id="textFieldExNewArtiste" layoutX="711.0" layoutY="113.0" prefHeight="0.0" prefWidth="260.0" />
+      <TextField fx:id="textFieldExNewGenre" layoutX="711.0" layoutY="148.0" prefHeight="0.0" prefWidth="260.0" />
+      <Label layoutX="646.0" layoutY="152.0" text="Genre :" textFill="WHITE" />
+      <TextField fx:id="textFieldExNewAnnee" layoutX="711.0" layoutY="183.0" prefHeight="0.0" prefWidth="70.0" />
+      <Label layoutX="646.0" layoutY="187.0" text="Année :" textFill="WHITE" />
+      <TextField fx:id="textFieldExNewPrix" layoutX="859.0" layoutY="183.0" prefHeight="25.0" prefWidth="112.0" />
+      <Label layoutX="815.0" layoutY="187.0" text="Prix :" textFill="WHITE" />
+      <TextArea fx:id="textAreaExNewPistes" layoutX="711.0" layoutY="253.0" prefHeight="140.0" prefWidth="260.0" />
+      <Label layoutX="646.0" layoutY="257.0" text="Pistes :" textFill="WHITE" />
+      <TextField disable="true" layoutX="711.0" layoutY="403.0" prefHeight="0.0" prefWidth="260.0" promptText="N/A" />
+      <Label layoutX="646.0" layoutY="407.0" text="Image :" textFill="WHITE" />
+      <Rectangle arcWidth="5.0" fill="#454545" height="186.0" layoutX="711.0" layoutY="438.0" stroke="BLACK" strokeType="INSIDE" width="260.0" />
+      <ImageView fx:id="ImgVExNewPochette" fitHeight="184.0" fitWidth="258.0" layoutX="711.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ImgVLoading02New" fitHeight="28.0" fitWidth="28.0" layoutX="985.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../medias/loading.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

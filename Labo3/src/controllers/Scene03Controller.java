@@ -239,7 +239,7 @@ public class Scene03Controller implements Initializable {
         newNotes.setText(null);
     }
 
-    void cacherErreursAjouterUsager() {
+    private void cacherErreursAjouterUsager() {
         labelAjoutUserErreur1.setVisible(false);
         labelAjoutUserErreur2.setVisible(false);
         labelAjoutUserErreur3.setVisible(false);
