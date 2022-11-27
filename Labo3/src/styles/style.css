@@ -66,8 +66,6 @@
 .tab-pane > .tab-header-area > .headers-region > #tab08:selected > .tab-container > .tab-label { -fx-graphic: url("/medias/nav08hover.png"); -fx-text-fill: -fx-couleur-bleu; }
 .tab-pane > .tab-header-area > .headers-region > #tab09:hover > .tab-container > .tab-label { -fx-graphic: url("/medias/nav09hover.png"); -fx-text-fill: -fx-couleur-bleu; }
 .tab-pane > .tab-header-area > .headers-region > #tab09:selected > .tab-container > .tab-label { -fx-graphic: url("/medias/nav09hover.png"); -fx-text-fill: -fx-couleur-bleu; }
-.tab-pane > .tab-header-area > .headers-region > #tab10:hover > .tab-container > .tab-label { -fx-graphic: url("/medias/nav10hover.png"); -fx-text-fill: -fx-couleur-bleu; }
-.tab-pane > .tab-header-area > .headers-region > #tab10:selected > .tab-container > .tab-label { -fx-graphic: url("/medias/nav10hover.png"); -fx-text-fill: -fx-couleur-bleu; }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:hover, .tab:selected {
     -fx-text-fill: -fx-couleur-bleu;

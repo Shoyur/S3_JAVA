@@ -12,7 +12,7 @@ public class ExemplaireController {
 
     private ExemplaireController(){}
 
-    public static synchronized ExemplaireController getControleurE() {
+    public static synchronized ExemplaireController getControleurEx() {
         try {
             // if (CtrL_Instance == null) {
                 CtrL_Instance = new ExemplaireController();
@@ -26,8 +26,8 @@ public class ExemplaireController {
         }
     }
 
-    public ObservableList<Exemplaire> CtrE_readAll() {
-        return Dao_Instance.MdlE_readAll();
+    public ObservableList<Exemplaire> CtrEx_readAll(int option) {
+        return Dao_Instance.MdlEx_readAll(option);
     }
 
 }

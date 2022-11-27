@@ -2,70 +2,111 @@ package models;
 
 public class Exemplaire {
 
-    private int id;
-    private String album;
-    private String artiste;
-    private int annee;
-    private String genre;
-    private boolean possession;
+    private int idEx;
+    private String titreEx;
+    private String artisteEx;
+    private String categEx;
+    private int anneeEx;
+    private double prixEx;
+    private String pistesEx;
+    private int nbEmpruntsEx;
+    private boolean estEmprunte;
+    private boolean estVendu;
 
-    public Exemplaire() {}
-    
-    public Exemplaire(int id, String album, String artiste, int annee, String genre, boolean possession) {
-        this.id = id;
-        this.album = album;
-        this.artiste = artiste;
-        this.annee = annee;
-        this.genre = genre;
-        this.possession = possession;
+    public Exemplaire() {  }
+
+    public Exemplaire(int idEx, String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx,
+            String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu) {
+        this.idEx = idEx;
+        this.titreEx = titreEx;
+        this.artisteEx = artisteEx;
+        this.categEx = categEx;
+        this.anneeEx = anneeEx;
+        this.prixEx = prixEx;
+        this.pistesEx = pistesEx;
+        this.nbEmpruntsEx = nbEmpruntsEx;
+        this.estEmprunte = estEmprunte;
+        this.estVendu = estVendu;
     }
 
-    public int getId() {
-        return id;
+    public int getIdEx() {
+        return idEx;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEx(int idEx) {
+        this.idEx = idEx;
     }
 
-    public String getAlbum() {
-        return album;
+    public String getTitreEx() {
+        return titreEx;
     }
 
-    public void setAlbum(String album) {
-        this.album = album;
+    public void setTitreEx(String titreEx) {
+        this.titreEx = titreEx;
     }
 
-    public String getArtiste() {
-        return artiste;
+    public String getArtisteEx() {
+        return artisteEx;
     }
 
-    public void setArtiste(String artiste) {
-        this.artiste = artiste;
+    public void setArtisteEx(String artisteEx) {
+        this.artisteEx = artisteEx;
     }
 
-    public int getAnnee() {
-        return annee;
+    public String getCategEx() {
+        return categEx;
     }
 
-    public void setAnnee(int annee) {
-        this.annee = annee;
+    public void setCategEx(String categEx) {
+        this.categEx = categEx;
     }
 
-    public String getGenre() {
-        return genre;
+    public int getAnneeEx() {
+        return anneeEx;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setAnneeEx(int anneeEx) {
+        this.anneeEx = anneeEx;
     }
 
-    public boolean isPossession() {
-        return possession;
+    public double getPrixEx() {
+        return prixEx;
     }
 
-    public void setPossession(boolean possession) {
-        this.possession = possession;
-    }    
+    public void setPrixEx(double prixEx) {
+        this.prixEx = prixEx;
+    }
+
+    public String getPistesEx() {
+        return pistesEx;
+    }
+
+    public void setPistesEx(String pistesEx) {
+        this.pistesEx = pistesEx;
+    }
+
+    public int getNbEmpruntsEx() {
+        return nbEmpruntsEx;
+    }
+
+    public void setNbEmpruntsEx(int nbEmpruntsEx) {
+        this.nbEmpruntsEx = nbEmpruntsEx;
+    }
+
+    public boolean isEstEmprunte() {
+        return estEmprunte;
+    }
+
+    public void setEstEmprunte(boolean estEmprunte) {
+        this.estEmprunte = estEmprunte;
+    }
+
+    public boolean isEstVendu() {
+        return estVendu;
+    }
+
+    public void setEstVendu(boolean estVendu) {
+        this.estVendu = estVendu;
+    }
     
 }

@@ -1,81 +1,94 @@
 package models;
 
+import java.sql.Timestamp;
+
 public class Usager {
 
-    private int id;
-    private String nom;
-    private String prenom;
-    private String adresse;
-    private String courriel;
-    private String telephone;
-    private String notes;
+    private int idU;
+    private String nomU;
+    private String prenomU;
+    private String adresseU;
+    private String telephoneU;
+    private String courrielU;
+    private Timestamp dateAbonneU;
+    private String notesU;
 
-    public Usager() {}
-    
-    public Usager(int id, String nom, String prenom, String adresse, String courriel, String telephone, String notes) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.courriel = courriel;
-        this.telephone = telephone;
-        this.notes = notes;
+    public Usager() {  }
+
+    public Usager(int idU, String nomU, String prenomU, String adresseU, String telephoneU, String courrielU,
+    Timestamp dateAbonneU, String notesU) {
+        this.idU = idU;
+        this.nomU = nomU;
+        this.prenomU = prenomU;
+        this.adresseU = adresseU;
+        this.telephoneU = telephoneU;
+        this.courrielU = courrielU;
+        this.dateAbonneU = dateAbonneU;
+        this.notesU = notesU;
     }
 
-    public int getId() {
-        return id;
+    public int getIdU() {
+        return idU;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdU(int idU) {
+        this.idU = idU;
     }
 
-    public String getNom() {
-        return nom;
+    public String getNomU() {
+        return nomU;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNomU(String nomU) {
+        this.nomU = nomU;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getPrenomU() {
+        return prenomU;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setPrenomU(String prenomU) {
+        this.prenomU = prenomU;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getAdresseU() {
+        return adresseU;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setAdresseU(String adresseU) {
+        this.adresseU = adresseU;
     }
 
-    public String getCourriel() {
-        return courriel;
+    public String getTelephoneU() {
+        return telephoneU;
     }
 
-    public void setCourriel(String courriel) {
-        this.courriel = courriel;
+    public void setTelephoneU(String telephoneU) {
+        this.telephoneU = telephoneU;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getCourrielU() {
+        return courrielU;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setCourrielU(String courrielU) {
+        this.courrielU = courrielU;
     }
 
-    public String getNotes() {
-        return notes;
+    public Timestamp getDateAbonneU() {
+        return dateAbonneU;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setDateAbonneU(Timestamp dateAbonneU) {
+        this.dateAbonneU = dateAbonneU;
     }
-    
+
+    public String getNotesU() {
+        return notesU;
+    }
+
+    public void setNotesU(String notesU) {
+        this.notesU = notesU;
+    }
+
 }

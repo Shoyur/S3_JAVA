@@ -1,24 +1,24 @@
 package models;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Historique {
 
-    private Date quand;
+    private Timestamp quand;
     private String quoi;
 
     public Historique() {}
     
-    public Historique(Date quand, String quoi) {
+    public Historique(Timestamp quand, String quoi) {
         this.quand = quand;
         this.quoi = quoi;
     }
 
-    public Date getQuand() {
+    public Timestamp getQuand() {
         return quand;
     }
 
-    public void setQuand(Date quand) {
+    public void setQuand(Timestamp quand) {
         this.quand = quand;
     }
 

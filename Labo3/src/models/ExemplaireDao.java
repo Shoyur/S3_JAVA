@@ -18,7 +18,8 @@ public class ExemplaireDao {
     private static final String USAGER = "sql9558434";
     private static final String PASS = "bQV64kWUMF";
 
-    private static final String READ_ALL = "SELECT * FROM exemplaires";
+    private static final String READ_ALL_NON_VENDUS = "SELECT * FROM exemplaire WHERE estVendu = FALSE";
+    // private static final String READ_ALL_POSS = "SELECT * FROM exemplaire";
 
     public ExemplaireDao() {  }
     
@@ -37,51 +38,61 @@ public class ExemplaireDao {
     }
 
     // READ ALL
-    public ObservableList<Exemplaire> MdlE_readAll() {
+    public ObservableList<Exemplaire> MdlEx_readAll(int option) {
         PreparedStatement stmt = null;
         ObservableList<Exemplaire> listeExemplaires = FXCollections.observableArrayList();
         try {
-            stmt = conn.prepareStatement(READ_ALL);
+            if (option == 0) {
+                stmt = conn.prepareStatement(READ_ALL_NON_VENDUS);
+            }
+            else if (option == 1) {
+                stmt = conn.prepareStatement(READ_ALL_NON_VENDUS);
+            }
+            
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Exemplaire exemplaire = new Exemplaire();
                 // Exemplaire(int id, String album, String artiste, int annee, String genre, boolean possession) 
-                exemplaire.setId(rs.getInt("id"));
-                exemplaire.setAlbum(rs.getString("album"));
-                exemplaire.setArtiste(rs.getString("artiste"));
-                exemplaire.setAnnee(rs.getInt("annee"));
-                exemplaire.setGenre(rs.getString("genre"));
-                exemplaire.setPossession(rs.getBoolean("possession"));
+                exemplaire.setIdEx(rs.getInt("idEx"));
+                exemplaire.setTitreEx(rs.getString("titreEx"));
+                exemplaire.setArtisteEx(rs.getString("artisteEx"));
+                exemplaire.setCategEx(rs.getString("categEx"));
+                exemplaire.setAnneeEx(rs.getInt("anneeEx"));
+                exemplaire.setPrixEx(rs.getDouble("prixEx"));
+                exemplaire.setPistesEx(rs.getString("pistesEx"));
+                exemplaire.setNbEmpruntsEx(rs.getInt("nbEmpruntsEx"));
+                exemplaire.setEstEmprunte(rs.getBoolean("estEmprunte"));
+                exemplaire.setEstVendu(rs.getBoolean("estVendu"));
                 listeExemplaires.add(exemplaire);
             }
         } 
         catch (SQLException e) { 
-            System.out.println("================================================================================================ ERREUR, MdlE_readAll()), e= " + e);
+            System.out.println("================================================================================================ ERREUR, MdlEx_readAll()), e= " + e);
             throw new RuntimeException(e); 
         } 
         finally {
-            MdlE_Fermer(stmt);
-            MdlE_Fermer(conn);
+            MdlEx_Fermer(stmt);
+            MdlEx_Fermer(conn);
         }
 
         return listeExemplaires;
     }
    
-    private static void MdlE_Fermer(Connection conn) {
+    private static void MdlEx_Fermer(Connection conn) {
         if (conn != null) {
             try { conn.close(); } 
             catch (SQLException e) { 
-                System.out.println("================================================================================================ ERREUR, MdlE_Fermer(), e= " + e);
+                System.out.println("================================================================================================ ERREUR, MdlEx_Fermer(), e= " + e);
                 throw new RuntimeException(e); 
             }
         }
     }
 
-    private static void MdlE_Fermer(Statement stmt) {
+    private static void MdlEx_Fermer(Statement stmt) {
         if (stmt != null) {
             try { stmt.close(); }
             catch (SQLException e) { 
-                System.out.println("================================================================================================ ERREUR, MdlE_Fermer(), e= " + e);
+                System.out.println("================================================================================================ ERREUR, MdlEx_Fermer(), e= " + e);
                 throw new RuntimeException(e); 
             }
         }

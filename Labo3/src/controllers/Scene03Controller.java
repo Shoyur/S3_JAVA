@@ -3,6 +3,8 @@ package controllers;
 import models.Usager;
 
 import java.net.URL;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -54,8 +56,8 @@ public class Scene03Controller implements Initializable {
     @FXML private Label 
         // Erreurs rouges infos manquantes pour ajout user.
         labelAjoutUserErreur1, labelAjoutUserErreur2, labelAjoutUserErreur3, labelAjoutUserErreur4, labelAjoutUserErreur5,
-        // Id numéro ussager sélectionné.
-        labelUserSelId;
+        // Id numéro usager sélectionné + date Abonnement.
+        labelUserSelId, labelUserSelDate;
     
     @FXML private TextArea 
         // Données usager sélectionné.
@@ -70,21 +72,20 @@ public class Scene03Controller implements Initializable {
     @FXML private TableColumn<Usager, String> tableView03_Col04;
     @FXML private TableColumn<Usager, String> tableView03_Col05;
     @FXML private TableColumn<Usager, String> tableView03_Col06;
-    @FXML private TableColumn<Usager, String> tableView03_Col07;
 
     // Liste populée par le serveur.
     private ObservableList<Usager> usagers = FXCollections.observableArrayList();
 
     
-
     @Override public void initialize(URL arg0, ResourceBundle arg1) {
-        tableView03_Col01.setCellValueFactory(new PropertyValueFactory<Usager, Integer>("Id"));
-        tableView03_Col02.setCellValueFactory(new PropertyValueFactory<Usager, String>("Nom"));
-        tableView03_Col03.setCellValueFactory(new PropertyValueFactory<Usager, String>("Prenom"));
-        tableView03_Col04.setCellValueFactory(new PropertyValueFactory<Usager, String>("Adresse"));
-        tableView03_Col05.setCellValueFactory(new PropertyValueFactory<Usager, String>("Courriel"));
-        tableView03_Col06.setCellValueFactory(new PropertyValueFactory<Usager, String>("Telephone"));
-        tableView03_Col07.setCellValueFactory(new PropertyValueFactory<Usager, String>("Notes"));
+    //     Usager(int idU, String nomU, String prenomU, String adresseU, String telephoneU, String courrielU,
+    // Timestamp dateAbonneU, String notesU)
+        tableView03_Col01.setCellValueFactory(new PropertyValueFactory<Usager, Integer>("idU"));
+        tableView03_Col02.setCellValueFactory(new PropertyValueFactory<Usager, String>("nomU"));
+        tableView03_Col03.setCellValueFactory(new PropertyValueFactory<Usager, String>("prenomU"));
+        tableView03_Col04.setCellValueFactory(new PropertyValueFactory<Usager, String>("adresseU"));
+        tableView03_Col05.setCellValueFactory(new PropertyValueFactory<Usager, String>("telephoneU"));
+        tableView03_Col06.setCellValueFactory(new PropertyValueFactory<Usager, String>("courrielU"));
 
         refreshTblView03();
 
@@ -99,13 +100,14 @@ public class Scene03Controller implements Initializable {
             @Override 
             public void handle(MouseEvent event) {
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                    labelUserSelId.setText(Integer.toString(tableView03.getSelectionModel().getSelectedItem().getId()));
-                    textFieldUserSelNom.setText(tableView03.getSelectionModel().getSelectedItem().getNom());                
-                    textFieldUserSelPrenom.setText(tableView03.getSelectionModel().getSelectedItem().getPrenom());                
-                    textFieldUserSelAdresse.setText(tableView03.getSelectionModel().getSelectedItem().getAdresse());                
-                    textFieldUserSelCourriel.setText(tableView03.getSelectionModel().getSelectedItem().getCourriel());                
-                    textFieldUserSelTelephone.setText(tableView03.getSelectionModel().getSelectedItem().getTelephone());                
-                    textAreaUserSelNotes.setText(tableView03.getSelectionModel().getSelectedItem().getNotes());                
+                    labelUserSelId.setText(Integer.toString(tableView03.getSelectionModel().getSelectedItem().getIdU()));
+                    textFieldUserSelNom.setText(tableView03.getSelectionModel().getSelectedItem().getNomU());                
+                    textFieldUserSelPrenom.setText(tableView03.getSelectionModel().getSelectedItem().getPrenomU());                
+                    textFieldUserSelAdresse.setText(tableView03.getSelectionModel().getSelectedItem().getAdresseU());
+                    textFieldUserSelTelephone.setText(tableView03.getSelectionModel().getSelectedItem().getTelephoneU());                  
+                    textFieldUserSelCourriel.setText(tableView03.getSelectionModel().getSelectedItem().getCourrielU());
+                    labelUserSelDate.setText((new SimpleDateFormat("yyyy-mm-dd hh:mm:ss")).format(tableView03.getSelectionModel().getSelectedItem().getDateAbonneU()));  
+                    textAreaUserSelNotes.setText(tableView03.getSelectionModel().getSelectedItem().getNotesU());                
                 }
             }
         });
@@ -123,20 +125,19 @@ public class Scene03Controller implements Initializable {
         tblViewFilterNom.setText(null);
         tblViewFilterPrenom.setText(null);
         Thread async_refreshTblView03 = new Thread(() -> {
-            try { Thread.sleep(4000); } 
+            try { Thread.sleep(500); } 
             catch (InterruptedException e) { e.printStackTrace(); } 
             usagers = (UsagerController.getControleurU()).CtrU_readAll();
             tableView03.setItems(usagers);
             ImgVLoading03.setVisible(false);
-            System.out.println("YESSSSSSSS");
         });
         async_refreshTblView03.start();
         labelUserSelId.setText(null);
         textFieldUserSelNom.setText(null);                
         textFieldUserSelPrenom.setText(null);                
-        textFieldUserSelAdresse.setText(null);                
+        textFieldUserSelAdresse.setText(null);    
+        textFieldUserSelTelephone.setText(null);              
         textFieldUserSelCourriel.setText(null);                
-        textFieldUserSelTelephone.setText(null);                
         textAreaUserSelNotes.setText(null);    
     }    
     
@@ -152,12 +153,12 @@ public class Scene03Controller implements Initializable {
         boolean resultat = true;
         if (tblViewFilterNom.getText() != null && 
             !tblViewFilterNom.getText().isEmpty() && 
-            !Usager.getNom().toLowerCase().contains(tblViewFilterNom.getText().toLowerCase())) { 
+            !Usager.getNomU().toLowerCase().contains(tblViewFilterNom.getText().toLowerCase())) { 
                 resultat = false; 
             }
         else if (tblViewFilterPrenom.getText() != null && 
             !tblViewFilterPrenom.getText().isEmpty() && 
-            !Usager.getPrenom().toLowerCase().contains(tblViewFilterPrenom.getText().toLowerCase())) { 
+            !Usager.getPrenomU().toLowerCase().contains(tblViewFilterPrenom.getText().toLowerCase())) { 
                 resultat = false;
             }
         return resultat;
@@ -178,11 +179,12 @@ public class Scene03Controller implements Initializable {
             labelAjoutUserErreur3.setVisible(true);
             erreur = true;
         }
-        if (newCourriel.getText() == null || newCourriel.getText().isEmpty()) {
+        if (newTelephone.getText() == null || newTelephone.getText().isEmpty()) {
+
             labelAjoutUserErreur4.setVisible(true);
             erreur = true;
         }
-        if (newTelephone.getText() == null || newTelephone.getText().isEmpty()) {
+        if (newCourriel.getText() == null || newCourriel.getText().isEmpty()) {
             labelAjoutUserErreur5.setVisible(true);
             erreur = true;
         }
@@ -190,7 +192,9 @@ public class Scene03Controller implements Initializable {
         ImgVLoading03.setVisible(true);
         tblViewFilterNom.setText(null);
         tblViewFilterPrenom.setText(null);
-        Usager usager = new Usager(0, newNom.getText(), newPrenom.getText(), newAdresse.getText(), newCourriel.getText(), newTelephone.getText(), newNotes.getText());
+        // Usager(int idU, String nomU, String prenomU, String adresseU, String telephoneU, String courrielU,
+        //     Date dateAbonneU, String notesU)
+        Usager usager = new Usager(0, newNom.getText(), newPrenom.getText(), newAdresse.getText(), newTelephone.getText(), newCourriel.getText(), new Timestamp(System.currentTimeMillis()), newNotes.getText());
         Thread async_ajouterUsager = new Thread(() -> {
             (UsagerController.getControleurU()).CtrU_create(usager);
             refreshTblView03();
@@ -205,8 +209,8 @@ public class Scene03Controller implements Initializable {
         newNom.setText(null);
         newPrenom.setText(null);
         newAdresse.setText(null);
-        newCourriel.setText(null);
         newTelephone.setText(null);
+        newCourriel.setText(null);
         newNotes.setText(null);
     }
 
@@ -230,13 +234,12 @@ public class Scene03Controller implements Initializable {
         newNom.setText(textFieldUserSelNom.getText());
         newPrenom.setText(textFieldUserSelPrenom.getText());
         newAdresse.setText(textFieldUserSelAdresse.getText());
-        newCourriel.setText(textFieldUserSelCourriel.getText());
         newTelephone.setText(textFieldUserSelTelephone.getText());
+        newCourriel.setText(textFieldUserSelCourriel.getText());
         newNotes.setText(textAreaUserSelNotes.getText());
     }
 
     @FXML void buttonUserSelEmprunts(ActionEvent event) {
-
         (new Scene00Controller()).test();
         // controllers.Scene00Controller.scene00.getSelectionModel().select(0);
     }

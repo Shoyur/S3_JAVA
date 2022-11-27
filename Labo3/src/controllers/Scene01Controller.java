@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -27,26 +28,35 @@ public class Scene01Controller implements Initializable {
     @FXML private TableColumn<Exemplaire, Integer> tableView01_Col01;
     @FXML private TableColumn<Exemplaire, String> tableView01_Col02;
     @FXML private TableColumn<Exemplaire, String> tableView01_Col03;
-    @FXML private TableColumn<Exemplaire, Integer> tableView01_Col04;
-    @FXML private TableColumn<Exemplaire, String> tableView01_Col05;
+    @FXML private TableColumn<Exemplaire, String> tableView01_Col04;
+    @FXML private TableColumn<Exemplaire, Integer> tableView01_Col05;
     @FXML private TableColumn<Exemplaire, Boolean> tableView01_Col06;
 
     @FXML private Button btnRefreshTblView01;
 
     @FXML private ImageView ImgVLoading01;
 
-    @FXML private TextField tblViewFilterAlbum, tblViewFilterArtiste, tblViewFilterAnnee;
+    @FXML private TextField tblViewFilterAlbum, tblViewFilterArtiste, tblViewFilterAnnee, tblViewFilterGenre;
 
     private ObservableList<Exemplaire> exemplaires = FXCollections.observableArrayList();
 
     
     @Override public void initialize(URL arg0, ResourceBundle arg1) {
-        tableView01_Col01.setCellValueFactory(new PropertyValueFactory<Exemplaire, Integer>("Id"));
-        tableView01_Col02.setCellValueFactory(new PropertyValueFactory<Exemplaire, String>("Album"));
-        tableView01_Col03.setCellValueFactory(new PropertyValueFactory<Exemplaire, String>("Artiste"));
-        tableView01_Col04.setCellValueFactory(new PropertyValueFactory<Exemplaire, Integer>("Annee"));
-        tableView01_Col05.setCellValueFactory(new PropertyValueFactory<Exemplaire, String>("Genre"));
-        tableView01_Col06.setCellValueFactory(new PropertyValueFactory<Exemplaire, Boolean>("Possession"));
+        // Exemplaire(int idEx, String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx,
+        //     String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu) 
+        tableView01_Col01.setCellValueFactory(new PropertyValueFactory<Exemplaire, Integer>("idEx"));
+        tableView01_Col02.setCellValueFactory(new PropertyValueFactory<Exemplaire, String>("titreEx"));
+        tableView01_Col03.setCellValueFactory(new PropertyValueFactory<Exemplaire, String>("artisteEx"));
+        tableView01_Col04.setCellValueFactory(new PropertyValueFactory<Exemplaire, String>("categEx"));
+        tableView01_Col05.setCellValueFactory(new PropertyValueFactory<Exemplaire, Integer>("anneeEx"));
+        tableView01_Col06.setCellValueFactory(new PropertyValueFactory<Exemplaire, Boolean>("estEmprunte"));
+        tableView01_Col06.setCellFactory(tablecell -> new TableCell<Exemplaire, Boolean>() {
+            @Override
+            protected void updateItem(Boolean item, boolean vide) {
+                super.updateItem(item, vide);
+                setText(vide ? null : item.booleanValue() ? "OUI" : "");
+            }
+        });
         refreshTblView01();
         tblViewFilterAlbum.textProperty().addListener((observable, avant, apres) -> {
             tableView01.setItems(ListeExemplairesFiltree(exemplaires)); 
@@ -57,6 +67,9 @@ public class Scene01Controller implements Initializable {
         tblViewFilterAnnee.textProperty().addListener((observable, avant, apres) -> {
             tableView01.setItems(ListeExemplairesFiltree(exemplaires)); 
         });
+        tblViewFilterGenre.textProperty().addListener((observable, avant, apres) -> {
+            tableView01.setItems(ListeExemplairesFiltree(exemplaires)); 
+        });
     }
 
     @FXML void btnRefreshTblView01(ActionEvent event) {
@@ -64,15 +77,16 @@ public class Scene01Controller implements Initializable {
     }
 
     void refreshTblView01() {
+        ImgVLoading01.setVisible(true);
         tblViewFilterAlbum.setText(null);
         tblViewFilterArtiste.setText(null);
         tblViewFilterAnnee.setText(null);
+        tblViewFilterGenre.setText(null);
         Thread async_refreshTblView01 = new Thread(() -> {
             try { 
-                ImgVLoading01.setVisible(true);
-                exemplaires = (ExemplaireController.getControleurE()).CtrE_readAll();
-                tableView01.setItems(exemplaires); 
                 Thread.sleep(500);
+                exemplaires = (ExemplaireController.getControleurEx()).CtrEx_readAll(0);
+                tableView01.setItems(exemplaires); 
             }  
             catch (InterruptedException e) { e.printStackTrace(); } 
             ImgVLoading01.setVisible(false);
@@ -92,19 +106,24 @@ public class Scene01Controller implements Initializable {
         boolean resultat = true;
         if (tblViewFilterAlbum.getText() != null && 
             !tblViewFilterAlbum.getText().isEmpty() && 
-            !exemplaire.getAlbum().toLowerCase().contains(tblViewFilterAlbum.getText().toLowerCase())) { 
+            !exemplaire.getTitreEx().toLowerCase().contains(tblViewFilterAlbum.getText().toLowerCase())) { 
                 resultat = false; 
             }
         else if (tblViewFilterArtiste.getText() != null && 
             !tblViewFilterArtiste.getText().isEmpty() && 
-            !exemplaire.getArtiste().toLowerCase().contains(tblViewFilterArtiste.getText().toLowerCase())) { 
+            !exemplaire.getArtisteEx().toLowerCase().contains(tblViewFilterArtiste.getText().toLowerCase())) { 
                 resultat = false;
             }
         else if (tblViewFilterAnnee.getText() != null && 
             !tblViewFilterAnnee.getText().isEmpty() && 
-            !Integer.valueOf(exemplaire.getAnnee()).toString().contains(tblViewFilterAnnee.getText())) { 
+            !Integer.valueOf(exemplaire.getAnneeEx()).toString().contains(tblViewFilterAnnee.getText())) { 
                 resultat = false; 
             }
+        else if (tblViewFilterGenre.getText() != null && 
+            !tblViewFilterGenre.getText().isEmpty() && 
+            !exemplaire.getCategEx().toLowerCase().contains(tblViewFilterGenre.getText().toLowerCase())) { 
+                resultat = false;
+            }    
         return resultat;
     }
 }

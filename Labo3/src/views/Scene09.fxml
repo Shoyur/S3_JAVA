@@ -1,33 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="scene09" prefHeight="676.0" prefWidth="1123.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene09Controller">
+<AnchorPane fx:id="scene09" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene08Controller">
    <children>
-      <TableView fx:id="tableView" layoutX="86.0" layoutY="70.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
-         <placeholder>
-            <Label text="Aucun résultat..." />
-         </placeholder>
-         <columns>
-            <!-- Exemplaire(int id, String album, String artiste, int annee, String genre, boolean possession) -->
-            <TableColumn fx:id="tableView_Col01" PrefWidth="40.0" prefWidth="160.0" resizable="false" text="Quand" />
-            <TableColumn fx:id="tableView_Col02" PrefWidth="250.0" prefWidth="923.0" resizable="false" text="Quoi" />
-         </columns>
-      </TableView>
-      <TextField fx:id="tblViewFilterTout" layoutX="66.0" layoutY="65.0" prefHeight="25.0" prefWidth="359.0" />
-      <Button fx:id="btnRefreshTblView" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#btnRefreshTblView" text="Rafraîchir" />
-      <Label layoutX="23.0" layoutY="69.0" text="Filtrer :" />
-      <ImageView fx:id="ImgVLoading" fitHeight="28.0" fitWidth="28.0" layoutX="92.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../medias/loading01.gif" />
-         </image>
-      </ImageView>
+      <Label layoutX="149.0" layoutY="153.0" text="Vue no. 99999999999999999" textFill="WHITE" />
    </children>
 </AnchorPane>
