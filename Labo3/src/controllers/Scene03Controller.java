@@ -30,6 +30,12 @@ import javafx.scene.input.MouseEvent;
 
 public class Scene03Controller implements Initializable {
 
+    private Scene00Controller scene00Controller;
+    
+    public void injectScene00Controller(Scene00Controller scene00Controller) {
+        this.scene00Controller = scene00Controller;
+    }
+
     @FXML private Button
         // Rafraichir le grand tableau
         btnRefreshTblView03,
@@ -74,6 +80,7 @@ public class Scene03Controller implements Initializable {
     @FXML private TableColumn<Usager, String> tableView03_Col06;
 
     // Liste populée par le serveur.
+    @FXML
     private ObservableList<Usager> usagers = FXCollections.observableArrayList();
 
     
@@ -100,20 +107,35 @@ public class Scene03Controller implements Initializable {
             @Override 
             public void handle(MouseEvent event) {
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                    labelUserSelId.setText(Integer.toString(tableView03.getSelectionModel().getSelectedItem().getIdU()));
-                    textFieldUserSelNom.setText(tableView03.getSelectionModel().getSelectedItem().getNomU());                
-                    textFieldUserSelPrenom.setText(tableView03.getSelectionModel().getSelectedItem().getPrenomU());                
-                    textFieldUserSelAdresse.setText(tableView03.getSelectionModel().getSelectedItem().getAdresseU());
-                    textFieldUserSelTelephone.setText(tableView03.getSelectionModel().getSelectedItem().getTelephoneU());                  
-                    textFieldUserSelCourriel.setText(tableView03.getSelectionModel().getSelectedItem().getCourrielU());
-                    labelUserSelDate.setText((new SimpleDateFormat("yyyy-mm-dd hh:mm:ss")).format(tableView03.getSelectionModel().getSelectedItem().getDateAbonneU()));  
-                    textAreaUserSelNotes.setText(tableView03.getSelectionModel().getSelectedItem().getNotesU());                
+                    remplirUsagerSel();                
                 }
             }
         });
+    }
 
-        
-
+    void remplirUsagerSel() {
+        if (tableView03.getSelectionModel().getSelectedItem() != null) {
+            labelUserSelId.setText(Integer.toString(tableView03.getSelectionModel().getSelectedItem().getIdU()));
+            textFieldUserSelNom.setText(tableView03.getSelectionModel().getSelectedItem().getNomU());                
+            textFieldUserSelPrenom.setText(tableView03.getSelectionModel().getSelectedItem().getPrenomU());                
+            textFieldUserSelAdresse.setText(tableView03.getSelectionModel().getSelectedItem().getAdresseU());
+            textFieldUserSelTelephone.setText(tableView03.getSelectionModel().getSelectedItem().getTelephoneU());                  
+            textFieldUserSelCourriel.setText(tableView03.getSelectionModel().getSelectedItem().getCourrielU());
+            labelUserSelDate.setText((new SimpleDateFormat("yyyy-mm-dd hh:mm:ss")).format(tableView03.getSelectionModel().getSelectedItem().getDateAbonneU()));  
+            textAreaUserSelNotes.setText(tableView03.getSelectionModel().getSelectedItem().getNotesU());
+            textFieldUserSelNom.setDisable(false);
+            textFieldUserSelPrenom.setDisable(false);
+            textFieldUserSelAdresse.setDisable(false);
+            textFieldUserSelTelephone.setDisable(false);
+            textFieldUserSelCourriel.setDisable(false);
+            textAreaUserSelNotes.setDisable(false);
+            buttonUserSelCancel.setDisable(false);
+            buttonUserSelModifier.setDisable(false);
+            buttonUserSelCopier.setDisable(false);
+            buttonUserSelEmprunts.setDisable(false);
+            buttonUserSelVentes.setDisable(false);
+            buttonUserSelRetards.setDisable(false);
+        }
     }
 
     @FXML void btnRefreshTblView03(ActionEvent event) {
@@ -138,7 +160,9 @@ public class Scene03Controller implements Initializable {
         textFieldUserSelAdresse.setText(null);    
         textFieldUserSelTelephone.setText(null);              
         textFieldUserSelCourriel.setText(null);                
-        textAreaUserSelNotes.setText(null);    
+        textAreaUserSelNotes.setText(null);
+        labelUserSelDate.setText(null);
+
     }    
     
     private ObservableList<Usager> ListeUsagersFiltree(List<Usager> list){
@@ -197,10 +221,13 @@ public class Scene03Controller implements Initializable {
         Usager usager = new Usager(0, newNom.getText(), newPrenom.getText(), newAdresse.getText(), newTelephone.getText(), newCourriel.getText(), new Timestamp(System.currentTimeMillis()), newNotes.getText());
         Thread async_ajouterUsager = new Thread(() -> {
             (UsagerController.getControleurU()).CtrU_create(usager);
-            refreshTblView03();
-
+            this.refreshTblView03();
         });
         async_ajouterUsager.start();
+        String texte = "L'usager " + newPrenom.getText() + " " + newNom.getText() + " a été ajouté.";
+        // (new Scene08Controller()).ajouterHistorique(new Timestamp(System.currentTimeMillis()), texte);
+        (new Scene08Controller()).ajouterHistorique(new Timestamp(System.currentTimeMillis()), texte);
+        // scene00Controller.ajouterHistorique(new Timestamp(System.currentTimeMillis()), texte);
         btnAjouterUsagerCancel(null);
     }
 
@@ -223,7 +250,7 @@ public class Scene03Controller implements Initializable {
     }
 
     @FXML void buttonUserSelCancel(ActionEvent event) {
-
+        remplirUsagerSel();
     }
 
     @FXML void buttonUserSelModifier(ActionEvent event) {
@@ -240,8 +267,7 @@ public class Scene03Controller implements Initializable {
     }
 
     @FXML void buttonUserSelEmprunts(ActionEvent event) {
-        (new Scene00Controller()).test();
-        // controllers.Scene00Controller.scene00.getSelectionModel().select(0);
+        scene00Controller.switchTab(3);
     }
 
     @FXML void buttonUserSelVentes(ActionEvent event) {

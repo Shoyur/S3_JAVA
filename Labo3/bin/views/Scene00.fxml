@@ -5,7 +5,15 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
-<TabPane fx:id="scene00" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" rotateGraphic="true" side="LEFT" stylesheets="@../styles/style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene00Controller">
+<TabPane fx:id="scene00" 
+          maxHeight="-Infinity" maxWidth="-Infinity" 
+          minHeight="-Infinity" minWidth="-Infinity" 
+          prefHeight="700.0" prefWidth="1200.0" 
+          rotateGraphic="true" side="LEFT" 
+          stylesheets="@../styles/style.css" 
+          tabClosingPolicy="UNAVAILABLE" 
+          xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" 
+          fx:controller="controllers.Scene00Controller">
   <tabs>
     <Tab fx:id="tab01" text="Inventaire">
       <graphic>
@@ -16,7 +24,7 @@
         </ImageView>
       </graphic>
       <content>
-         <fx:include fx:id="Scene01" source="Scene01.fxml" />
+         <fx:include fx:id="scene01" source="Scene01.fxml" />
       </content>
     </Tab>
 
@@ -29,7 +37,7 @@
         </ImageView>
       </graphic>
       <content>
-         <fx:include fx:id="AnchorPane02" source="Scene02.fxml" />
+         <fx:include fx:id="scene02" source="Scene02.fxml" />
       </content>
     </Tab>
 
@@ -42,7 +50,7 @@
         </ImageView>
       </graphic>
       <content>
-         <fx:include fx:id="AnchorPane03" source="Scene03.fxml" />
+         <fx:include fx:id="scene03" source="Scene03.fxml" />
       </content>
     </Tab>
 
@@ -55,7 +63,7 @@
         </ImageView>
       </graphic>
       <content>
-         <fx:include fx:id="AnchorPane04" source="Scene04.fxml" />
+         <fx:include fx:id="scene04" source="Scene04.fxml" />
       </content>
     </Tab>
 
@@ -68,7 +76,7 @@
         </ImageView>
       </graphic>
       <content>
-         <fx:include fx:id="AnchorPane05" source="Scene05.fxml" />
+         <fx:include fx:id="scene05" source="Scene05.fxml" />
       </content>
     </Tab>
 
@@ -81,7 +89,7 @@
         </ImageView>
       </graphic>
       <content>
-         <fx:include fx:id="AnchorPane06" source="Scene06.fxml" />
+         <fx:include fx:id="scene06" source="Scene06.fxml" />
       </content>
     </Tab>
 
@@ -94,7 +102,7 @@
         </ImageView>
       </graphic>
       <content>
-         <fx:include fx:id="AnchorPane07" source="Scene07.fxml" />
+         <fx:include fx:id="scene07" source="Scene07.fxml" />
       </content>
     </Tab>
 
@@ -109,7 +117,7 @@
         </ImageView>
       </graphic>
       <content>
-         <fx:include fx:id="AnchorPane08" source="Scene08.fxml" />
+         <fx:include fx:id="scene08" source="Scene08.fxml" />
       </content>
     </Tab> 
 
@@ -122,7 +130,7 @@
         </ImageView>
       </graphic>
       <content>
-         <fx:include fx:id="AnchorPane09" source="Scene09.fxml" />
+         <fx:include fx:id="scene09" source="Scene09.fxml" />
       </content>
     </Tab>
 

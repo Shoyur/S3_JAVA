@@ -29,7 +29,7 @@
       <TextField fx:id="tblViewFilterArtiste" layoutX="397.0" layoutY="65.0" prefHeight="25.0" prefWidth="239.0" />
       <TextField fx:id="tblViewFilterGenre" layoutX="646.0" layoutY="65.0" prefHeight="25.0" prefWidth="240.0" />
       <TextField fx:id="tblViewFilterAnnee" layoutX="896.0" layoutY="65.0" prefHeight="25.0" prefWidth="60.0" />
-      <Button fx:id="btnRefreshTblView01" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#btnRefreshTblView01" text="Rafraîchir" />
+      <Button fx:id="btnRefreshTblView01" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#btnRefreshTblView01" prefWidth="80.0" text="Rafraîchir" />
       <Label layoutX="23.0" layoutY="69.0" text="Filtrer :" />
       <ImageView fx:id="ImgVLoading01" fitHeight="28.0" fitWidth="28.0" layoutX="92.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>

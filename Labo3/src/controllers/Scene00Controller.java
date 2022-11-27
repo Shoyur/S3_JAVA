@@ -1,19 +1,31 @@
 package controllers;
 
 import java.net.URL;
+
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+// import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 // import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+// import javafx.fxml.Initializable;
 // import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 // import javafx.scene.layout.AnchorPane;
+import models.Historique;
 
-public class Scene00Controller implements Initializable {
+public class Scene00Controller {
+
+    @FXML private Scene01Controller scene01Controller;
+    @FXML private Scene02Controller scene02Controller;
+    @FXML private Scene03Controller scene03Controller;
+    @FXML private Scene04Controller scene04Controller;
+    @FXML private Scene05Controller scene05Controller;
+    @FXML private Scene06Controller scene06Controller;
+    @FXML private Scene07Controller scene07Controller;
+    @FXML private Scene08Controller scene08Controller;
+    @FXML private Scene09Controller scene09Controller;
 
     @FXML
     private Tab 
@@ -26,55 +38,28 @@ public class Scene00Controller implements Initializable {
     // SingleSelectionModel<Tab> selectionModel = scene00.getSelectionModel();
 
     
-    public void test() {
-        // System.out.println(scene00.getSelectionModel().getSelectedItem());
-        // System.out.println("TEST-OUI" + scene00.getSelectionModel().getSelectedIndex());
-
-        // System.out.println("scene00.getTabs().size() = " + scene00.getTabs().size());
-        // System.out.println("scene00.getSelectionModel() = " + scene00.getSelectionModel());
-        // System.out.println("scene00.getTabs() = " + scene00.getTabs());
-        // selectionModel.select(1);
-        // selectionModel = scene00.getSelectionModel();
-        // selectionModel.select(tab04);
-        // scene00.setSelectionModel(SingleSelectionModel<Tab> tab07);
-        // scene00.getTabs().get(7).getContent().requestFocus();
-
-        // System.out.println("00-CTRL-test() = oui");
-        // scene00.getSelectionModel().select(tab07);
-        // scene00.getSelectionModel().select(6);
-        
-
+    public void switchTab(int tab) {
+        scene00.getSelectionModel().select(tab);
     }
 
+    // void ajouterHistorique(Timestamp quand, String quoi) {
+    //     // Thread async_ajouterHistorique = new Thread(() -> {
+    //         (HistoriqueController.getControleurH()).CtrH_create(new Historique(quand, quoi));
+    //         scene08Controller.refreshTblView();
+    //     // });
+    //     // async_ajouterHistorique.start();
+    // }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // try {
-        //     AnchorPane node01 = FXMLLoader.load(getClass().getResource("../views/Scene01.fxml"));
-        //     tab01.setContent(node01);
-        //     AnchorPane node02 = FXMLLoader.load(getClass().getResource("../views/Scene02.fxml"));
-        //     tab02.setContent(node02);
-        //     AnchorPane node03 = FXMLLoader.load(getClass().getResource("../views/Scene03.fxml"));
-        //     tab03.setContent(node03);
-        //     AnchorPane node04 = FXMLLoader.load(getClass().getResource("../views/Scene04.fxml"));
-        //     tab04.setContent(node04);
-        //     AnchorPane node05 = FXMLLoader.load(getClass().getResource("../views/Scene05.fxml"));
-        //     tab05.setContent(node05);
-        //     AnchorPane node06 = FXMLLoader.load(getClass().getResource("../views/Scene06.fxml"));
-        //     tab06.setContent(node06);
-        //     AnchorPane node07 = FXMLLoader.load(getClass().getResource("../views/Scene07.fxml"));
-        //     tab07.setContent(node07);
-        //     AnchorPane node08 = FXMLLoader.load(getClass().getResource("../views/Scene08.fxml"));
-        //     tab08.setContent(node08);
-        //     AnchorPane node09 = FXMLLoader.load(getClass().getResource("../views/Scene09.fxml"));
-        //     tab09.setContent(node09);
-        //     AnchorPane node10 = FXMLLoader.load(getClass().getResource("../views/Scene10.fxml"));
-        //     tab10.setContent(node10);
-        // } catch (Exception e) { System.out.println(e); }
-
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Timestamp(System.currentTimeMillis())));
-
-        
+    @FXML private void initialize() {
+        scene01Controller.injectScene00Controller(this);        
+        scene02Controller.injectScene00Controller(this);        
+        scene03Controller.injectScene00Controller(this);     
+        scene04Controller.injectScene00Controller(this);     
+        scene05Controller.injectScene00Controller(this);     
+        scene06Controller.injectScene00Controller(this);     
+        scene07Controller.injectScene00Controller(this);     
+        scene08Controller.injectScene00Controller(this);     
+        scene09Controller.injectScene00Controller(this);         
     }
 
 }

@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,14 +15,11 @@
             <Label text="Aucun résultat..." />
          </placeholder>
          <columns>
-            <!-- Exemplaire(int id, String album, String artiste, int annee, String genre, boolean possession) -->
             <TableColumn fx:id="tableView_Col01" PrefWidth="40.0" prefWidth="160.0" resizable="false" text="Quand" />
             <TableColumn fx:id="tableView_Col02" PrefWidth="250.0" prefWidth="923.0" resizable="false" text="Quoi" />
          </columns>
       </TableView>
-      <TextField fx:id="tblViewFilterTout" layoutX="66.0" layoutY="65.0" prefHeight="25.0" prefWidth="359.0" />
       <Button fx:id="btnRefreshTblView" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#btnRefreshTblView" text="Rafraîchir" />
-      <Label layoutX="23.0" layoutY="69.0" text="Filtrer :" />
       <ImageView fx:id="ImgVLoading" fitHeight="28.0" fitWidth="28.0" layoutX="92.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../medias/loading.gif" />
