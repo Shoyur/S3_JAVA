@@ -19,7 +19,7 @@ public class HistoriqueDao {
     private static final String PASS = "bQV64kWUMF";
 
     private static final String CREATE = "INSERT INTO historique VALUES(?, ?)";
-    private static final String READ_ALL = "SELECT * FROM historique";
+    private static final String READ_ALL = "SELECT * FROM historique ORDER BY quand DESC";
 
     public HistoriqueDao() {  }
     

@@ -34,4 +34,8 @@ public class UsagerController {
         return Dao_Instance.MdlU_readAll();
     }
 
+    public void CtrU_update(String nomU, String prenomU, String adresseU, String telephoneU, String courrielU, String notesU, int idU) {
+        Dao_Instance.MdlU_update(nomU, prenomU, adresseU, telephoneU, courrielU, notesU, idU);
+    }
+
 }

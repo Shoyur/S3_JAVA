@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 
 public class Scene01Controller implements Initializable {
@@ -76,6 +78,18 @@ public class Scene01Controller implements Initializable {
         tblViewFilterGenre.textProperty().addListener((observable, avant, apres) -> {
             tableView01.setItems(ListeExemplairesFiltree(exemplaires)); 
         });
+
+        tableView01.setOnMousePressed((EventHandler<? super MouseEvent>) new EventHandler<MouseEvent>() {
+            @Override 
+            public void handle(MouseEvent event) {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    if (tableView01.getSelectionModel().getSelectedItem() != null) {
+                        scene00Controller.switchTab(1); 
+                    }  
+                }
+            }
+        });
+        
     }
 
     @FXML void btnRefreshTblView01(ActionEvent event) {

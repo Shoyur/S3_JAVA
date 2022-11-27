@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,7 +29,7 @@ public class Scene08Controller implements Initializable {
 
     @FXML private ImageView ImgVLoading;
 
-    @FXML private Button btnRefreshTblView;
+    @FXML private Button btnRefreshTblView08;
 
     @FXML private TableView<Historique> tableView;
     @FXML private TableColumn<Historique, Timestamp> tableView_Col01;
@@ -38,30 +39,30 @@ public class Scene08Controller implements Initializable {
 
 
     @FXML
-    void btnRefreshTblView(ActionEvent event) {
+    void btnRefreshTblView08(ActionEvent event) {
         ImgVLoading.setVisible(true);
-        Thread async_refreshTblView = new Thread(() -> {
+        Thread async_refreshTblView08 = new Thread(() -> {
             try { Thread.sleep(500); } 
             catch (InterruptedException e) { e.printStackTrace(); } 
             historique = (HistoriqueController.getControleurH()).CtrH_readAll();
-            this.tableView.setItems(historique);
-            this.ImgVLoading.setVisible(false);
+            tableView.setItems(historique);
+            ImgVLoading.setVisible(false);
         });
-        async_refreshTblView.start();  
+        async_refreshTblView08.start();  
     }
 
-    public void refreshTblView() {
-        Thread async_refreshTblView = new Thread(() -> {
-            this.historique = (HistoriqueController.getControleurH()).CtrH_readAll();
-            this.tableView.setItems(historique);
+    public void refreshTblView08() {
+        Thread async_refreshTblView08 = new Thread(() -> {
+            historique = (HistoriqueController.getControleurH()).CtrH_readAll();
+            Platform.runLater(() -> { this.tableView.setItems(historique); });
         });
-        async_refreshTblView.start();  
+        async_refreshTblView08.start();  
     }   
 
     public void ajouterHistorique(Timestamp quand, String quoi) {
         Thread async_ajouterHistorique = new Thread(() -> {
             (HistoriqueController.getControleurH()).CtrH_create(new Historique(quand, quoi));
-            // this.refreshTblView();
+            Platform.runLater(() -> { refreshTblView08(); });
         });
         async_ajouterHistorique.start();
     }
@@ -70,7 +71,7 @@ public class Scene08Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         tableView_Col01.setCellValueFactory(new PropertyValueFactory<Historique, Timestamp>("quand"));
         tableView_Col02.setCellValueFactory(new PropertyValueFactory<Historique, String>("quoi"));
-        refreshTblView();
+        refreshTblView08();
     }
 
 }

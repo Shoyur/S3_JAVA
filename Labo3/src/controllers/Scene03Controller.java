@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -111,6 +112,7 @@ public class Scene03Controller implements Initializable {
                 }
             }
         });
+        
     }
 
     void remplirUsagerSel() {
@@ -216,18 +218,14 @@ public class Scene03Controller implements Initializable {
         ImgVLoading03.setVisible(true);
         tblViewFilterNom.setText(null);
         tblViewFilterPrenom.setText(null);
-        // Usager(int idU, String nomU, String prenomU, String adresseU, String telephoneU, String courrielU,
-        //     Date dateAbonneU, String notesU)
         Usager usager = new Usager(0, newNom.getText(), newPrenom.getText(), newAdresse.getText(), newTelephone.getText(), newCourriel.getText(), new Timestamp(System.currentTimeMillis()), newNotes.getText());
         Thread async_ajouterUsager = new Thread(() -> {
             (UsagerController.getControleurU()).CtrU_create(usager);
-            this.refreshTblView03();
+            Platform.runLater(() -> { refreshTblView03(); });
         });
         async_ajouterUsager.start();
         String texte = "L'usager " + newPrenom.getText() + " " + newNom.getText() + " a été ajouté.";
-        // (new Scene08Controller()).ajouterHistorique(new Timestamp(System.currentTimeMillis()), texte);
-        (new Scene08Controller()).ajouterHistorique(new Timestamp(System.currentTimeMillis()), texte);
-        // scene00Controller.ajouterHistorique(new Timestamp(System.currentTimeMillis()), texte);
+        scene00Controller.ajouterHistorique(new Timestamp(System.currentTimeMillis()), texte);
         btnAjouterUsagerCancel(null);
     }
 
@@ -254,7 +252,21 @@ public class Scene03Controller implements Initializable {
     }
 
     @FXML void buttonUserSelModifier(ActionEvent event) {
-
+        ImgVLoading03.setVisible(true);
+        Thread async_ajouterUsager = new Thread(() -> {
+            (UsagerController.getControleurU()).CtrU_update(
+                textFieldUserSelNom.getText(), 
+                textFieldUserSelPrenom.getText(), 
+                textFieldUserSelAdresse.getText(), 
+                textFieldUserSelTelephone.getText(), 
+                textFieldUserSelCourriel.getText(), 
+                textAreaUserSelNotes.getText(), 
+                Integer.parseInt(labelUserSelId.getText()));
+            Platform.runLater(() -> { refreshTblView03(); });
+        });
+        async_ajouterUsager.start();
+        String texte = "Le profil de l'usager " + textFieldUserSelPrenom.getText() + " " + textFieldUserSelNom.getText() + " a été modifié.";
+        scene00Controller.ajouterHistorique(new Timestamp(System.currentTimeMillis()), texte);
     }
 
     @FXML void buttonUserSelCopier(ActionEvent event) {
