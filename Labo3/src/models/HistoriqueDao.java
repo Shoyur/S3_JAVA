@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,6 +67,7 @@ public class HistoriqueDao {
             while (rs.next()) {
                 Historique historique = new Historique();
                 historique.setQuand(rs.getTimestamp("quand"));
+                // historique.setQuand(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(rs.getTimestamp("quand")));
                 historique.setQuoi(rs.getString("quoi"));
                 listeHistorique.add(historique);
             }

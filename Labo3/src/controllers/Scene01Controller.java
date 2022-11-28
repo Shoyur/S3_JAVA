@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,7 +59,7 @@ public class Scene01Controller implements Initializable {
         tableView01_Col04.setCellValueFactory(new PropertyValueFactory<Exemplaire, String>("categEx"));
         tableView01_Col05.setCellValueFactory(new PropertyValueFactory<Exemplaire, Integer>("anneeEx"));
         tableView01_Col06.setCellValueFactory(new PropertyValueFactory<Exemplaire, Boolean>("estEmprunte"));
-        tableView01_Col06.setCellFactory(tablecell -> new TableCell<Exemplaire, Boolean>() {
+        tableView01_Col06.setCellFactory(tableCell -> new TableCell<Exemplaire, Boolean>() {
             @Override
             protected void updateItem(Boolean item, boolean vide) {
                 super.updateItem(item, vide);
@@ -84,7 +85,8 @@ public class Scene01Controller implements Initializable {
             public void handle(MouseEvent event) {
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     if (tableView01.getSelectionModel().getSelectedItem() != null) {
-                        scene00Controller.switchTab(1); 
+                        scene00Controller.afficherExSel(tableView01.getSelectionModel().getSelectedItem());
+                        scene00Controller.switchTab(1);
                     }  
                 }
             }
@@ -93,10 +95,6 @@ public class Scene01Controller implements Initializable {
     }
 
     @FXML void btnRefreshTblView01(ActionEvent event) {
-        refreshTblView01();
-    }
-
-    void refreshTblView01() {
         ImgVLoading01.setVisible(true);
         tblViewFilterAlbum.setText(null);
         tblViewFilterArtiste.setText(null);
@@ -110,6 +108,21 @@ public class Scene01Controller implements Initializable {
             }  
             catch (InterruptedException e) { e.printStackTrace(); } 
             ImgVLoading01.setVisible(false);
+        });
+        async_refreshTblView01.start();
+    }
+
+    public void refreshTblView01() {
+        Thread async_refreshTblView01 = new Thread(() -> {
+                exemplaires = (ExemplaireController.getControleurEx()).CtrEx_readAll(0);
+                Platform.runLater(() -> { 
+                    this.tableView01.setItems(exemplaires);
+                    this.tblViewFilterAlbum.setText(null);
+                    this.tblViewFilterArtiste.setText(null);
+                    this.tblViewFilterAnnee.setText(null);
+                    this.tblViewFilterGenre.setText(null);  
+                });
+
         });
         async_refreshTblView01.start();
     }

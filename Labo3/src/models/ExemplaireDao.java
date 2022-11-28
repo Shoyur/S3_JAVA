@@ -20,6 +20,7 @@ public class ExemplaireDao {
 
     private static final String CREATE = "INSERT INTO exemplaire VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String READ_ALL_NON_VENDUS = "SELECT * FROM exemplaire WHERE estVendu = FALSE";
+    private static final String UPDATE = "UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=? where idEx=?";
 
     public ExemplaireDao() {  }
     
@@ -106,6 +107,31 @@ public class ExemplaireDao {
 
         return listeExemplaires;
     }
+
+    // UPDATE
+    // UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=? where idEx=?";
+    public void MdlEx_update(String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx, String pistesEx, int idEx) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(UPDATE);
+            stmt.setString(1, titreEx);
+            stmt.setString(2, artisteEx);
+            stmt.setString(3, categEx);
+            stmt.setInt(4, anneeEx);
+            stmt.setDouble(5, prixEx);
+            stmt.setString(6, pistesEx);
+            stmt.setInt(7, idEx);
+            stmt.executeUpdate();
+        } 
+        catch (SQLException e) { 
+            System.out.println("================================================================================================ ERREUR, MdlEx_update(), e= " + e);
+            throw new RuntimeException(e); 
+        } 
+        finally {
+            MdlEx_Fermer(stmt);
+            MdlEx_Fermer(conn);
+        }
+    }
    
     private static void MdlEx_Fermer(Connection conn) {
         if (conn != null) {
@@ -126,4 +152,5 @@ public class ExemplaireDao {
             }
         }
     }
+
 }

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import models.Exemplaire;
 
 
 public class Scene00Controller {
@@ -43,8 +44,18 @@ public class Scene00Controller {
         scene09Controller.injectScene00Controller(this);         
     }
 
+    public void afficherExSel(Exemplaire exemplaire) {
+        scene02Controller.afficherExSel(exemplaire);
+    }
+
     public void ajouterHistorique(Timestamp quand, String quoi) {
         scene08Controller.ajouterHistorique(quand, quoi);
     }
+
+    public void refreshTblView01() {
+        scene01Controller.refreshTblView01();
+    }
+
+    
 
 }

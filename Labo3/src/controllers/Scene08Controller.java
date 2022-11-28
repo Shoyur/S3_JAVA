@@ -2,6 +2,7 @@ package controllers;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -70,6 +72,14 @@ public class Scene08Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableView_Col01.setCellValueFactory(new PropertyValueFactory<Historique, Timestamp>("quand"));
+        tableView_Col01.setCellFactory(tableCell -> new TableCell<Historique, Timestamp>() {
+            @Override
+            protected void updateItem(Timestamp timestamp, boolean vide) {
+                super.updateItem(timestamp, vide);
+                if (vide) { setText(null); }
+                else { setText(new SimpleDateFormat("yyyy-MM-dd    HH:mm").format(timestamp)); }
+            }
+        });
         tableView_Col02.setCellValueFactory(new PropertyValueFactory<Historique, String>("quoi"));
         refreshTblView08();
     }

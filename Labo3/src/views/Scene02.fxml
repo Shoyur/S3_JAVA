@@ -63,7 +63,7 @@
       <Label layoutX="55.0" layoutY="189.0" text="Année :" textFill="WHITE" />
       <TextField fx:id="textFieldExSelPrix" disable="true" layoutX="268.0" layoutY="185.0" prefHeight="25.0" prefWidth="112.0" />
       <Label layoutX="224.0" layoutY="189.0" text="Prix :" textFill="WHITE" />
-      <TextArea fx:id="textAreaExSelPistes" disable="true" layoutX="120.0" layoutY="255.0" prefHeight="140.0" prefWidth="260.0" />
+      <TextArea fx:id="textAreaExSelPistes" disable="true" layoutX="120.0" layoutY="255.0" prefHeight="140.0" prefWidth="260.0" wrapText="true" />
       <Label layoutX="55.0" layoutY="259.0" text="Pistes :" textFill="WHITE" />
       <Label layoutX="125.0" layoutY="52.0" text="Id :" textFill="WHITE" />
       <Label fx:id="labelExSelId" layoutX="154.0" layoutY="52.0" text="          " textFill="WHITE" />
@@ -95,7 +95,7 @@
       <Label layoutX="646.0" layoutY="187.0" text="Année :" textFill="WHITE" />
       <TextField fx:id="textFieldExNewPrix" layoutX="859.0" layoutY="183.0" prefHeight="25.0" prefWidth="112.0" />
       <Label layoutX="815.0" layoutY="187.0" text="Prix :" textFill="WHITE" />
-      <TextArea fx:id="textAreaExNewPistes" layoutX="711.0" layoutY="253.0" prefHeight="140.0" prefWidth="260.0" />
+      <TextArea fx:id="textAreaExNewPistes" layoutX="711.0" layoutY="253.0" prefHeight="140.0" prefWidth="260.0" wrapText="true" />
       <Label layoutX="646.0" layoutY="257.0" text="Pistes :" textFill="WHITE" />
       <TextField disable="true" layoutX="711.0" layoutY="403.0" prefHeight="0.0" prefWidth="260.0" promptText="N/A" />
       <Label layoutX="646.0" layoutY="407.0" text="Image :" textFill="WHITE" />

@@ -34,4 +34,8 @@ public class ExemplaireController {
         return Dao_Instance.MdlEx_readAll(option);
     }
 
+    public void CtrEx_update(String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx, String pistesEx, int idEx) {
+        Dao_Instance.MdlEx_update(titreEx, artisteEx, categEx, anneeEx, prixEx, pistesEx, idEx);
+    }
+
 }

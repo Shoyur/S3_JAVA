@@ -44,8 +44,8 @@ public class Scene03Controller implements Initializable {
         btnAjouterUsager, btnAjouterUsagerCancel,
         // Boutons gauche pour modifier ou copier.
         buttonUserSelCancel, buttonUserSelModifier,buttonUserSelCopier,
-        // Boutons centre pour consulter infos de l'usagers.
-        buttonUserSelEmprunts, buttonUserSelVentes, buttonUserSelRetards;
+        // Boutons centre pour créer une transaction ou consulter les infos de l'usagers.
+        buttonUserSelTransaction, buttonUserSelEmprunts, buttonUserSelVentes, buttonUserSelRetards;
 
     @FXML private ImageView
         // Image chargement rafraichissement.
@@ -134,6 +134,7 @@ public class Scene03Controller implements Initializable {
             buttonUserSelCancel.setDisable(false);
             buttonUserSelModifier.setDisable(false);
             buttonUserSelCopier.setDisable(false);
+            buttonUserSelTransaction.setDisable(false);
             buttonUserSelEmprunts.setDisable(false);
             buttonUserSelVentes.setDisable(false);
             buttonUserSelRetards.setDisable(false);
@@ -195,23 +196,27 @@ public class Scene03Controller implements Initializable {
         boolean erreur = false;
         if (newNom.getText() == null || newNom.getText().isEmpty()) {
             labelAjoutUserErreur1.setVisible(true);
+            if (erreur == false) { newNom.requestFocus(); }
             erreur = true;
         }
         if (newPrenom.getText() == null || newPrenom.getText().isEmpty()) {
             labelAjoutUserErreur2.setVisible(true);
+            if (erreur == false) { newPrenom.requestFocus(); }
             erreur = true;
         }
         if (newAdresse.getText() == null || newAdresse.getText().isEmpty()) {
             labelAjoutUserErreur3.setVisible(true);
+            if (erreur == false) { newAdresse.requestFocus(); }
             erreur = true;
         }
         if (newTelephone.getText() == null || newTelephone.getText().isEmpty()) {
-
             labelAjoutUserErreur4.setVisible(true);
+            if (erreur == false) { newTelephone.requestFocus(); }
             erreur = true;
         }
         if (newCourriel.getText() == null || newCourriel.getText().isEmpty()) {
             labelAjoutUserErreur5.setVisible(true);
+            if (erreur == false) { newCourriel.requestFocus(); }
             erreur = true;
         }
         if (erreur == true) { return; }
@@ -253,7 +258,7 @@ public class Scene03Controller implements Initializable {
 
     @FXML void buttonUserSelModifier(ActionEvent event) {
         ImgVLoading03.setVisible(true);
-        Thread async_ajouterUsager = new Thread(() -> {
+        Thread async_modifierUsager = new Thread(() -> {
             (UsagerController.getControleurU()).CtrU_update(
                 textFieldUserSelNom.getText(), 
                 textFieldUserSelPrenom.getText(), 
@@ -264,7 +269,7 @@ public class Scene03Controller implements Initializable {
                 Integer.parseInt(labelUserSelId.getText()));
             Platform.runLater(() -> { refreshTblView03(); });
         });
-        async_ajouterUsager.start();
+        async_modifierUsager.start();
         String texte = "Le profil de l'usager " + textFieldUserSelPrenom.getText() + " " + textFieldUserSelNom.getText() + " a été modifié.";
         scene00Controller.ajouterHistorique(new Timestamp(System.currentTimeMillis()), texte);
     }
@@ -276,6 +281,10 @@ public class Scene03Controller implements Initializable {
         newTelephone.setText(textFieldUserSelTelephone.getText());
         newCourriel.setText(textFieldUserSelCourriel.getText());
         newNotes.setText(textAreaUserSelNotes.getText());
+    }
+
+    @FXML void buttonUserSelTransaction(ActionEvent event) {
+        scene00Controller.switchTab(4);
     }
 
     @FXML void buttonUserSelEmprunts(ActionEvent event) {
