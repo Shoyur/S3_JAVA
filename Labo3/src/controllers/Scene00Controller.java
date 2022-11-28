@@ -56,6 +56,11 @@ public class Scene00Controller {
         scene01Controller.refreshTblView01();
     }
 
+    public void transactionAjoutVente(int idEx) {
+    }
+
+    public void transactionAjoutEmprunt(int idEx) {
+    }
     
 
 }

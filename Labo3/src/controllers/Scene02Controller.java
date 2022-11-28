@@ -97,12 +97,20 @@ public class Scene02Controller {
 
     @FXML
     void buttonExSelEmprunter(ActionEvent event) {
-        scene00Controller.refreshTblView01();
+        scene00Controller.transactionAjoutEmprunt(Integer.parseInt(labelExSelId.getText()));
+        // À FAIRE :
+        // UPDATE cet exemplaire avec le flag emprunt à TRUE
+        // mettre à jour la table 01
+        buttonExSelCancel(null);
     }
 
     @FXML
     void buttonExSelAcheter(ActionEvent event) {
-        scene00Controller.refreshTblView01();
+        scene00Controller.transactionAjoutVente(Integer.parseInt(labelExSelId.getText()));
+        // À FAIRE :
+        // UPDATE cet exemplaire avec le flag vendu à TRUE
+        // mettre à jour la table 01
+        buttonExSelCancel(null);
     }
 
     @FXML
