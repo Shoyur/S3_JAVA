@@ -5,7 +5,15 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
-<TabPane fx:id="scene00" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" rotateGraphic="true" side="LEFT" stylesheets="@../styles/style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene00Controller">
+<TabPane fx:id="scene00" 
+          maxHeight="-Infinity" maxWidth="-Infinity" 
+          minHeight="-Infinity" minWidth="-Infinity" 
+          prefHeight="700.0" prefWidth="1200.0" 
+          rotateGraphic="true" side="LEFT" 
+          stylesheets="@../styles/style.css" 
+          tabClosingPolicy="UNAVAILABLE" 
+          xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" 
+          fx:controller="controllers.Scene00Controller">
   <tabs>
     <Tab fx:id="tab01" text="Inventaire">
       <graphic>
@@ -15,9 +23,9 @@
           </image>
         </ImageView>
       </graphic>
-      <!-- <content>
-         <fx:include fx:id="Scene01" source="Scene01.fxml" />
-      </content> -->
+      <content>
+         <fx:include fx:id="scene01" source="Scene01.fxml" />
+      </content>
     </Tab>
 
     <Tab fx:id="tab02" text="Exemplaire">
@@ -28,9 +36,9 @@
           </image>
         </ImageView>
       </graphic>
-      <!-- <content>
-         <fx:include fx:id="AnchorPane02" source="Scene02.fxml" />
-      </content> -->
+      <content>
+         <fx:include fx:id="scene02" source="Scene02.fxml" />
+      </content>
     </Tab>
 
     <Tab fx:id="tab03" text="Usagers">
@@ -41,9 +49,9 @@
           </image>
         </ImageView>
       </graphic>
-      <!-- <content>
-         <fx:include fx:id="AnchorPane03" source="Scene03.fxml" />
-      </content> -->
+      <content>
+         <fx:include fx:id="scene03" source="Scene03.fxml" />
+      </content>
     </Tab>
 
     <Tab fx:id="tab04" text="Emprunts">
@@ -54,12 +62,12 @@
           </image>
         </ImageView>
       </graphic>
-      <!-- <content>
-         <fx:include fx:id="AnchorPane04" source="Scene04.fxml" />
-      </content> -->
+      <content>
+         <fx:include fx:id="scene04" source="Scene04.fxml" />
+      </content>
     </Tab>
 
-    <Tab fx:id="tab05" text="Ventes">
+    <Tab fx:id="tab05" text="Transaction">
       <graphic>
         <ImageView>
           <image>
@@ -67,9 +75,9 @@
           </image>
         </ImageView>
       </graphic>
-      <!-- <content>
-         <fx:include fx:id="AnchorPane05" source="Scene05.fxml" />
-      </content> -->
+      <content>
+         <fx:include fx:id="scene05" source="Scene05.fxml" />
+      </content>
     </Tab>
 
     <Tab fx:id="tab06" text="Retards">
@@ -80,12 +88,12 @@
           </image>
         </ImageView>
       </graphic>
-      <!-- <content>
-         <fx:include fx:id="AnchorPane06" source="Scene06.fxml" />
-      </content> -->
+      <content>
+         <fx:include fx:id="scene06" source="Scene06.fxml" />
+      </content>
     </Tab>
 
-    <Tab fx:id="tab07" text="Maintenance">
+    <Tab fx:id="tab07" text="Statistiques">
       <graphic>
         <ImageView>
           <image>
@@ -93,12 +101,14 @@
           </image>
         </ImageView>
       </graphic>
-      <!-- <content>
-         <fx:include fx:id="AnchorPane07" source="Scene07.fxml" />
-      </content> -->
+      <content>
+         <fx:include fx:id="scene07" source="Scene07.fxml" />
+      </content>
     </Tab>
 
-    <Tab fx:id="tab08" text="Statistiques">
+
+
+    <Tab fx:id="tab08" text="Historique">
       <graphic>
         <ImageView>
           <image>
@@ -106,12 +116,12 @@
           </image>
         </ImageView>
       </graphic>
-      <!-- <content>
-         <fx:include fx:id="AnchorPane08" source="Scene08.fxml" />
-      </content> -->
-    </Tab>
+      <content>
+         <fx:include fx:id="scene08" source="Scene08.fxml" />
+      </content>
+    </Tab> 
 
-    <Tab fx:id="tab09" text="Historique">
+        <Tab fx:id="tab09" text="Maintenance">
       <graphic>
         <ImageView>
           <image>
@@ -119,23 +129,10 @@
           </image>
         </ImageView>
       </graphic>
-      <!-- <content>
-         <fx:include fx:id="AnchorPane09" source="Scene09.fxml" />
-      </content> -->
+      <content>
+         <fx:include fx:id="scene09" source="Scene09.fxml" />
+      </content>
     </Tab>
-
-    <Tab fx:id="tab10" text="Budget">
-      <graphic>
-        <ImageView>
-          <image>
-            <Image url="@../medias/nav10.png" />
-          </image>
-        </ImageView>
-      </graphic>
-      <!-- <content>
-         <fx:include fx:id="AnchorPane10" source="Scene10.fxml" />
-      </content> -->
-    </Tab> 
 
   </tabs>
 </TabPane>

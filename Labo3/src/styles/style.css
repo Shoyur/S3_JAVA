@@ -66,8 +66,6 @@
 .tab-pane > .tab-header-area > .headers-region > #tab08:selected > .tab-container > .tab-label { -fx-graphic: url("/medias/nav08hover.png"); -fx-text-fill: -fx-couleur-bleu; }
 .tab-pane > .tab-header-area > .headers-region > #tab09:hover > .tab-container > .tab-label { -fx-graphic: url("/medias/nav09hover.png"); -fx-text-fill: -fx-couleur-bleu; }
 .tab-pane > .tab-header-area > .headers-region > #tab09:selected > .tab-container > .tab-label { -fx-graphic: url("/medias/nav09hover.png"); -fx-text-fill: -fx-couleur-bleu; }
-.tab-pane > .tab-header-area > .headers-region > #tab10:hover > .tab-container > .tab-label { -fx-graphic: url("/medias/nav10hover.png"); -fx-text-fill: -fx-couleur-bleu; }
-.tab-pane > .tab-header-area > .headers-region > #tab10:selected > .tab-container > .tab-label { -fx-graphic: url("/medias/nav10hover.png"); -fx-text-fill: -fx-couleur-bleu; }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:hover, .tab:selected {
     -fx-text-fill: -fx-couleur-bleu;
@@ -224,6 +222,20 @@
 
 
 
+/* ************************************************** */
+/* ****************** ImageView ********************* */
+/* ************************************************** */
+
+.image-view {
+	-fx-border-color:-fx-couleur-bleu;
+    -fx-border-insets: 3;
+    -fx-border-radius: 7;
+    -fx-border-width: 1;
+	
+}
+
+
+
 /* **************************************************** */
 /* ********************** CUSTOM ********************** */
 /* **************************************************** */
@@ -233,5 +245,14 @@
 #labelAjoutUserErreur3,
 #labelAjoutUserErreur4,
 #labelAjoutUserErreur5 {
+	-fx-text-fill: red;
+}
+
+#labelAjoutExNewErreur1,
+#labelAjoutExNewErreur2,
+#labelAjoutExNewErreur3,
+#labelAjoutExNewErreur4,
+#labelAjoutExNewErreur5,
+#labelAjoutExNewErreur6 {
 	-fx-text-fill: red;
 }

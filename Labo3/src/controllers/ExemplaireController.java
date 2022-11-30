@@ -12,7 +12,7 @@ public class ExemplaireController {
 
     private ExemplaireController(){}
 
-    public static synchronized ExemplaireController getControleurE() {
+    public static synchronized ExemplaireController getControleurEx() {
         try {
             // if (CtrL_Instance == null) {
                 CtrL_Instance = new ExemplaireController();
@@ -26,8 +26,16 @@ public class ExemplaireController {
         }
     }
 
-    public ObservableList<Exemplaire> CtrE_readAll() {
-        return Dao_Instance.MdlE_readAll();
+    public void CtrEx_create(Exemplaire exemplaire) {
+        Dao_Instance.MdlEx_create(exemplaire);
+    }
+
+    public ObservableList<Exemplaire> CtrEx_readAll(int option) {
+        return Dao_Instance.MdlEx_readAll(option);
+    }
+
+    public void CtrEx_update(String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx, String pistesEx, int idEx, String cheminImgEx) {
+        Dao_Instance.MdlEx_update(titreEx, artisteEx, categEx, anneeEx, prixEx, pistesEx, idEx, cheminImgEx);
     }
 
 }

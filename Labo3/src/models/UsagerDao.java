@@ -18,8 +18,10 @@ public class UsagerDao {
     private static final String USAGER = "sql9558434";
     private static final String PASS = "bQV64kWUMF";
 
-    private static final String READ_ALL = "SELECT * FROM usagers";
-    private static final String CREATE = "INSERT INTO usagers VALUES(?, ?, ?, ?, ?, ?, ?)";
+    
+    private static final String CREATE = "INSERT INTO usager VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String READ_ALL = "SELECT * FROM usager";
+    private static final String UPDATE = "UPDATE usager SET nomU=?, prenomU=?, adresseU=?, telephoneU=?, courrielU=?, notesU=? where idU=?";
 
     public UsagerDao() {  }
     
@@ -38,18 +40,21 @@ public class UsagerDao {
     }
 
     // CREATE
+    // Usager(int idU, String nomU, String prenomU, String adresseU, String telephoneU, String courrielU,
+    //         Date dateAbonneU, String notesU)
     public void MdlU_create(Usager usager) {
         PreparedStatement stmt = null;
         try {
             stmt = conn.prepareStatement(CREATE);
             // Usager(int id, String nom, String prenom, String adresse, String courriel, String telephone) {
             stmt.setInt(1, 0);
-            stmt.setString(2, usager.getNom());
-            stmt.setString(3, usager.getPrenom());
-            stmt.setString(4, usager.getAdresse());
-            stmt.setString(5, usager.getCourriel());
-            stmt.setString(6, usager.getTelephone());
-            stmt.setString(7, usager.getNotes());
+            stmt.setString(2, usager.getNomU());
+            stmt.setString(3, usager.getPrenomU());
+            stmt.setString(4, usager.getAdresseU());
+            stmt.setString(5, usager.getTelephoneU());
+            stmt.setString(6, usager.getCourrielU());
+            stmt.setTimestamp(7, usager.getDateAbonneU());
+            stmt.setString(8, usager.getNotesU());
             stmt.executeUpdate();
         } 
         catch (SQLException e) { 
@@ -63,6 +68,8 @@ public class UsagerDao {
     }
 
     // READ ALL
+    // Usager(int idU, String nomU, String prenomU, String adresseU, String telephoneU, String courrielU,
+    //         Date dateAbonneU, String notesU)
     public ObservableList<Usager> MdlU_readAll() {
         PreparedStatement stmt = null;
         ObservableList<Usager> listeUsagers = FXCollections.observableArrayList();
@@ -72,13 +79,14 @@ public class UsagerDao {
             while (rs.next()) {
                 Usager usager = new Usager();
                 // Usager(int id, String nom, String prenom, String adresse, String courriel, String telephone) 
-                usager.setId(rs.getInt("id"));
-                usager.setNom(rs.getString("nom"));
-                usager.setPrenom(rs.getString("prenom"));
-                usager.setAdresse(rs.getString("adresse"));
-                usager.setCourriel(rs.getString("courriel"));
-                usager.setTelephone(rs.getString("telephone"));
-                usager.setNotes(rs.getString("notes"));
+                usager.setIdU(rs.getInt("idU"));
+                usager.setNomU(rs.getString("nomU"));
+                usager.setPrenomU(rs.getString("prenomU"));
+                usager.setAdresseU(rs.getString("adresseU"));
+                usager.setTelephoneU(rs.getString("telephoneU"));
+                usager.setCourrielU(rs.getString("courrielU"));
+                usager.setDateAbonneU(rs.getTimestamp("dateAbonneU"));
+                usager.setNotesU(rs.getString("notesU"));
                 listeUsagers.add(usager);
             }
         } 
@@ -92,6 +100,31 @@ public class UsagerDao {
         }
 
         return listeUsagers;
+    }
+
+    // UPDATE
+    // "UPDATE usager SET nomU=?, prenomU=?, adresseU=?, telephoneU=?, courrielU=?, notesU=? where idU=?";
+    public void MdlU_update(String nomU, String prenomU, String adresseU, String telephoneU, String courrielU, String notesU, int idU) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(UPDATE);
+            stmt.setString(1, nomU);
+            stmt.setString(2, prenomU);
+            stmt.setString(3, adresseU);
+            stmt.setString(4, telephoneU);
+            stmt.setString(5, courrielU);
+            stmt.setString(6, notesU);
+            stmt.setInt(7, idU);
+            stmt.executeUpdate();
+        } 
+        catch (SQLException e) { 
+            System.out.println("================================================================================================ ERREUR, MdlU_update(), e= " + e);
+            throw new RuntimeException(e); 
+        } 
+        finally {
+            MdlU_Fermer(stmt);
+            MdlU_Fermer(conn);
+        }
     }
    
     private static void MdlU_Fermer(Connection conn) {

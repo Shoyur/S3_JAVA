@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +20,7 @@ public class HistoriqueDao {
     private static final String PASS = "bQV64kWUMF";
 
     private static final String CREATE = "INSERT INTO historique VALUES(?, ?)";
-    private static final String READ_ALL = "SELECT * FROM historique";
+    private static final String READ_ALL = "SELECT * FROM historique ORDER BY quand DESC";
 
     public HistoriqueDao() {  }
     
@@ -42,7 +43,7 @@ public class HistoriqueDao {
         PreparedStatement stmt = null;
         try {
             stmt = conn.prepareStatement(CREATE);
-            stmt.setDate(1, historique.getQuand());
+            stmt.setTimestamp(1, historique.getQuand());
             stmt.setString(2, historique.getQuoi());
             stmt.executeUpdate();
         } 
@@ -65,7 +66,8 @@ public class HistoriqueDao {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Historique historique = new Historique();
-                historique.setQuand(rs.getDate("quand"));
+                historique.setQuand(rs.getTimestamp("quand"));
+                // historique.setQuand(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(rs.getTimestamp("quand")));
                 historique.setQuoi(rs.getString("quoi"));
                 listeHistorique.add(historique);
             }
