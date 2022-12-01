@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scene02" prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene02Controller">
+<AnchorPane fx:id="scene02" prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene02Controller">
    <children>
       <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#454545" height="660.0" layoutX="20.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="555.0" />
       <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#454545" height="660.0" layoutX="595.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="435.0" />
@@ -82,9 +82,11 @@
          </image>
       </ImageView>
       <Label layoutX="55.0" layoutY="224.0" text="Nb. emprunts :" textFill="WHITE" />
-      <Label layoutX="203.0" layoutY="224.0" text="Prix ajusté :" textFill="WHITE" />
-      <Label fx:id="labelExSelNbEmprunts" layoutX="146.0" layoutY="224.0" text="          " textFill="WHITE" />
-      <Label fx:id="labelExSelPrixAjuste" layoutX="275.0" layoutY="224.0" text="          " textFill="WHITE" />
+      <Label layoutX="170.0" layoutY="224.0" text="Prix ajusté :" textFill="WHITE" />
+      <Label layoutX="298.0" layoutY="224.0" text="Prix d'emprunt :" textFill="WHITE" />
+      <Label fx:id="labelExSelNbEmprunts" layoutX="136.0" layoutY="224.0" text="          " textFill="WHITE" />
+      <Label fx:id="labelExSelPrixAjuste" layoutX="231.0" layoutY="224.0" text="          " textFill="WHITE" />
+      <Label fx:id="labelExSelPrixEmprunt" layoutX="384.0" layoutY="224.0" text="          " textFill="WHITE" />
       <TextField fx:id="textFieldExNewTitre" layoutX="711.0" layoutY="78.0" prefHeight="0.0" prefWidth="260.0" />
       <Label layoutX="646.0" layoutY="117.0" text="Artiste :" textFill="WHITE" />
       <Label layoutX="646.0" layoutY="82.0" text="Titre :" textFill="WHITE" />

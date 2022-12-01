@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane fx:id="scene05" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene05Controller">
+<AnchorPane fx:id="scene05" prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene05Controller">
    <children>
-      <Label layoutX="149.0" layoutY="153.0" text="Vue no. 55555" textFill="WHITE" />
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#454545" height="660.0" layoutX="20.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="555.0" />
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#454545" height="660.0" layoutX="595.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="435.0" />
+      <Label layoutX="606.0" layoutY="31.0" text="Historique des Transactions pour l'usager :" textFill="WHITE" />
+      <Label layoutX="31.0" layoutY="31.0" text="Transaction courante" textFill="WHITE" />
+      <Label layoutX="55.0" layoutY="84.0" text="Usager :" textFill="WHITE" />
+      <ComboBox fx:id="comboBoxUsgCurrentTr" layoutX="105.0" layoutY="80.0" prefWidth="164.0" promptText="sélectionnez un usager" />
    </children>
 </AnchorPane>

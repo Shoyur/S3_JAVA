@@ -256,3 +256,12 @@
 #labelAjoutExNewErreur6 {
 	-fx-text-fill: red;
 }
+
+.combo-box {
+	-fx-background-color: black;
+	-fx-text-fill: black;
+}
+.combo-box-popup .list-cell {    
+    -fx-background-color: white;    
+    -fx-text-fill: black;
+}

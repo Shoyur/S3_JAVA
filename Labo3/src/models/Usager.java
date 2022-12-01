@@ -90,5 +90,9 @@ public class Usager {
     public void setNotesU(String notesU) {
         this.notesU = notesU;
     }
+    
+    public String toString() {
+    	return this.idU+"   "+this.nomU+", "+this.prenomU;
+    }
 
 }
