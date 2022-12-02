@@ -33,6 +33,10 @@ public class ExemplaireController {
     public ObservableList<Exemplaire> CtrEx_readAll(int option) {
         return Dao_Instance.MdlEx_readAll(option);
     }
+    
+    public Exemplaire CtrEx_read(int idEx) {
+    	return Dao_Instance.MdlEx_read(idEx);
+    }
 
     public void CtrEx_update(String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx, String pistesEx, int idEx, String cheminImgEx) {
         Dao_Instance.MdlEx_update(titreEx, artisteEx, categEx, anneeEx, prixEx, pistesEx, idEx, cheminImgEx);

@@ -145,6 +145,7 @@ public class Scene02Controller {
         // UPDATE cet exemplaire avec le flag emprunt à TRUE
         // mettre à jour la table 01
         buttonExSelCancel(null);
+        scene00Controller.switchTab(4);
     }
 
     @FXML
@@ -154,6 +155,7 @@ public class Scene02Controller {
         // UPDATE cet exemplaire avec le flag vendu à TRUE
         // mettre à jour la table 01
         buttonExSelCancel(null);
+        scene00Controller.switchTab(4);
     }
 
     @FXML
@@ -255,8 +257,8 @@ public class Scene02Controller {
         textFieldExSelPrix.setDisable(false);
         labelExSelNbEmprunts.setText(Integer.toString(exemplaire.getNbEmpruntsEx()));
         double prixAjuste = exemplaire.getPrixEx() - exemplaire.getNbEmpruntsEx();
-        double moitie = exemplaire.getPrixEx() / 1.25;
-        if (prixAjuste < moitie) { prixAjuste = moitie; }
+        double plancher = exemplaire.getPrixEx() / 1.25;
+        if (prixAjuste < plancher) { prixAjuste = plancher; }
         labelExSelPrixAjuste.setText(String.format("%.2f", prixAjuste));
         double prixEmprunt = exemplaire.getPrixEx() / 4;
         labelExSelPrixEmprunt.setText(String.format("%.2f", prixEmprunt));

@@ -20,6 +20,7 @@ public class ExemplaireDao {
 
     private static final String CREATE = "INSERT INTO exemplaire VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String READ_ALL_NON_VENDUS = "SELECT * FROM exemplaire WHERE estVendu = FALSE";
+    private static final String READ = "SELECT * FROM exemplaire WHERE idEx=?";
     private static final String UPDATE = "UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=?, cheminImg=? where idEx=?";
 
     public ExemplaireDao() {  }
@@ -78,8 +79,7 @@ public class ExemplaireDao {
             }
             else if (option == 1) {
                 stmt = conn.prepareStatement(READ_ALL_NON_VENDUS);
-            }
-            
+            }         
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Exemplaire exemplaire = new Exemplaire();
@@ -99,15 +99,46 @@ public class ExemplaireDao {
             }
         } 
         catch (SQLException e) { 
-            System.out.println("================================================================================================ ERREUR, MdlEx_readAll()), e= " + e);
+            System.out.println("================================================================================================ ERREUR, MdlEx_readAll(), e= " + e);
             throw new RuntimeException(e); 
         } 
         finally {
             MdlEx_Fermer(stmt);
             MdlEx_Fermer(conn);
         }
-
         return listeExemplaires;
+    }
+    
+    // READ
+    public Exemplaire MdlEx_read(int idEx) {
+        Exemplaire exemplaire = new Exemplaire();
+        PreparedStatement stmt = null;
+        try {
+			stmt = conn.prepareStatement(READ);
+            stmt.setInt(1, idEx);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                exemplaire.setIdEx(rs.getInt("idEx"));
+                exemplaire.setTitreEx(rs.getString("titreEx"));
+                exemplaire.setArtisteEx(rs.getString("artisteEx"));
+                exemplaire.setCategEx(rs.getString("categEx"));
+                exemplaire.setAnneeEx(rs.getInt("anneeEx"));
+                exemplaire.setPrixEx(rs.getDouble("prixEx"));
+                exemplaire.setPistesEx(rs.getString("pistesEx"));
+                exemplaire.setNbEmpruntsEx(rs.getInt("nbEmpruntsEx"));
+                exemplaire.setEstEmprunte(rs.getBoolean("estEmprunte"));
+                exemplaire.setEstVendu(rs.getBoolean("estVendu"));
+                exemplaire.setCheminImgEx(rs.getString("cheminImg"));
+            }
+		} catch (SQLException e) {
+            System.out.println("================================================================================================ ERREUR, MdlEx_read(), e= " + e);
+            throw new RuntimeException(e); 
+		}
+        finally {
+            MdlEx_Fermer(stmt);
+            MdlEx_Fermer(conn);
+        }
+        return exemplaire;
     }
 
     // UPDATE

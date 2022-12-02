@@ -57,9 +57,11 @@ public class Scene00Controller {
     }
 
     public void transactionAjoutVente(int idEx) {
+    	scene05Controller.ajouterVente(idEx);
     }
 
     public void transactionAjoutEmprunt(int idEx) {
+    	scene05Controller.ajouterEmprunt(idEx);
     }
     
 
