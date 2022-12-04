@@ -13,11 +13,9 @@
    <children>
       <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#454545" height="660.0" layoutX="20.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="555.0" />
       <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#454545" height="660.0" layoutX="595.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="435.0" />
-      <Label layoutX="606.0" layoutY="31.0" text="Historique des Transactions pour l'usager :" textFill="WHITE" />
       <Label layoutX="31.0" layoutY="31.0" text="Transaction courante" textFill="WHITE" />
       <Label layoutX="55.0" layoutY="84.0" text="Usager :" textFill="WHITE" />
       <ComboBox fx:id="comboBoxUsgCurrentTr" layoutX="105.0" layoutY="80.0" prefWidth="164.0" promptText="sélectionnez un usager" />
-      <Label layoutX="135.0" layoutY="117.0" text="Transaction #" textFill="WHITE" />
       <TextArea fx:id="textAreaUsgCurrentTr" layoutX="135.0" layoutY="142.0" prefHeight="384.0" prefWidth="325.0" />
       <Label layoutX="135.0" layoutY="545.0" text="Montant avant Taxes :" textFill="WHITE" />
       <Label layoutX="135.0" layoutY="570.0" text="Montant Après Taxes :" textFill="WHITE" />
@@ -25,11 +23,26 @@
       <Label fx:id="lblMontantATCurrentTr" layoutX="270.0" layoutY="570.0" prefHeight="17.0" prefWidth="72.0" text="          " textFill="WHITE" />
       <Button fx:id="btnPayerCurrentTr" layoutX="238.0" layoutY="602.0" mnemonicParsing="false" onAction="#btnPayerCurrentTrHandler" text="Payer" />
       <Button fx:id="btnCancelCurrentTr" layoutX="306.0" layoutY="602.0" mnemonicParsing="false" onAction="#btnCancelCurrentTrHandler" text="Cancel" />
-      <TableView layoutX="606.0" layoutY="72.0" prefHeight="555.0" prefWidth="413.0">
+      <Label layoutX="606.0" layoutY="31.0" text="Historique des Transactions pour l'usager #" textFill="WHITE" />
+      <Label fx:id="lblUsgIDAllTr" layoutX="840.0" layoutY="31.0" text="          " textFill="WHITE" />
+      <Label layoutX="782.0" layoutY="63.0" text="EMPRUNTS" textFill="WHITE" />
+      <TableView fx:id="tableView01" layoutX="606.0" layoutY="84.0" prefHeight="275.0" prefWidth="413.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
+          <!-- int idEm, int idEx, nbJoursEm, date dateEm -->
+          <TableColumn fx:id="tableView01_Col01" prefWidth="80.0" resizable="false" text="Id" />
+          <TableColumn fx:id="tableView01_Col02" prefWidth="80.0" resizable="false" text="IdEx" />
+          <TableColumn fx:id="tableView01_Col03" prefWidth="110.0" resizable="false" text="Durée" />
+          <TableColumn fx:id="tableView01_Col04" prefWidth="143.0" resizable="false" text="Date" />
+        </columns>        
+      </TableView>
+      <Label layoutX="792.0" layoutY="368.0" text="VENTES" textFill="WHITE" />
+      <TableView fx:id="tableView02" layoutX="606.0" layoutY="392.0" prefHeight="275.0" prefWidth="413.0">
+         <columns>
+          <!-- int idV, int idEx, date dateV -->
+          <TableColumn fx:id="tableView02_Col01" prefWidth="120.0" resizable="false" text="Id" />
+          <TableColumn fx:id="tableView02_Col02" prefWidth="120.0" resizable="false" text="IdEx" />
+          <TableColumn fx:id="tableView02_Col03" prefWidth="173.0" resizable="false" text="Date" />
+         </columns>
       </TableView>
    </children>
 </AnchorPane>

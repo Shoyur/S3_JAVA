@@ -20,6 +20,7 @@ public class EmpruntDao {
 
     private static final String CREATE = "INSERT INTO emprunt VALUES(?, ?, ?, ?, ?)";
     private static final String READ_ALL = "SELECT * FROM emprunt";
+    private static final String READ_ALL_PAR_USAGER = "SELECT * FROM emprunt WHERE idU=?";
 
     public EmpruntDao() {  }
     
@@ -86,6 +87,34 @@ public class EmpruntDao {
         }
 
         return listeEmprunt;
+    }
+    
+    // READ ALL PAR USAGER
+    public ObservableList<Emprunt> MdlEm_readAllParUsager(int idU) {
+        PreparedStatement stmt = null;
+        ObservableList<Emprunt> listeEmpruntsParUsager = FXCollections.observableArrayList();
+        try {
+			stmt = conn.prepareStatement(READ_ALL_PAR_USAGER);
+            stmt.setInt(1, idU);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+            	Emprunt emprunt = new Emprunt();
+                emprunt.setIdEm(rs.getInt("idEm"));
+                emprunt.setIdEx(rs.getInt("idEx"));
+                emprunt.setIdU(rs.getInt("idU"));
+                emprunt.setDateEm(rs.getTimestamp("dateEm"));
+                emprunt.setNbJoursEm(rs.getInt("nbJoursEm"));
+                listeEmpruntsParUsager.add(emprunt);
+            }
+		} catch (SQLException e) {
+            System.out.println("================================================================================================ ERREUR, MdlEm_readAllParUsager(), e= " + e);
+            throw new RuntimeException(e); 
+		}
+        finally {
+            MdlEm_Fermer(stmt);
+            MdlEm_Fermer(conn);
+        }
+        return listeEmpruntsParUsager;
     }
    
     private static void MdlEm_Fermer(Connection conn) {

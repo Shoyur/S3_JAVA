@@ -21,7 +21,7 @@ public class ExemplaireDao {
     private static final String CREATE = "INSERT INTO exemplaire VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String READ_ALL_NON_VENDUS = "SELECT * FROM exemplaire WHERE estVendu = FALSE";
     private static final String READ = "SELECT * FROM exemplaire WHERE idEx=?";
-    private static final String UPDATE = "UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=?, cheminImg=? where idEx=?";
+    private static final String UPDATE = "UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=?, nbEmpruntsEx=?, estEmprunte=?, estVendu=?, cheminImg=? where idEx=?";
 
     public ExemplaireDao() {  }
     
@@ -143,18 +143,21 @@ public class ExemplaireDao {
 
     // UPDATE
     // UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=?, cheminImgEx? where idEx=?";
-    public void MdlEx_update(String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx, String pistesEx, int idEx, String cheminImgEx) {
+    public void MdlEx_update(Exemplaire exemplaire) {
         PreparedStatement stmt = null;
         try {
             stmt = conn.prepareStatement(UPDATE);
-            stmt.setString(1, titreEx);
-            stmt.setString(2, artisteEx);
-            stmt.setString(3, categEx);
-            stmt.setInt(4, anneeEx);
-            stmt.setDouble(5, prixEx);
-            stmt.setString(6, pistesEx);
-            stmt.setString(7, cheminImgEx);
-            stmt.setInt(8, idEx);
+            stmt.setString(1, exemplaire.getTitreEx());
+            stmt.setString(2, exemplaire.getArtisteEx());
+            stmt.setString(3, exemplaire.getCategEx());
+            stmt.setInt(4, exemplaire.getAnneeEx());
+            stmt.setDouble(5, exemplaire.getPrixEx());
+            stmt.setString(6, exemplaire.getPistesEx());
+            stmt.setInt(7, exemplaire.getNbEmpruntsEx());
+            stmt.setBoolean(8, exemplaire.isEstEmprunte());
+            stmt.setBoolean(9, exemplaire.isEstVendu());
+            stmt.setString(10, exemplaire.getCheminImgEx());
+            stmt.setInt(11, exemplaire.getIdEx());
             stmt.executeUpdate();
         } 
         catch (SQLException e) { 

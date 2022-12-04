@@ -20,6 +20,7 @@ public class VenteDao {
 
     private static final String CREATE = "INSERT INTO vente VALUES(?, ?, ?, ?)";
     private static final String READ_ALL = "SELECT * FROM vente";
+    private static final String READ_ALL_PAR_USAGER = "SELECT * FROM vente WHERE idU=?";
 
     public VenteDao() {  }
     
@@ -45,7 +46,7 @@ public class VenteDao {
             stmt.setInt(1, vente.getIdV());
             stmt.setInt(2, vente.getIdEx());
             stmt.setInt(3, vente.getIdU());
-            stmt.setDate(4, vente.getDateV());
+            stmt.setTimestamp(4, vente.getDateV());
             stmt.executeUpdate();
         } 
         catch (SQLException e) { 
@@ -70,7 +71,7 @@ public class VenteDao {
                 Vente.setIdV(rs.getInt("idV"));
                 Vente.setIdEx(rs.getInt("idEx"));
                 Vente.setIdU(rs.getInt("idU"));
-                Vente.setDateV(rs.getDate("dateV"));
+                Vente.setDateV(rs.getTimestamp("dateV"));
                 listeVentes.add(Vente);
             }
         } 
@@ -84,6 +85,33 @@ public class VenteDao {
         }
 
         return listeVentes;
+    }
+    
+    // READ ALL PAR USAGER
+    public ObservableList<Vente> MdlV_readAllParUsager(int idU) {
+        PreparedStatement stmt = null;
+        ObservableList<Vente> listeVentesParUsager = FXCollections.observableArrayList();
+        try {
+			stmt = conn.prepareStatement(READ_ALL_PAR_USAGER);
+            stmt.setInt(1, idU);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+            	Vente vente = new Vente();
+                vente.setIdV(rs.getInt("idV"));
+                vente.setIdEx(rs.getInt("idEx"));
+                vente.setIdU(rs.getInt("idU"));
+                vente.setDateV(rs.getTimestamp("dateV"));
+                listeVentesParUsager.add(vente);
+            }
+		} catch (SQLException e) {
+            System.out.println("================================================================================================ ERREUR, MdlEm_readAllParUsager(), e= " + e);
+            throw new RuntimeException(e); 
+		}
+        finally {
+            MdlV_Fermer(stmt);
+            MdlV_Fermer(conn);
+        }
+        return listeVentesParUsager;
     }
    
     private static void MdlV_Fermer(Connection conn) {

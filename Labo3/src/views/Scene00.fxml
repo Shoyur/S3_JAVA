@@ -67,7 +67,7 @@
       </content>
     </Tab>
 
-    <Tab fx:id="tab05" text="Transaction">
+    <Tab fx:id="tab05" text="Transactions">
       <graphic>
         <ImageView>
           <image>

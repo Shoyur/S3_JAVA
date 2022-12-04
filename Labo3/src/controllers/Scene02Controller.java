@@ -108,16 +108,9 @@ public class Scene02Controller {
     @FXML
     void buttonExSelModifier(ActionEvent event) {
         ImgVLoading02Sel.setVisible(true);
+        Exemplaire unEx = ExemplaireController.getControleurEx().CtrEx_read(Integer.parseInt(labelExSelId.getText()));
         Thread async_modifierExemplaire = new Thread(() -> {
-            (ExemplaireController.getControleurEx()).CtrEx_update(
-                textFieldExSelTitre.getText(), 
-                textFieldExSelArtiste.getText(), 
-                textFieldExSelGenre.getText(), 
-                Integer.parseInt(textFieldExSelAnnee.getText()), 
-                Double.parseDouble(textFieldExSelPrix.getText()), 
-                textAreaExSelPistes.getText(), 
-                Integer.parseInt(labelExSelId.getText()),
-                textFieldExSelCheminImg.getText());
+            (ExemplaireController.getControleurEx()).CtrEx_update(unEx);
             Platform.runLater(() -> { ImgVLoading02Sel.setVisible(false); });
         });
         async_modifierExemplaire.start();
@@ -141,9 +134,6 @@ public class Scene02Controller {
     @FXML
     void buttonExSelEmprunter(ActionEvent event) {
         scene00Controller.transactionAjoutEmprunt(Integer.parseInt(labelExSelId.getText()));
-        // À FAIRE :
-        // UPDATE cet exemplaire avec le flag emprunt à TRUE
-        // mettre à jour la table 01
         buttonExSelCancel(null);
         scene00Controller.switchTab(4);
     }
@@ -151,9 +141,6 @@ public class Scene02Controller {
     @FXML
     void buttonExSelAcheter(ActionEvent event) {
         scene00Controller.transactionAjoutVente(Integer.parseInt(labelExSelId.getText()));
-        // À FAIRE :
-        // UPDATE cet exemplaire avec le flag vendu à TRUE
-        // mettre à jour la table 01
         buttonExSelCancel(null);
         scene00Controller.switchTab(4);
     }
