@@ -34,8 +34,8 @@
       <TableView fx:id="tableView03" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="1000.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
         <columns>
             <TableColumn fx:id="tableView03_Col01" prefWidth="50.0" resizable="false" text="Id" />
-          <TableColumn fx:id="tableView03_Col02" prefWidth="192.0" resizable="false" text="Nom" />
-          <TableColumn fx:id="tableView03_Col03" prefWidth="192.0" resizable="false" text="Prénom" />
+            <TableColumn fx:id="tableView03_Col02" prefWidth="192.0" resizable="false" text="Nom" />
+            <TableColumn fx:id="tableView03_Col03" prefWidth="192.0" resizable="false" text="Prénom" />
             <TableColumn fx:id="tableView03_Col04" prefWidth="192.0" resizable="false" text="Adresse" />
             <TableColumn fx:id="tableView03_Col05" prefWidth="192.0" resizable="false" text="Téléphone" />
             <TableColumn fx:id="tableView03_Col06" prefWidth="192.0" resizable="false" text="Courriel" />
@@ -93,11 +93,9 @@
       <Button fx:id="buttonUserSelCopier" disable="true" layoutX="325.0" layoutY="635.0" mnemonicParsing="false" onAction="#buttonUserSelCopier" prefWidth="80.0" text="Copier &gt;" />
       <Button fx:id="buttonUserSelModifier" disable="true" layoutX="235.0" layoutY="635.0" mnemonicParsing="false" onAction="#buttonUserSelModifier" prefWidth="80.0" text="Modifier" />
       <Button fx:id="buttonUserSelCancel" disable="true" layoutX="145.0" layoutY="635.0" mnemonicParsing="false" onAction="#buttonUserSelCancel" prefWidth="80.0" text="Cancel" />
-      <Button fx:id="buttonUserSelRetards" disable="true" layoutX="459.0" layoutY="502.0" mnemonicParsing="false" onAction="#buttonUserSelRetards" prefWidth="80.0" text="Retards" />
-      <Button fx:id="buttonUserSelVentes" disable="true" layoutX="459.0" layoutY="467.0" mnemonicParsing="false" onAction="#buttonUserSelVentes" prefWidth="80.0" text="Ventes" />
-      <Button fx:id="buttonUserSelEmprunts" disable="true" layoutX="459.0" layoutY="432.0" mnemonicParsing="false" onAction="#buttonUserSelEmprunts" prefWidth="80.0" text="Emprunts" />
+      <Button fx:id="buttonUserSelTransactions" disable="true" layoutX="459.0" layoutY="370.0" mnemonicParsing="false" onAction="#buttonUserSelTransactions" prefWidth="90.0" text="Transactions" />
+      <Button fx:id="buttonUserSelRetards" disable="true" layoutX="459.0" layoutY="502.0" mnemonicParsing="false" onAction="#buttonUserSelRetards" prefWidth="90.0" text="Retards" />
       <Label layoutX="211.0" layoutY="342.0" text="Membre depuis :" textFill="WHITE" />
       <Label fx:id="labelUserSelDate" layoutX="313.0" layoutY="342.0" textFill="WHITE" />
-      <Button fx:id="buttonUserSelTransaction" disable="true" layoutX="459.0" layoutY="370.0" mnemonicParsing="false" onAction="#buttonUserSelTransaction" prefWidth="80.0" text="Transaction" />
    </children>
 </AnchorPane>

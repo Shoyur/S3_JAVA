@@ -57,13 +57,14 @@ public class Scene05Controller implements Initializable {
 	
 	Usager usagerChoisi;
 	Map<Exemplaire,String> listeExDansLaTr = new HashMap<>();
+	ObservableList<Usager> listeUsagers;
 	ObservableList<Emprunt> listeEmDeUsager;
 	ObservableList<Vente> listeVDeUsager;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		UsagerController usagerCtrl = UsagerController.getControleurU();
-		ObservableList<Usager> listeUsagers = usagerCtrl.CtrU_readAll();
+		listeUsagers = usagerCtrl.CtrU_readAll();
 		for(Usager unUsager : listeUsagers) {
 			comboBoxUsgCurrentTr.getItems().add(unUsager.toString());
 		}
@@ -203,6 +204,17 @@ public class Scene05Controller implements Initializable {
 		}
 		lblMontantSTCurrentTr.setText(String.valueOf(prixAccumules));
 		lblMontantATCurrentTr.setText(String.valueOf(String.format("%.2f",prixAccumules+(prixAccumules*0.14975))));		
+	}
+	
+	public void afficherTransactionHistorique(int idU) {
+		Usager usager = null;
+		for(Usager unUsager: listeUsagers) {
+			if(unUsager.getIdU() == idU) {
+				usager = unUsager;
+				break;
+			}
+		}
+		comboBoxUsgCurrentTr.getSelectionModel().select(usager.toString());	
 	}
 
     

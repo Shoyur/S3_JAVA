@@ -55,6 +55,10 @@ public class Scene00Controller {
     public void refreshTblView01() {
         scene01Controller.refreshTblView01();
     }
+    
+    public void transactionAfficherHistorique(int idU) {
+    	scene05Controller.afficherTransactionHistorique(idU);
+    }
 
     public void transactionAjoutVente(int idEx) {
     	scene05Controller.ajouterVente(idEx);

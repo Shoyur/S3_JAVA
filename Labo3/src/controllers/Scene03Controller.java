@@ -45,7 +45,7 @@ public class Scene03Controller implements Initializable {
         // Boutons gauche pour modifier ou copier.
         buttonUserSelCancel, buttonUserSelModifier,buttonUserSelCopier,
         // Boutons centre pour créer une transaction ou consulter les infos de l'usagers.
-        buttonUserSelTransaction, buttonUserSelEmprunts, buttonUserSelVentes, buttonUserSelRetards;
+        buttonUserSelTransactions, buttonUserSelRetards;
 
     @FXML private ImageView
         // Image chargement rafraichissement.
@@ -134,9 +134,7 @@ public class Scene03Controller implements Initializable {
             buttonUserSelCancel.setDisable(false);
             buttonUserSelModifier.setDisable(false);
             buttonUserSelCopier.setDisable(false);
-            buttonUserSelTransaction.setDisable(false);
-            buttonUserSelEmprunts.setDisable(false);
-            buttonUserSelVentes.setDisable(false);
+            buttonUserSelTransactions.setDisable(false);
             buttonUserSelRetards.setDisable(false);
         }
     }
@@ -283,16 +281,9 @@ public class Scene03Controller implements Initializable {
         newNotes.setText(textAreaUserSelNotes.getText());
     }
 
-    @FXML void buttonUserSelTransaction(ActionEvent event) {
+    @FXML void buttonUserSelTransactions(ActionEvent event) {
+    	scene00Controller.transactionAfficherHistorique(Integer.parseInt(labelUserSelId.getText())); 
         scene00Controller.switchTab(4);
-    }
-
-    @FXML void buttonUserSelEmprunts(ActionEvent event) {
-        scene00Controller.switchTab(3);
-    }
-
-    @FXML void buttonUserSelVentes(ActionEvent event) {
-
     }
 
     @FXML void buttonUserSelRetards(ActionEvent event) {
