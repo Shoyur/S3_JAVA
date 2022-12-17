@@ -17,8 +17,7 @@ public class UsagerDao {
     private static final String URL_BD = "jdbc:mysql://sql9.freesqldatabase.com/sql9558434";
     private static final String USAGER = "sql9558434";
     private static final String PASS = "bQV64kWUMF";
-
-    
+   
     private static final String CREATE = "INSERT INTO usager VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String READ_ALL = "SELECT * FROM usager";
     private static final String UPDATE = "UPDATE usager SET nomU=?, prenomU=?, adresseU=?, telephoneU=?, courrielU=?, notesU=? where idU=?";

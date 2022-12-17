@@ -21,6 +21,7 @@ public class EmpruntDao {
     private static final String CREATE = "INSERT INTO emprunt VALUES(?, ?, ?, ?, ?)";
     private static final String READ_ALL = "SELECT * FROM emprunt";
     private static final String READ_ALL_PAR_USAGER = "SELECT * FROM emprunt WHERE idU=?";
+    private static final String DELETE = "DELETE FROM emprunt WHERE idEm=?";
 
     public EmpruntDao() {  }
     
@@ -115,6 +116,22 @@ public class EmpruntDao {
             MdlEm_Fermer(conn);
         }
         return listeEmpruntsParUsager;
+    }
+    
+    // DELETE
+    public void MdlEm_delete(int idEm) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(DELETE);
+            stmt.setInt(1, idEm);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+        	System.out.println("================================================================================================ ERREUR, MdlEm_delete(), e= " + e);
+            throw new RuntimeException(e);
+        } finally {
+            MdlEm_Fermer(stmt);
+            MdlEm_Fermer(conn);
+        }
     }
    
     private static void MdlEm_Fermer(Connection conn) {

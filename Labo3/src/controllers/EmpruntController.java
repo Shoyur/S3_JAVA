@@ -3,7 +3,6 @@ package controllers;
 import javafx.collections.ObservableList;
 import models.Emprunt;
 import models.EmpruntDao;
-import models.Exemplaire;
 
 
 public class EmpruntController {
@@ -35,13 +34,11 @@ public class EmpruntController {
     	return Dao_Instance.MdlEm_readAllParUsager(idU);
     }
 
-    /*
-    public ObservableList<Exemplaire> CtrEx_readAll(int option) {
-        return Dao_Instance.MdlEm_readAll(option);
+    public ObservableList<Emprunt> CtrEm_readAll() {
+        return Dao_Instance.MdlEm_readAll();
     }
 
-    public void CtrEx_update(String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx, String pistesEx, int idEx, String cheminImgEx) {
-        Dao_Instance.MdlEm_update(titreEx, artisteEx, categEx, anneeEx, prixEx, pistesEx, idEx, cheminImgEx);
+    public void CtrEm_delete(int idEm) {
+        Dao_Instance.MdlEm_delete(idEm);
     }
-	*/
 }
