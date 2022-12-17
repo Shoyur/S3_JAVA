@@ -1,0 +1,235 @@
+package models;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class ExemplaireDao {
+    private static Connection conn = null;
+    private static ExemplaireDao instanceDao = null;
+
+    private static final String URL_BD = "jdbc:mysql://sql9.freesqldatabase.com/sql9558434";
+    private static final String USAGER = "sql9558434";
+    private static final String PASS = "bQV64kWUMF";
+
+<<<<<<< HEAD
+    private static final String CREATE = "INSERT INTO exemplaire VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String READ_ALL_NON_VENDUS = "SELECT * FROM exemplaire WHERE estVendu = FALSE";
+    private static final String UPDATE = "UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=? where idEx=?";
+=======
+    private static final String CREATE = "INSERT INTO exemplaire VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String READ_ALL_NON_VENDUS = "SELECT * FROM exemplaire WHERE estVendu = FALSE";
+    private static final String READ = "SELECT * FROM exemplaire WHERE idEx=?";
+    private static final String UPDATE = "UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=?, nbEmpruntsEx=?, estEmprunte=?, estVendu=?, cheminImg=? where idEx=?";
+>>>>>>> origin/Davideh
+
+    public ExemplaireDao() {  }
+    
+    public static synchronized ExemplaireDao getExemplaireDao() {
+        try {
+            // if (instanceDao == null) {
+                instanceDao = new ExemplaireDao();
+                conn = DriverManager.getConnection(URL_BD, USAGER, PASS);
+            // }
+            return instanceDao;
+        } 
+        catch (Exception e) { 
+            System.out.println("================================================================================================ ERREUR, getexemplaireDao(), e= " + e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    // CREATE
+    // Exemplaire(int idEx, String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx,
+<<<<<<< HEAD
+    //         String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu)
+=======
+    //         String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu, String cheminImg)
+>>>>>>> origin/Davideh
+    public void MdlEx_create(Exemplaire exemplaire) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(CREATE);
+            stmt.setInt(1, 0);
+            stmt.setString(2, exemplaire.getTitreEx());
+            stmt.setString(3, exemplaire.getArtisteEx());
+            stmt.setString(4, exemplaire.getCategEx());
+            stmt.setInt(5, exemplaire.getAnneeEx());
+            stmt.setDouble(6, exemplaire.getPrixEx());
+            stmt.setString(7, exemplaire.getPistesEx());
+            stmt.setInt(8, exemplaire.getNbEmpruntsEx());
+            stmt.setBoolean(9, exemplaire.isEstEmprunte());
+            stmt.setBoolean(10, exemplaire.isEstVendu());
+<<<<<<< HEAD
+=======
+            stmt.setString(11, exemplaire.getCheminImgEx());
+>>>>>>> origin/Davideh
+            stmt.executeUpdate();
+        } 
+        catch (SQLException e) { 
+            System.out.println("================================================================================================ ERREUR, MdlEx_create(), e= " + e);
+            throw new RuntimeException(e); 
+        } 
+        finally {
+            MdlEx_Fermer(stmt);
+            MdlEx_Fermer(conn);
+        }
+    }
+
+    // READ ALL
+    public ObservableList<Exemplaire> MdlEx_readAll(int option) {
+        PreparedStatement stmt = null;
+        ObservableList<Exemplaire> listeExemplaires = FXCollections.observableArrayList();
+        try {
+            if (option == 0) {
+                stmt = conn.prepareStatement(READ_ALL_NON_VENDUS);
+            }
+            else if (option == 1) {
+                stmt = conn.prepareStatement(READ_ALL_NON_VENDUS);
+<<<<<<< HEAD
+            }
+            
+=======
+            }         
+>>>>>>> origin/Davideh
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Exemplaire exemplaire = new Exemplaire();
+                // Exemplaire(int id, String album, String artiste, int annee, String genre, boolean possession) 
+                exemplaire.setIdEx(rs.getInt("idEx"));
+                exemplaire.setTitreEx(rs.getString("titreEx"));
+                exemplaire.setArtisteEx(rs.getString("artisteEx"));
+                exemplaire.setCategEx(rs.getString("categEx"));
+                exemplaire.setAnneeEx(rs.getInt("anneeEx"));
+                exemplaire.setPrixEx(rs.getDouble("prixEx"));
+                exemplaire.setPistesEx(rs.getString("pistesEx"));
+                exemplaire.setNbEmpruntsEx(rs.getInt("nbEmpruntsEx"));
+                exemplaire.setEstEmprunte(rs.getBoolean("estEmprunte"));
+                exemplaire.setEstVendu(rs.getBoolean("estVendu"));
+<<<<<<< HEAD
+=======
+                exemplaire.setCheminImgEx(rs.getString("cheminImg"));
+>>>>>>> origin/Davideh
+                listeExemplaires.add(exemplaire);
+            }
+        } 
+        catch (SQLException e) { 
+<<<<<<< HEAD
+            System.out.println("================================================================================================ ERREUR, MdlEx_readAll()), e= " + e);
+=======
+            System.out.println("================================================================================================ ERREUR, MdlEx_readAll(), e= " + e);
+>>>>>>> origin/Davideh
+            throw new RuntimeException(e); 
+        } 
+        finally {
+            MdlEx_Fermer(stmt);
+            MdlEx_Fermer(conn);
+        }
+        return listeExemplaires;
+    }
+<<<<<<< HEAD
+
+    // UPDATE
+    // UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=? where idEx=?";
+    public void MdlEx_update(String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx, String pistesEx, int idEx) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(UPDATE);
+            stmt.setString(1, titreEx);
+            stmt.setString(2, artisteEx);
+            stmt.setString(3, categEx);
+            stmt.setInt(4, anneeEx);
+            stmt.setDouble(5, prixEx);
+            stmt.setString(6, pistesEx);
+            stmt.setInt(7, idEx);
+=======
+    
+    // READ
+    public Exemplaire MdlEx_read(int idEx) {
+        Exemplaire exemplaire = new Exemplaire();
+        PreparedStatement stmt = null;
+        try {
+			stmt = conn.prepareStatement(READ);
+            stmt.setInt(1, idEx);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                exemplaire.setIdEx(rs.getInt("idEx"));
+                exemplaire.setTitreEx(rs.getString("titreEx"));
+                exemplaire.setArtisteEx(rs.getString("artisteEx"));
+                exemplaire.setCategEx(rs.getString("categEx"));
+                exemplaire.setAnneeEx(rs.getInt("anneeEx"));
+                exemplaire.setPrixEx(rs.getDouble("prixEx"));
+                exemplaire.setPistesEx(rs.getString("pistesEx"));
+                exemplaire.setNbEmpruntsEx(rs.getInt("nbEmpruntsEx"));
+                exemplaire.setEstEmprunte(rs.getBoolean("estEmprunte"));
+                exemplaire.setEstVendu(rs.getBoolean("estVendu"));
+                exemplaire.setCheminImgEx(rs.getString("cheminImg"));
+            }
+		} catch (SQLException e) {
+            System.out.println("================================================================================================ ERREUR, MdlEx_read(), e= " + e);
+            throw new RuntimeException(e); 
+		}
+        finally {
+            MdlEx_Fermer(stmt);
+            MdlEx_Fermer(conn);
+        }
+        return exemplaire;
+    }
+
+    // UPDATE
+    // UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=?, cheminImgEx? where idEx=?";
+    public void MdlEx_update(Exemplaire exemplaire) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(UPDATE);
+            stmt.setString(1, exemplaire.getTitreEx());
+            stmt.setString(2, exemplaire.getArtisteEx());
+            stmt.setString(3, exemplaire.getCategEx());
+            stmt.setInt(4, exemplaire.getAnneeEx());
+            stmt.setDouble(5, exemplaire.getPrixEx());
+            stmt.setString(6, exemplaire.getPistesEx());
+            stmt.setInt(7, exemplaire.getNbEmpruntsEx());
+            stmt.setBoolean(8, exemplaire.isEstEmprunte());
+            stmt.setBoolean(9, exemplaire.isEstVendu());
+            stmt.setString(10, exemplaire.getCheminImgEx());
+            stmt.setInt(11, exemplaire.getIdEx());
+>>>>>>> origin/Davideh
+            stmt.executeUpdate();
+        } 
+        catch (SQLException e) { 
+            System.out.println("================================================================================================ ERREUR, MdlEx_update(), e= " + e);
+            throw new RuntimeException(e); 
+        } 
+        finally {
+            MdlEx_Fermer(stmt);
+            MdlEx_Fermer(conn);
+        }
+    }
+   
+    private static void MdlEx_Fermer(Connection conn) {
+        if (conn != null) {
+            try { conn.close(); } 
+            catch (SQLException e) { 
+                System.out.println("================================================================================================ ERREUR, MdlEx_Fermer(), e= " + e);
+                throw new RuntimeException(e); 
+            }
+        }
+    }
+
+    private static void MdlEx_Fermer(Statement stmt) {
+        if (stmt != null) {
+            try { stmt.close(); }
+            catch (SQLException e) { 
+                System.out.println("================================================================================================ ERREUR, MdlEx_Fermer(), e= " + e);
+                throw new RuntimeException(e); 
+            }
+        }
+    }
+
+}

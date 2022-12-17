@@ -1,5 +1,10 @@
 package controllers;
 
+<<<<<<< HEAD
+=======
+import java.io.File;
+import java.nio.file.Paths;
+>>>>>>> origin/Davideh
 import java.sql.Timestamp;
 
 import javafx.application.Platform;
@@ -9,8 +14,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+<<<<<<< HEAD
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+=======
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+>>>>>>> origin/Davideh
 import models.Exemplaire;
 
 public class Scene02Controller {
@@ -27,6 +39,7 @@ public class Scene02Controller {
 
     @FXML private Button buttonExSelCancel, buttonExSelModifier, buttonExSelCopier,
                     buttonExSelEmprunter, buttonExSelAcheter,
+<<<<<<< HEAD
                     btnAjouterExCancel, btnAjouterEx;
 
     @FXML private Label labelExSelId, labelExSelNbEmprunts, labelExSelPrixAjuste, 
@@ -37,6 +50,19 @@ public class Scene02Controller {
                     textFieldExSelAnnee, textFieldExSelPrix,
                     textFieldExNewTitre, textFieldExNewArtiste, textFieldExNewGenre,
                     textFieldExNewAnnee, textFieldExNewPrix;
+=======
+                    btnAjouterExCancel, btnAjouterEx, buttonExSelGetImg, buttonExNewGetImg;
+
+    @FXML private Label labelExSelId, labelExSelNbEmprunts, labelExSelPrixAjuste, labelExSelPrixEmprunt,
+                    labelAjoutExNewErreur1, labelAjoutExNewErreur2, labelAjoutExNewErreur3,
+                    labelAjoutExNewErreur4, labelAjoutExNewErreur5, labelAjoutExNewErreur6,
+                    labelAjoutExNewErreur7;
+
+    @FXML private TextField textFieldExSelTitre, textFieldExSelArtiste, textFieldExSelGenre,
+                    textFieldExSelAnnee, textFieldExSelPrix, textFieldExSelCheminImg,
+                    textFieldExNewTitre, textFieldExNewArtiste, textFieldExNewGenre, 
+                    textFieldExNewAnnee, textFieldExNewPrix, textFieldExNewCheminImg;
+>>>>>>> origin/Davideh
 
     @FXML private TextArea textAreaExSelPistes, textAreaExNewPistes;
 
@@ -55,8 +81,16 @@ public class Scene02Controller {
         textFieldExSelPrix.setDisable(true);
         labelExSelNbEmprunts.setText(null);
         labelExSelPrixAjuste.setText(null);
+<<<<<<< HEAD
         textAreaExSelPistes.setText(null);
         textAreaExSelPistes.setDisable(true);
+=======
+        labelExSelPrixEmprunt.setText(null);
+        textAreaExSelPistes.setText(null);
+        textAreaExSelPistes.setDisable(true);
+        textFieldExSelCheminImg.setText(null);
+        textFieldExSelCheminImg.setDisable(true);
+>>>>>>> origin/Davideh
         ImgVExSelPochette.setVisible(false);
         buttonExSelCancel.setDisable(true);
         buttonExSelModifier.setDisable(true);
@@ -64,10 +98,46 @@ public class Scene02Controller {
         buttonExSelEmprunter.setDisable(true);
         buttonExSelAcheter.setDisable(true);
     }
+<<<<<<< HEAD
+=======
+    
+    @FXML 
+    void buttonExSelGetImg(ActionEvent event) {
+    	FileChooser fc = new FileChooser();
+    	String path = Paths.get(".").toAbsolutePath().normalize().toString();
+    	path += "/src/images/";
+    	fc.setInitialDirectory(new File(path));
+    	File fileSelected = fc.showOpenDialog(null);
+    	String filePath = fileSelected.getName();
+    	if(filePath != null) {
+        	String imgName = filePath.substring(filePath.lastIndexOf("/")+1);
+        	textFieldExSelCheminImg.setText("../images/"+imgName);
+        	ImgVExSelPochette.setImage(new Image(getClass().getResourceAsStream("../images/"+imgName)));
+    	}else {
+    	}
+    }
+    
+    @FXML 
+    void buttonExNewGetImg(ActionEvent event) {
+    	FileChooser fc = new FileChooser();
+    	String path = Paths.get(".").toAbsolutePath().normalize().toString();
+    	path += "/src/images/";
+    	fc.setInitialDirectory(new File(path));
+    	File fileSelected = fc.showOpenDialog(null);
+    	String filePath = fileSelected.getName();
+    	if(filePath != null) {
+        	String imgName = filePath.substring(filePath.lastIndexOf("/")+1);
+        	textFieldExNewCheminImg.setText("../images/"+imgName);
+        	ImgVExNewPochette.setImage(new Image(getClass().getResourceAsStream("../images/"+imgName)));
+    	}else {
+    	}
+    }
+>>>>>>> origin/Davideh
 
     @FXML
     void buttonExSelModifier(ActionEvent event) {
         ImgVLoading02Sel.setVisible(true);
+<<<<<<< HEAD
         Thread async_modifierExemplaire = new Thread(() -> {
             (ExemplaireController.getControleurEx()).CtrEx_update(
                 textFieldExSelTitre.getText(), 
@@ -77,6 +147,11 @@ public class Scene02Controller {
                 Double.parseDouble(textFieldExSelPrix.getText()), 
                 textAreaExSelPistes.getText(), 
                 Integer.parseInt(labelExSelId.getText()));
+=======
+        Exemplaire unEx = ExemplaireController.getControleurEx().CtrEx_read(Integer.parseInt(labelExSelId.getText()));
+        Thread async_modifierExemplaire = new Thread(() -> {
+            (ExemplaireController.getControleurEx()).CtrEx_update(unEx);
+>>>>>>> origin/Davideh
             Platform.runLater(() -> { ImgVLoading02Sel.setVisible(false); });
         });
         async_modifierExemplaire.start();
@@ -93,24 +168,39 @@ public class Scene02Controller {
         textFieldExNewAnnee.setText(textFieldExSelAnnee.getText());
         textFieldExNewPrix.setText(textFieldExSelPrix.getText());
         textAreaExNewPistes.setText(textAreaExSelPistes.getText());
+<<<<<<< HEAD
+=======
+        textFieldExNewCheminImg.setText(textFieldExSelCheminImg.getText());
+        ImgVExNewPochette.setImage(new Image(getClass().getResourceAsStream(textFieldExNewCheminImg.getText())));
+>>>>>>> origin/Davideh
     }
 
     @FXML
     void buttonExSelEmprunter(ActionEvent event) {
         scene00Controller.transactionAjoutEmprunt(Integer.parseInt(labelExSelId.getText()));
+<<<<<<< HEAD
         // À FAIRE :
         // UPDATE cet exemplaire avec le flag emprunt à TRUE
         // mettre à jour la table 01
         buttonExSelCancel(null);
+=======
+        buttonExSelCancel(null);
+        scene00Controller.switchTab(4);
+>>>>>>> origin/Davideh
     }
 
     @FXML
     void buttonExSelAcheter(ActionEvent event) {
         scene00Controller.transactionAjoutVente(Integer.parseInt(labelExSelId.getText()));
+<<<<<<< HEAD
         // À FAIRE :
         // UPDATE cet exemplaire avec le flag vendu à TRUE
         // mettre à jour la table 01
         buttonExSelCancel(null);
+=======
+        buttonExSelCancel(null);
+        scene00Controller.switchTab(4);
+>>>>>>> origin/Davideh
     }
 
     @FXML
@@ -122,6 +212,11 @@ public class Scene02Controller {
         textFieldExNewAnnee.setText(null);
         textFieldExNewPrix.setText(null);
         textAreaExNewPistes.setText(null);
+<<<<<<< HEAD
+=======
+        textFieldExNewCheminImg.setText(null);
+        ImgVExNewPochette.setVisible(false);
+>>>>>>> origin/Davideh
     }
 
     private void cacherErreursAjouterEx() {
@@ -131,6 +226,10 @@ public class Scene02Controller {
         labelAjoutExNewErreur4.setVisible(false);
         labelAjoutExNewErreur5.setVisible(false);
         labelAjoutExNewErreur6.setVisible(false);
+<<<<<<< HEAD
+=======
+        labelAjoutExNewErreur7.setVisible(false);
+>>>>>>> origin/Davideh
     }
 
     @FXML
@@ -167,10 +266,22 @@ public class Scene02Controller {
             if (erreur == false) { textAreaExNewPistes.requestFocus(); }
             erreur = true;
         }
+<<<<<<< HEAD
         if (erreur == true) { return; }
         ImgVLoading02New.setVisible(true);
         // Exemplaire(int idEx, String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx,
         //     String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu)
+=======
+        if (textFieldExNewCheminImg.getText() == null || textFieldExNewCheminImg.getText().isEmpty()) {
+            labelAjoutExNewErreur7.setVisible(true);
+            if (erreur == false) { textAreaExNewPistes.requestFocus(); }
+            erreur = true;            
+        }
+        if (erreur == true) { return; }
+        ImgVLoading02New.setVisible(true);
+        // Exemplaire(int idEx, String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx,
+        //     String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu, String cheminImgEx)
+>>>>>>> origin/Davideh
         Exemplaire exemplaire = new Exemplaire(
             0, 
             textFieldExNewTitre.getText(),
@@ -179,7 +290,11 @@ public class Scene02Controller {
             Integer.parseInt(textFieldExNewAnnee.getText()), 
             Double.parseDouble(textFieldExNewPrix.getText()), 
             textAreaExNewPistes.getText(), 
+<<<<<<< HEAD
             0, false, false);
+=======
+            0, false, false, textFieldExNewCheminImg.getText());
+>>>>>>> origin/Davideh
         Thread async_ajouterEx = new Thread(() -> {
             (ExemplaireController.getControleurEx()).CtrEx_create(exemplaire);
             Platform.runLater(() -> { ImgVLoading02New.setVisible(false); });
@@ -204,11 +319,25 @@ public class Scene02Controller {
         textFieldExSelPrix.setDisable(false);
         labelExSelNbEmprunts.setText(Integer.toString(exemplaire.getNbEmpruntsEx()));
         double prixAjuste = exemplaire.getPrixEx() - exemplaire.getNbEmpruntsEx();
+<<<<<<< HEAD
         double moitie = exemplaire.getPrixEx() / 2;
         if (prixAjuste < moitie) { prixAjuste = moitie; }
         labelExSelPrixAjuste.setText(String.format("%.2f", prixAjuste));
         textAreaExSelPistes.setText(exemplaire.getPistesEx());
         textAreaExSelPistes.setDisable(false);
+=======
+        double plancher = exemplaire.getPrixEx() / 1.25;
+        if (prixAjuste < plancher) { prixAjuste = plancher; }
+        labelExSelPrixAjuste.setText(String.format("%.2f", prixAjuste));
+        double prixEmprunt = exemplaire.getPrixEx() / 4;
+        labelExSelPrixEmprunt.setText(String.format("%.2f", prixEmprunt));
+        textAreaExSelPistes.setText(exemplaire.getPistesEx());
+        textAreaExSelPistes.setDisable(false);
+        textFieldExSelCheminImg.setText(exemplaire.getCheminImgEx());
+        textFieldExSelCheminImg.setDisable(false);
+        buttonExSelGetImg.setDisable(false);
+        ImgVExSelPochette.setImage(new Image(getClass().getResourceAsStream(exemplaire.getCheminImgEx())));
+>>>>>>> origin/Davideh
         ImgVExSelPochette.setVisible(true);
         buttonExSelCancel.setDisable(false);
         buttonExSelModifier.setDisable(false);

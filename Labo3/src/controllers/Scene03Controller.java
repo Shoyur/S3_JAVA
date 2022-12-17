@@ -45,7 +45,11 @@ public class Scene03Controller implements Initializable {
         // Boutons gauche pour modifier ou copier.
         buttonUserSelCancel, buttonUserSelModifier,buttonUserSelCopier,
         // Boutons centre pour créer une transaction ou consulter les infos de l'usagers.
+<<<<<<< HEAD
         buttonUserSelTransaction, buttonUserSelEmprunts, buttonUserSelVentes, buttonUserSelRetards;
+=======
+        buttonUserSelTransactions, buttonUserSelRetards;
+>>>>>>> origin/Davideh
 
     @FXML private ImageView
         // Image chargement rafraichissement.
@@ -134,9 +138,13 @@ public class Scene03Controller implements Initializable {
             buttonUserSelCancel.setDisable(false);
             buttonUserSelModifier.setDisable(false);
             buttonUserSelCopier.setDisable(false);
+<<<<<<< HEAD
             buttonUserSelTransaction.setDisable(false);
             buttonUserSelEmprunts.setDisable(false);
             buttonUserSelVentes.setDisable(false);
+=======
+            buttonUserSelTransactions.setDisable(false);
+>>>>>>> origin/Davideh
             buttonUserSelRetards.setDisable(false);
         }
     }
@@ -283,6 +291,7 @@ public class Scene03Controller implements Initializable {
         newNotes.setText(textAreaUserSelNotes.getText());
     }
 
+<<<<<<< HEAD
     @FXML void buttonUserSelTransaction(ActionEvent event) {
         scene00Controller.switchTab(4);
     }
@@ -293,6 +302,11 @@ public class Scene03Controller implements Initializable {
 
     @FXML void buttonUserSelVentes(ActionEvent event) {
 
+=======
+    @FXML void buttonUserSelTransactions(ActionEvent event) {
+    	scene00Controller.transactionAfficherHistorique(Integer.parseInt(labelUserSelId.getText())); 
+        scene00Controller.switchTab(4);
+>>>>>>> origin/Davideh
     }
 
     @FXML void buttonUserSelRetards(ActionEvent event) {

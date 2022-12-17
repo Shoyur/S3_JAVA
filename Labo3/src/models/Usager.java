@@ -81,6 +81,7 @@ public class Usager {
 
     public void setDateAbonneU(Timestamp dateAbonneU) {
         this.dateAbonneU = dateAbonneU;
+<<<<<<< HEAD
     }
 
     public String getNotesU() {
@@ -89,6 +90,20 @@ public class Usager {
 
     public void setNotesU(String notesU) {
         this.notesU = notesU;
+=======
+    }
+
+    public String getNotesU() {
+        return notesU;
+    }
+
+    public void setNotesU(String notesU) {
+        this.notesU = notesU;
+    }
+    
+    public String toString() {
+    	return this.idU+"   "+this.nomU+", "+this.prenomU;
+>>>>>>> origin/Davideh
     }
 
 }

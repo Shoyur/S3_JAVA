@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="scene06" prefHeight="676.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene06Controller">
+   <children>
+      <TableView fx:id="tableView" layoutX="86.0" layoutY="70.0" prefWidth="1000.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+         <placeholder>
+            <Label text="Aucun résultat..." />
+         </placeholder>
+         <columns>
+            <TableColumn fx:id="tableView_Col01" PrefWidth="40.0" prefWidth="160.0" resizable="false" text="Quand" />
+            <TableColumn fx:id="tableView_Col02" PrefWidth="250.0" prefWidth="923.0" resizable="false" text="Quoi" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnRefreshTblView06" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#btnRefreshTblView06" prefWidth="80.0" text="Rafraîchir" />
+      <ImageView fx:id="ImgVLoading" fitHeight="28.0" fitWidth="28.0" layoutX="106.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../medias/loading.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

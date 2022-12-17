@@ -67,7 +67,11 @@
       </content>
     </Tab>
 
+<<<<<<< HEAD
     <Tab fx:id="tab05" text="Transaction">
+=======
+    <Tab fx:id="tab05" text="Transactions">
+>>>>>>> origin/Davideh
       <graphic>
         <ImageView>
           <image>

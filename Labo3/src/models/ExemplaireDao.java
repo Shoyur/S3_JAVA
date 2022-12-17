@@ -18,9 +18,16 @@ public class ExemplaireDao {
     private static final String USAGER = "sql9558434";
     private static final String PASS = "bQV64kWUMF";
 
+<<<<<<< HEAD
     private static final String CREATE = "INSERT INTO exemplaire VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String READ_ALL_NON_VENDUS = "SELECT * FROM exemplaire WHERE estVendu = FALSE";
     private static final String UPDATE = "UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=? where idEx=?";
+=======
+    private static final String CREATE = "INSERT INTO exemplaire VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String READ_ALL_NON_VENDUS = "SELECT * FROM exemplaire WHERE estVendu = FALSE";
+    private static final String READ = "SELECT * FROM exemplaire WHERE idEx=?";
+    private static final String UPDATE = "UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=?, nbEmpruntsEx=?, estEmprunte=?, estVendu=?, cheminImg=? where idEx=?";
+>>>>>>> origin/Davideh
 
     public ExemplaireDao() {  }
     
@@ -40,7 +47,11 @@ public class ExemplaireDao {
 
     // CREATE
     // Exemplaire(int idEx, String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx,
+<<<<<<< HEAD
     //         String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu)
+=======
+    //         String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu, String cheminImg)
+>>>>>>> origin/Davideh
     public void MdlEx_create(Exemplaire exemplaire) {
         PreparedStatement stmt = null;
         try {
@@ -55,6 +66,10 @@ public class ExemplaireDao {
             stmt.setInt(8, exemplaire.getNbEmpruntsEx());
             stmt.setBoolean(9, exemplaire.isEstEmprunte());
             stmt.setBoolean(10, exemplaire.isEstVendu());
+<<<<<<< HEAD
+=======
+            stmt.setString(11, exemplaire.getCheminImgEx());
+>>>>>>> origin/Davideh
             stmt.executeUpdate();
         } 
         catch (SQLException e) { 
@@ -77,8 +92,12 @@ public class ExemplaireDao {
             }
             else if (option == 1) {
                 stmt = conn.prepareStatement(READ_ALL_NON_VENDUS);
+<<<<<<< HEAD
             }
             
+=======
+            }         
+>>>>>>> origin/Davideh
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Exemplaire exemplaire = new Exemplaire();
@@ -93,20 +112,28 @@ public class ExemplaireDao {
                 exemplaire.setNbEmpruntsEx(rs.getInt("nbEmpruntsEx"));
                 exemplaire.setEstEmprunte(rs.getBoolean("estEmprunte"));
                 exemplaire.setEstVendu(rs.getBoolean("estVendu"));
+<<<<<<< HEAD
+=======
+                exemplaire.setCheminImgEx(rs.getString("cheminImg"));
+>>>>>>> origin/Davideh
                 listeExemplaires.add(exemplaire);
             }
         } 
         catch (SQLException e) { 
+<<<<<<< HEAD
             System.out.println("================================================================================================ ERREUR, MdlEx_readAll()), e= " + e);
+=======
+            System.out.println("================================================================================================ ERREUR, MdlEx_readAll(), e= " + e);
+>>>>>>> origin/Davideh
             throw new RuntimeException(e); 
         } 
         finally {
             MdlEx_Fermer(stmt);
             MdlEx_Fermer(conn);
         }
-
         return listeExemplaires;
     }
+<<<<<<< HEAD
 
     // UPDATE
     // UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=? where idEx=?";
@@ -121,6 +148,58 @@ public class ExemplaireDao {
             stmt.setDouble(5, prixEx);
             stmt.setString(6, pistesEx);
             stmt.setInt(7, idEx);
+=======
+    
+    // READ
+    public Exemplaire MdlEx_read(int idEx) {
+        Exemplaire exemplaire = new Exemplaire();
+        PreparedStatement stmt = null;
+        try {
+			stmt = conn.prepareStatement(READ);
+            stmt.setInt(1, idEx);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                exemplaire.setIdEx(rs.getInt("idEx"));
+                exemplaire.setTitreEx(rs.getString("titreEx"));
+                exemplaire.setArtisteEx(rs.getString("artisteEx"));
+                exemplaire.setCategEx(rs.getString("categEx"));
+                exemplaire.setAnneeEx(rs.getInt("anneeEx"));
+                exemplaire.setPrixEx(rs.getDouble("prixEx"));
+                exemplaire.setPistesEx(rs.getString("pistesEx"));
+                exemplaire.setNbEmpruntsEx(rs.getInt("nbEmpruntsEx"));
+                exemplaire.setEstEmprunte(rs.getBoolean("estEmprunte"));
+                exemplaire.setEstVendu(rs.getBoolean("estVendu"));
+                exemplaire.setCheminImgEx(rs.getString("cheminImg"));
+            }
+		} catch (SQLException e) {
+            System.out.println("================================================================================================ ERREUR, MdlEx_read(), e= " + e);
+            throw new RuntimeException(e); 
+		}
+        finally {
+            MdlEx_Fermer(stmt);
+            MdlEx_Fermer(conn);
+        }
+        return exemplaire;
+    }
+
+    // UPDATE
+    // UPDATE exemplaire SET titreEx=?, artisteEx=?, categEx=?, anneeEx=?, prixEx=?, pistesEx=?, cheminImgEx? where idEx=?";
+    public void MdlEx_update(Exemplaire exemplaire) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(UPDATE);
+            stmt.setString(1, exemplaire.getTitreEx());
+            stmt.setString(2, exemplaire.getArtisteEx());
+            stmt.setString(3, exemplaire.getCategEx());
+            stmt.setInt(4, exemplaire.getAnneeEx());
+            stmt.setDouble(5, exemplaire.getPrixEx());
+            stmt.setString(6, exemplaire.getPistesEx());
+            stmt.setInt(7, exemplaire.getNbEmpruntsEx());
+            stmt.setBoolean(8, exemplaire.isEstEmprunte());
+            stmt.setBoolean(9, exemplaire.isEstVendu());
+            stmt.setString(10, exemplaire.getCheminImgEx());
+            stmt.setInt(11, exemplaire.getIdEx());
+>>>>>>> origin/Davideh
             stmt.executeUpdate();
         } 
         catch (SQLException e) { 

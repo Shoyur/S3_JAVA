@@ -12,11 +12,19 @@ public class Exemplaire {
     private int nbEmpruntsEx;
     private boolean estEmprunte;
     private boolean estVendu;
+<<<<<<< HEAD
+=======
+    private String cheminImgEx;
+>>>>>>> origin/Davideh
 
     public Exemplaire() {  }
 
     public Exemplaire(int idEx, String titreEx, String artisteEx, String categEx, int anneeEx, double prixEx,
+<<<<<<< HEAD
             String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu) {
+=======
+            String pistesEx, int nbEmpruntsEx, boolean estEmprunte, boolean estVendu, String cheminImgEx) {
+>>>>>>> origin/Davideh
         this.idEx = idEx;
         this.titreEx = titreEx;
         this.artisteEx = artisteEx;
@@ -27,9 +35,16 @@ public class Exemplaire {
         this.nbEmpruntsEx = nbEmpruntsEx;
         this.estEmprunte = estEmprunte;
         this.estVendu = estVendu;
+<<<<<<< HEAD
     }
 
     public int getIdEx() {
+=======
+        this.cheminImgEx = cheminImgEx;
+    }
+
+	public int getIdEx() {
+>>>>>>> origin/Davideh
         return idEx;
     }
 
@@ -108,5 +123,16 @@ public class Exemplaire {
     public void setEstVendu(boolean estVendu) {
         this.estVendu = estVendu;
     }
+<<<<<<< HEAD
+=======
+    
+    public String getCheminImgEx() {
+		return cheminImgEx;
+	}
+    
+	public void setCheminImgEx(String cheminImgEx) {
+		this.cheminImgEx = cheminImgEx;
+	}
+>>>>>>> origin/Davideh
     
 }
