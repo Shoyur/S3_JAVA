@@ -18,7 +18,6 @@ public class Scene00Controller {
     @FXML private Scene06Controller scene06Controller;
     @FXML private Scene07Controller scene07Controller;
     @FXML private Scene08Controller scene08Controller;
-    @FXML private Scene09Controller scene09Controller;
 
     @FXML
     private Tab 
@@ -27,6 +26,8 @@ public class Scene00Controller {
 
     @FXML
     private TabPane scene00;
+
+
 
     public void switchTab(int tab) {
         scene00.getSelectionModel().select(tab);
@@ -40,8 +41,7 @@ public class Scene00Controller {
         scene05Controller.injectScene00Controller(this);     
         scene06Controller.injectScene00Controller(this);     
         scene07Controller.injectScene00Controller(this);     
-        scene08Controller.injectScene00Controller(this);     
-        scene09Controller.injectScene00Controller(this);         
+        scene08Controller.injectScene00Controller(this);                         
     }
 
     public void afficherExSel(Exemplaire exemplaire) {
@@ -55,16 +55,7 @@ public class Scene00Controller {
     public void refreshTblView01() {
         scene01Controller.refreshTblView01();
     }
-<<<<<<< HEAD
 
-    public void transactionAjoutVente(int idEx) {
-    }
-
-    public void transactionAjoutEmprunt(int idEx) {
-    }
-    
-=======
-    
     public void transactionAfficherHistorique(int idU) {
     	scene05Controller.afficherTransactionHistorique(idU);
     }
@@ -72,11 +63,26 @@ public class Scene00Controller {
     public void transactionAjoutVente(int idEx) {
     	scene05Controller.ajouterVente(idEx);
     }
->>>>>>> origin/Davideh
 
     public void transactionAjoutEmprunt(int idEx) {
     	scene05Controller.ajouterEmprunt(idEx);
     }
+
+    public void refreshStats1(int valeur) {
+        scene07Controller.refreshStats1(valeur);
+    }
+
+    public void refreshStats2(int valeur) {
+        scene07Controller.refreshStats2(valeur);
+    }
     
+    public void refreshStats3(int valeur) {
+        scene07Controller.refreshStats3(valeur);
+    }
+
+    public void refreshStats4(int valeur) {
+        scene07Controller.refreshStats4(valeur);
+    }
+
 
 }

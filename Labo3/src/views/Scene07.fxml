@@ -1,10 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scene07" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene07Controller">
+<AnchorPane fx:id="scene07" prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Scene07Controller">
    <children>
-      <Label layoutX="149.0" layoutY="153.0" text="Vue no. 7777777" textFill="WHITE" />
+      <PieChart fx:id="StatsPieChart01" layoutX="505.0" layoutY="165.0" legendVisible="false" title="Nombre d'exemplaires empruntés vs vendus à ce jour" />
+      <Label layoutX="40.0" layoutY="40.0" text="Nombre d'usagers actifs :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="140.0" text="Nombre d'exemplaires en stock :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="240.0" text="Nombre d'emprunts à ce jour :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="340.0" text="Nombre d'exemplaires vendus à ce jour :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelStats1" layoutX="70.0" layoutY="78.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelStats2" layoutX="70.0" layoutY="178.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelStats3" layoutX="70.0" layoutY="278.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelStats4" layoutX="70.0" layoutY="378.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

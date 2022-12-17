@@ -6,18 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import connection.DB1;
 
 public class HistoriqueDao {
     private static Connection conn = null;
     private static HistoriqueDao instanceDao = null;
 
-    private static final String URL_BD = "jdbc:mysql://sql9.freesqldatabase.com/sql9558434";
-    private static final String USAGER = "sql9558434";
-    private static final String PASS = "bQV64kWUMF";
+    private static final String URL_BD = DB1.URL_BD;
+    private static final String USAGER = DB1.USAGER;
+    private static final String PASS = DB1.PASS;
 
     private static final String CREATE = "INSERT INTO historique VALUES(?, ?)";
     private static final String READ_ALL = "SELECT * FROM historique ORDER BY quand DESC";

@@ -10,21 +10,20 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import connection.DB1;
+
 public class EmpruntDao {
     private static Connection conn = null;
     private static EmpruntDao instanceDao = null;
 
-    private static final String URL_BD = "jdbc:mysql://sql9.freesqldatabase.com/sql9558434";
-    private static final String USAGER = "sql9558434";
-    private static final String PASS = "bQV64kWUMF";
+    private static final String URL_BD = DB1.URL_BD;
+    private static final String USAGER = DB1.USAGER;
+    private static final String PASS = DB1.PASS;
 
     private static final String CREATE = "INSERT INTO emprunt VALUES(?, ?, ?, ?, ?)";
     private static final String READ_ALL = "SELECT * FROM emprunt";
-<<<<<<< HEAD
-=======
     private static final String READ_ALL_PAR_USAGER = "SELECT * FROM emprunt WHERE idU=?";
     private static final String DELETE = "DELETE FROM emprunt WHERE idEm=?";
->>>>>>> origin/Davideh
 
     public EmpruntDao() {  }
     
@@ -92,9 +91,7 @@ public class EmpruntDao {
 
         return listeEmprunt;
     }
-<<<<<<< HEAD
-=======
-    
+
     // READ ALL PAR USAGER
     public ObservableList<Emprunt> MdlEm_readAllParUsager(int idU) {
         PreparedStatement stmt = null;
@@ -138,7 +135,6 @@ public class EmpruntDao {
             MdlEm_Fermer(conn);
         }
     }
->>>>>>> origin/Davideh
    
     private static void MdlEm_Fermer(Connection conn) {
         if (conn != null) {

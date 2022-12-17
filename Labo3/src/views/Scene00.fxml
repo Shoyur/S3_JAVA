@@ -67,11 +67,7 @@
       </content>
     </Tab>
 
-<<<<<<< HEAD
     <Tab fx:id="tab05" text="Transaction">
-=======
-    <Tab fx:id="tab05" text="Transactions">
->>>>>>> origin/Davideh
       <graphic>
         <ImageView>
           <image>
@@ -124,19 +120,6 @@
          <fx:include fx:id="scene08" source="Scene08.fxml" />
       </content>
     </Tab> 
-
-        <Tab fx:id="tab09" text="Maintenance">
-      <graphic>
-        <ImageView>
-          <image>
-            <Image url="@../medias/nav09.png" />
-          </image>
-        </ImageView>
-      </graphic>
-      <content>
-         <fx:include fx:id="scene09" source="Scene09.fxml" />
-      </content>
-    </Tab>
 
   </tabs>
 </TabPane>

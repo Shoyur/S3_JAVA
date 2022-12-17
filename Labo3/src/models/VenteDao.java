@@ -10,20 +10,19 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import connection.DB1;
+
 public class VenteDao {
     private static Connection conn = null;
     private static VenteDao instanceDao = null;
 
-    private static final String URL_BD = "jdbc:mysql://sql9.freesqldatabase.com/sql9558434";
-    private static final String USAGER = "sql9558434";
-    private static final String PASS = "bQV64kWUMF";
+    private static final String URL_BD = DB1.URL_BD;
+    private static final String USAGER = DB1.USAGER;
+    private static final String PASS = DB1.PASS;
 
     private static final String CREATE = "INSERT INTO vente VALUES(?, ?, ?, ?)";
     private static final String READ_ALL = "SELECT * FROM vente";
-<<<<<<< HEAD
-=======
     private static final String READ_ALL_PAR_USAGER = "SELECT * FROM vente WHERE idU=?";
->>>>>>> origin/Davideh
 
     public VenteDao() {  }
     
@@ -49,11 +48,7 @@ public class VenteDao {
             stmt.setInt(1, vente.getIdV());
             stmt.setInt(2, vente.getIdEx());
             stmt.setInt(3, vente.getIdU());
-<<<<<<< HEAD
-            stmt.setDate(4, vente.getDateV());
-=======
             stmt.setTimestamp(4, vente.getDateV());
->>>>>>> origin/Davideh
             stmt.executeUpdate();
         } 
         catch (SQLException e) { 
@@ -78,11 +73,7 @@ public class VenteDao {
                 Vente.setIdV(rs.getInt("idV"));
                 Vente.setIdEx(rs.getInt("idEx"));
                 Vente.setIdU(rs.getInt("idU"));
-<<<<<<< HEAD
-                Vente.setDateV(rs.getDate("dateV"));
-=======
                 Vente.setDateV(rs.getTimestamp("dateV"));
->>>>>>> origin/Davideh
                 listeVentes.add(Vente);
             }
         } 
@@ -97,9 +88,7 @@ public class VenteDao {
 
         return listeVentes;
     }
-<<<<<<< HEAD
-=======
-    
+
     // READ ALL PAR USAGER
     public ObservableList<Vente> MdlV_readAllParUsager(int idU) {
         PreparedStatement stmt = null;
@@ -126,7 +115,6 @@ public class VenteDao {
         }
         return listeVentesParUsager;
     }
->>>>>>> origin/Davideh
    
     private static void MdlV_Fermer(Connection conn) {
         if (conn != null) {

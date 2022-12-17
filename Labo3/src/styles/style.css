@@ -235,6 +235,17 @@
 }
 
 
+/* ************************************************** */
+/* ******************* PieChart ********************* */
+/* ************************************************** */
+
+.chart-pie {
+	-fx-border-color: none;	
+}
+.chart-pie-label {
+    -fx-fill: white;
+} 
+
 
 /* **************************************************** */
 /* ********************** CUSTOM ********************** */
@@ -255,9 +266,6 @@
 #labelAjoutExNewErreur5,
 #labelAjoutExNewErreur6 {
 	-fx-text-fill: red;
-<<<<<<< HEAD
-}
-=======
 }
 
 .combo-box {
@@ -268,4 +276,3 @@
     -fx-background-color: white;    
     -fx-text-fill: black;
 }
->>>>>>> origin/Davideh

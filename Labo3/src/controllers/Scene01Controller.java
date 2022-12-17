@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.mysql.cj.conf.IntegerProperty;
+
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 
 public class Scene01Controller implements Initializable {
@@ -31,6 +36,8 @@ public class Scene01Controller implements Initializable {
     public void injectScene00Controller(Scene00Controller scene00Controller) {
         this.scene00Controller = scene00Controller;
     }
+
+    @FXML private AnchorPane scene01;
 
     @FXML private TableView<Exemplaire> tableView01;
 
@@ -48,6 +55,7 @@ public class Scene01Controller implements Initializable {
     @FXML private TextField tblViewFilterAlbum, tblViewFilterArtiste, tblViewFilterAnnee, tblViewFilterGenre;
 
     private ObservableList<Exemplaire> exemplaires = FXCollections.observableArrayList();
+    private ObservableList<Exemplaire> exemplairesTous = FXCollections.observableArrayList();
 
     
     @Override public void initialize(URL arg0, ResourceBundle arg1) {
@@ -104,6 +112,13 @@ public class Scene01Controller implements Initializable {
             try { 
                 Thread.sleep(500);
                 exemplaires = (ExemplaireController.getControleurEx()).CtrEx_readAll(0);
+                exemplairesTous = (ExemplaireController.getControleurEx()).CtrEx_readAll(1);
+                int emprunts = (ExemplaireController.getControleurEx()).CtrEx_readAllEmp();
+                Platform.runLater(() -> {
+                    scene00Controller.refreshStats2(exemplaires.size());
+                    scene00Controller.refreshStats3(emprunts);
+                    scene00Controller.refreshStats4(exemplairesTous.size() - exemplaires.size());
+                });
                 tableView01.setItems(exemplaires); 
             }  
             catch (InterruptedException e) { e.printStackTrace(); } 
@@ -115,14 +130,18 @@ public class Scene01Controller implements Initializable {
     public void refreshTblView01() {
         Thread async_refreshTblView01 = new Thread(() -> {
                 exemplaires = (ExemplaireController.getControleurEx()).CtrEx_readAll(0);
-                Platform.runLater(() -> { 
+                exemplairesTous = (ExemplaireController.getControleurEx()).CtrEx_readAll(1);
+                int emprunts = (ExemplaireController.getControleurEx()).CtrEx_readAllEmp();
+                Platform.runLater(() -> {
+                    scene00Controller.refreshStats2(exemplaires.size());
+                    scene00Controller.refreshStats3(emprunts);
+                    scene00Controller.refreshStats4(exemplairesTous.size() - exemplaires.size());
                     this.tableView01.setItems(exemplaires);
                     this.tblViewFilterAlbum.setText(null);
                     this.tblViewFilterArtiste.setText(null);
                     this.tblViewFilterAnnee.setText(null);
                     this.tblViewFilterGenre.setText(null);  
                 });
-
         });
         async_refreshTblView01.start();
     }
@@ -159,4 +178,5 @@ public class Scene01Controller implements Initializable {
             }    
         return resultat;
     }
+    
 }

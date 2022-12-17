@@ -16,7 +16,7 @@
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "Main",
-            "projectName": "Labo3_bf8fbfb",
+            "projectName": "Labo3_78713039",
             "vmArgs": "--module-path ${workspaceFolder}/lib/JavaFx/lib --add-modules javafx.controls,javafx.fxml"
         }
     ]

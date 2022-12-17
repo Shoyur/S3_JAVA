@@ -21,7 +21,7 @@ public class UsagerController {
             return CtrU_Instance;
         }
         catch (Exception e) { 
-            System.out.println("================================================================================================ ERREUR, getControleurU(), e= " + e);
+            System.out.println("================================================================================================ ERREUR, getControleurLivre(), e= " + e);
             throw new RuntimeException(e);
         }
     }
